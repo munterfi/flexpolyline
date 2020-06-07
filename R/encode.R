@@ -1,9 +1,10 @@
-#' BLA
+#' Encode a line in flexible polyline encoding
 #'
-#' @param polyline matrix, line (lng, lat, z) to encode.
+#' @param line matrix, coordinates of the line in 2d or 3d.
+#' @param precision integer, precision to use in encoding (between 1 and 15; only valid results until 7!).
 #'
 #' @return
-#' String
+#' The line as encoded string.
 #' @export
 #'
 #' @examples
@@ -26,8 +27,8 @@
 #'   ncol = 3, byrow = TRUE
 #' )
 #' encode(line3d)
-encode <- function(line) {
-  return(cpp_encode(line))
+encode <- function(line, precision = 5) {
+  return(cpp_encode(line, precision))
 }
 
 
