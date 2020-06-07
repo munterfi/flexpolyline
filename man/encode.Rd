@@ -2,18 +2,20 @@
 % Please edit documentation in R/encode.R
 \name{encode}
 \alias{encode}
-\title{BLA}
+\title{Encode a line in flexible polyline encoding}
 \usage{
-encode(line)
+encode(line, precision = 5)
 }
 \arguments{
-\item{polyline}{matrix, line (lng, lat, z) to encode.}
+\item{line}{matrix, coordinates of the line in 2d or 3d.}
+
+\item{precision}{integer, precision to use in encoding (between 1 and 15; only valid results until 7!).}
 }
 \value{
-String
+The line as encoded string.
 }
 \description{
-BLA
+Encode a line in flexible polyline encoding
 }
 \examples{
 # 2D

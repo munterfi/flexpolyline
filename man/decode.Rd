@@ -2,7 +2,7 @@
 % Please edit documentation in R/decode.R
 \name{decode}
 \alias{decode}
-\title{BLA}
+\title{Decode a flexible polyline encoded string}
 \usage{
 decode(encoded)
 }
@@ -10,16 +10,16 @@ decode(encoded)
 \item{encoded}{character, encoded flexible polyline string.}
 }
 \value{
-String
+A matrix containing the coordinates.
 }
 \description{
-BLA
+Decode a flexible polyline encoded string
 }
 \examples{
-# 2D
+# 2d line
 decode("BFoz5xJ67i1B1B7PzIhaxL7Y")
 
-# 3D
+# 3d line
 decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 # routes$geometry[1] \%>\% decode() \%>\% st_linestring() \%>\% st_sfc(crs = 4326) \%>\% mapview()
 }
