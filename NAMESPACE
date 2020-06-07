@@ -2,5 +2,6 @@
 
 export(convolve)
 export(decode)
+export(encode)
 importFrom(Rcpp,sourceCpp)
 useDynLib(flexpolyline, .registration = TRUE)

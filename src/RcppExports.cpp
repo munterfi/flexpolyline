@@ -28,10 +28,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_encode
+String cpp_encode(NumericMatrix line);
+RcppExport SEXP _flexpolyline_cpp_encode(SEXP lineSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type line(lineSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_encode(line));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_flexpolyline_cpp_convolve", (DL_FUNC) &_flexpolyline_cpp_convolve, 2},
     {"_flexpolyline_cpp_decode", (DL_FUNC) &_flexpolyline_cpp_decode, 1},
+    {"_flexpolyline_cpp_encode", (DL_FUNC) &_flexpolyline_cpp_encode, 1},
     {NULL, NULL, 0}
 };
 

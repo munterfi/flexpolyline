@@ -36,3 +36,47 @@ NumericMatrix cpp_decode(String encoded) {
 
   return coords;
 }
+
+// [[Rcpp::export]]
+String cpp_encode(NumericMatrix line) {
+
+  String encoded;
+
+  if (line.cols() == 2) {
+
+    Rcout << "2 Cols";
+    Rcout << '\n';
+
+    std::vector<std::pair<double, double>> input{{
+      {50.1022829, 8.6982122},
+      {50.1020076, 8.6956695},
+      {50.1006313, 8.6914960},
+      {50.0987800, 8.6875156},
+      }};
+
+    encoded = hf::polyline_encode(input, 5, hf::ThirdDim::ABSENT);
+
+  } else if (line.cols() == 3) {
+
+    Rcout << "3 Cols";
+    Rcout << '\n';
+
+    std::vector<std::tuple<double, double, double>> input{{
+      {50.1022829, 8.6982122, 10},
+      {50.1020076, 8.6956695, 20},
+      {50.1006313, 8.6914960, 30},
+      {50.0987800, 8.6875156, 40},
+    }};
+
+    encoded = hf::polyline_encode(input, 5, hf::ThirdDim::ALTITUDE);
+
+  } else {
+
+    stop("Invalid input dimensions.");
+
+  }
+
+  return encoded;
+
+}
+

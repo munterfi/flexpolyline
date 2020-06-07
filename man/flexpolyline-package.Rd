@@ -4,9 +4,14 @@
 \name{flexpolyline-package}
 \alias{flexpolyline}
 \alias{flexpolyline-package}
-\title{flexpolyline: What the Package Does (Title Case)}
+\title{flexpolyline: Flexible polyline encoding and decoding}
 \description{
-More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+The flexible polyline encoding is a lossy compressed representation
+    of a list of coordinate pairs or coordinate triples. Provides a binding to
+    the Cpp implementation of the encoding by HERE <https://github.com/heremaps/flexible-polyline>.
+}
+\author{
+\strong{Maintainer}: Merlin Unterfinger \email{info@munterfinger.ch}
+
 }
 \keyword{internal}

@@ -9,3 +9,7 @@ cpp_decode <- function(encoded) {
     .Call(`_flexpolyline_cpp_decode`, encoded)
 }
 
+cpp_encode <- function(line) {
+    .Call(`_flexpolyline_cpp_encode`, line)
+}
+
