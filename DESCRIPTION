@@ -1,0 +1,20 @@
+Package: flexpolyline
+Type: Package
+Title: Flexible polyline encoding and decoding
+Version: 0.1.0
+Authors@R: 
+    person(given = "Merlin",
+           family = "Unterfinger",
+           role = c("aut", "cre"),
+           email = "info@munterfinger.ch")
+Description: The flexible polyline encoding is a lossy compressed representation
+    of a list of coordinate pairs or coordinate triples. Provides a binding to
+    the Cpp implementation of the encoding by HERE <https://github.com/heremaps/flexible-polyline>.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
