@@ -2,9 +2,12 @@
 #'
 #' @param line matrix, coordinates of the line in 2d or 3d.
 #' @param precision integer, precision to use in encoding (between 1 and 15; only valid results until 7!).
+#' @param third_dim integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION (default), 4, 6: CUSTOM1, 7: CUSTOM2).
+#' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15; only valid results until 7!).
 #'
 #' @return
-#' The line as encoded string.
+#' The line as string in the flexible polyline encoding.
+#'
 #' @export
 #'
 #' @examples
@@ -27,8 +30,11 @@
 #'   ncol = 3, byrow = TRUE
 #' )
 #' encode(line3d)
-encode <- function(line, precision = 5) {
-  return(cpp_encode(line, precision))
+encode <- function(line, precision = 5,
+                   third_dim = 3, third_dim_precision = precision) {
+  return(
+    cpp_encode(line, precision, third_dim, third_dim_precision)
+  )
 }
 
 
