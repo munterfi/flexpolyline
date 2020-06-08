@@ -4,15 +4,19 @@
 \alias{encode}
 \title{Encode a line in flexible polyline encoding}
 \usage{
-encode(line, precision = 5)
+encode(line, precision = 5, third_dim = 3, third_dim_precision = precision)
 }
 \arguments{
 \item{line}{matrix, coordinates of the line in 2d or 3d.}
 
 \item{precision}{integer, precision to use in encoding (between 1 and 15; only valid results until 7!).}
+
+\item{third_dim}{integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION (default), 4, 6: CUSTOM1, 7: CUSTOM2).}
+
+\item{third_dim_precision}{integer, precision to use in encoding for the third dimension (between 1 and 15; only valid results until 7!).}
 }
 \value{
-The line as encoded string.
+The line as string in the flexible polyline encoding.
 }
 \description{
 Encode a line in flexible polyline encoding
