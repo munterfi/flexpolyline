@@ -19,4 +19,5 @@ LinkingTo:
 Imports: 
     Rcpp
 Suggests: 
-    testthat
+    testthat,
+    stringr
