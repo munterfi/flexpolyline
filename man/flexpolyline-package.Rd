@@ -4,11 +4,16 @@
 \name{flexpolyline-package}
 \alias{flexpolyline}
 \alias{flexpolyline-package}
-\title{flexpolyline: Flexible polyline encoding and decoding}
+\title{flexpolyline: Flexible Polyline Encoding and Decoding}
 \description{
-The flexible polyline encoding is a lossy compressed representation
-    of a list of coordinate pairs or coordinate triples. Provides a binding to
-    the C++ implementation of the encoding by HERE <https://github.com/heremaps/flexible-polyline>.
+A binding to the C++ implementation of the flexible polyline
+    encoding by HERE <https://github.com/heremaps/flexible-polyline>. The
+    flexible polyline encoding is a lossy compressed representation of a list of
+    coordinate pairs or coordinate triples. The encoding is achieved by:
+    (1) Reducing the decimal digits of each value;
+    (2) encoding only the offset from the previous point;
+    (3) using variable length for each coordinate delta; and
+    (4) using 64 URL-safe characters to display the result.
 }
 \author{
 \strong{Maintainer}: Merlin Unterfinger \email{info@munterfinger.ch}
