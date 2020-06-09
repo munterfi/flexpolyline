@@ -6,32 +6,34 @@
 using namespace Rcpp;
 
 // cpp_decode
-NumericMatrix cpp_decode(String encoded);
+NumericMatrix cpp_decode(SEXP encoded);
 RcppExport SEXP _flexpolyline_cpp_decode(SEXP encodedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< String >::type encoded(encodedSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type encoded(encodedSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_decode(encoded));
     return rcpp_result_gen;
 END_RCPP
 }
 // cpp_encode
-String cpp_encode(NumericMatrix line, int precision);
-RcppExport SEXP _flexpolyline_cpp_encode(SEXP lineSEXP, SEXP precisionSEXP) {
+String cpp_encode(NumericMatrix line, int precision, int third_dim, int third_dim_precision);
+RcppExport SEXP _flexpolyline_cpp_encode(SEXP lineSEXP, SEXP precisionSEXP, SEXP third_dimSEXP, SEXP third_dim_precisionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericMatrix >::type line(lineSEXP);
     Rcpp::traits::input_parameter< int >::type precision(precisionSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_encode(line, precision));
+    Rcpp::traits::input_parameter< int >::type third_dim(third_dimSEXP);
+    Rcpp::traits::input_parameter< int >::type third_dim_precision(third_dim_precisionSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_encode(line, precision, third_dim, third_dim_precision));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_flexpolyline_cpp_decode", (DL_FUNC) &_flexpolyline_cpp_decode, 1},
-    {"_flexpolyline_cpp_encode", (DL_FUNC) &_flexpolyline_cpp_encode, 2},
+    {"_flexpolyline_cpp_encode", (DL_FUNC) &_flexpolyline_cpp_encode, 4},
     {NULL, NULL, 0}
 };
 

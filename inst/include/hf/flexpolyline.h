@@ -1,4 +1,8 @@
 /*
+ * Copy from    :https://github.com/heremaps/flexible-polyline/blob/master/cpp/
+ * Modified     :Line 211
+ * Date         :2020-06-09, Merlin Unterfinger <info@munterfinger.ch>
+ *
  * Copyright (C) 2019 HERE Europe B.V.
  * Licensed under MIT, see full license in LICENSE
  * SPDX-License-Identifier: MIT
@@ -204,7 +208,7 @@ class Decoder {
 private:
   const std::string m_encoded;
   uint32_t m_index;
-  unsigned long m_length;
+  unsigned long long m_length; // Mod: 'unsigned long' -> 'unsigned long long'
   int m_precision;
   int m_third_dim_precision;
   hf::ThirdDim m_third_dim;

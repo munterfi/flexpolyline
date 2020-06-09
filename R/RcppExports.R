@@ -5,7 +5,7 @@ cpp_decode <- function(encoded) {
     .Call(`_flexpolyline_cpp_decode`, encoded)
 }
 
-cpp_encode <- function(line, precision) {
-    .Call(`_flexpolyline_cpp_encode`, line, precision)
+cpp_encode <- function(line, precision, third_dim, third_dim_precision) {
+    .Call(`_flexpolyline_cpp_encode`, line, precision, third_dim, third_dim_precision)
 }
 
