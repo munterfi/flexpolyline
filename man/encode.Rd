@@ -9,11 +9,11 @@ encode(line, precision = 5, third_dim = 3, third_dim_precision = precision)
 \arguments{
 \item{line}{matrix, coordinates of the line in 2d or 3d (column order: LNG, LAT, DIM3).}
 
-\item{precision}{integer, precision to use in encoding (between 1 and 15; only valid results until 7!).}
+\item{precision}{integer, precision to use in encoding (between 0 and 15, \code{default=5}).}
 
-\item{third_dim}{integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION (default), 4, 6: CUSTOM1, 7: CUSTOM2).}
+\item{third_dim}{integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, \code{default=3}).}
 
-\item{third_dim_precision}{integer, precision to use in encoding for the third dimension (between 1 and 15; only valid results until 7!).}
+\item{third_dim_precision}{integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=precision}).}
 }
 \value{
 The line as string in the flexible polyline encoding format.

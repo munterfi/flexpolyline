@@ -5,9 +5,9 @@
 #' input coordinates, a two or three dimensional line is encoded.
 #'
 #' @param line matrix, coordinates of the line in 2d or 3d (column order: LNG, LAT, DIM3).
-#' @param precision integer, precision to use in encoding (between 1 and 15; only valid results until 7!).
-#' @param third_dim integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION (default), 4, 6: CUSTOM1, 7: CUSTOM2).
-#' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15; only valid results until 7!).
+#' @param precision integer, precision to use in encoding (between 0 and 15, \code{default=5}).
+#' @param third_dim integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, \code{default=3}).
+#' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=precision}).
 #'
 #' @return
 #' The line as string in the flexible polyline encoding format.
