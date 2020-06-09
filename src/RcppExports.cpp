@@ -6,12 +6,12 @@
 using namespace Rcpp;
 
 // cpp_decode
-NumericMatrix cpp_decode(String encoded);
+NumericMatrix cpp_decode(SEXP encoded);
 RcppExport SEXP _flexpolyline_cpp_decode(SEXP encodedSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< String >::type encoded(encodedSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type encoded(encodedSEXP);
     rcpp_result_gen = Rcpp::wrap(cpp_decode(encoded));
     return rcpp_result_gen;
 END_RCPP
