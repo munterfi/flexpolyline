@@ -7,7 +7,7 @@
 encode(line, precision = 5, third_dim = 3, third_dim_precision = precision)
 }
 \arguments{
-\item{line}{matrix, coordinates of the line in 2d or 3d.}
+\item{line}{matrix, coordinates of the line in 2d or 3d (column order: LNG, LAT, DIM3).}
 
 \item{precision}{integer, precision to use in encoding (between 1 and 15; only valid results until 7!).}
 

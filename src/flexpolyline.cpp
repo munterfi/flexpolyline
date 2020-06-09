@@ -15,6 +15,8 @@ NumericMatrix cpp_decode(String encoded) {
     encoded, [&polyline](double lat, double lng, double z) {
     polyline.push_back({lat, lng, z});
   });
+
+  // Check valid encoding
   if (!res) {
     stop("Invalid encoding.");
   }
