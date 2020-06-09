@@ -7,12 +7,15 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-NumericMatrix cpp_decode(String encoded) {
+NumericMatrix cpp_decode(SEXP encoded) {
+
+  // Convert from R SEXP to std::string
+  std::string encoded_str = Rcpp::as<std::string>(encoded);
 
   // Initialize decoder
   std::vector<std::tuple<double, double, double>> polyline;
   auto res = hf::polyline_decode(
-    encoded, [&polyline](double lat, double lng, double z) {
+    encoded_str, [&polyline](double lat, double lng, double z) {
     polyline.push_back({lat, lng, z});
   });
 
@@ -27,18 +30,33 @@ NumericMatrix cpp_decode(String encoded) {
     "RESERVED1", "RESERVED2", // Should not be used...
     "CUSTOM1", "CUSTOM2"
   };
-  hf::ThirdDim thrd = hf::get_third_dimension(encoded);
+  hf::ThirdDim thrd = hf::get_third_dimension(encoded_str);
   int index = static_cast<std::underlying_type<hf::ThirdDim>::type>(thrd);
 
   // Get line coordinates
   size_t n = polyline.size();
-  NumericMatrix coords(n, 3);
-  for (size_t i = 0; i < n; ++i) {
-    coords( i, 0 ) = std::get<1>(polyline[i]);
-    coords( i, 1 ) = std::get<0>(polyline[i]);
-    coords( i, 2 ) = std::get<2>(polyline[i]);
+  NumericMatrix coords(n, 2 + !!index);
+
+  if (!!index) {
+
+    // 3d case (index > 0)
+    for (size_t i = 0; i < n; ++i) {
+      coords( i, 0 ) = std::get<1>(polyline[i]);
+      coords( i, 1 ) = std::get<0>(polyline[i]);
+      coords( i, 2 ) = std::get<2>(polyline[i]);
+    }
+    colnames(coords) = CharacterVector({"LNG", "LAT", dim_name[index]});
+
+  } else {
+
+    // 2d case, third dimension ABSENT (index == 0)
+    for (size_t i = 0; i < n; ++i) {
+      coords( i, 0 ) = std::get<1>(polyline[i]);
+      coords( i, 1 ) = std::get<0>(polyline[i]);
+    }
+    colnames(coords) = CharacterVector({"LNG", "LAT"});
+
   }
-  colnames(coords) = CharacterVector({"LNG", "LAT", dim_name[index]});
 
   return coords;
 
