@@ -92,24 +92,33 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   )
 
   # Test decoding: don't test ...
-  # expect_equal(
-  #   any(
-  #     sapply(1:length(dec), function(i) {
-  #
-  #       # Omit reserved dimensions
-  #       if (dec[[i]]$third_dim %in% c(4, 5)) return(FALSE)
-  #
-  #       # Encode
-  #       decoded <- decode(
-  #         enc[i]
-  #       )
-  #
-  #       # Test equality
-  #       any(dec[[i]]$coords[, c(1:2)] != decoded[, c(1:2)])
-  #
-  #     })
-  #   ),
-  #   FALSE
-  # )
+  expect_equal(
+    any(
+      sapply(1:length(dec), function(i) {
+
+        # Omit reserved dimensions
+        # ! and encodings with precision higher than 8
+        if (
+          is.na(dec[[i]]$third_dim_precision) |
+          is.na(dec[[i]]$precision)
+        ) return(FALSE)
+        if (
+          dec[[i]]$third_dim %in% c(4, 5) |
+          dec[[i]]$third_dim_precision > 7 |
+          dec[[i]]$precision > 7
+        ) return(FALSE)
+
+        # Encode
+        decoded <- decode(
+          enc[i]
+        )
+
+        # Test equality
+        any(dec[[i]]$coords != decoded)
+
+      })
+    ),
+    FALSE
+  )
 
 })
