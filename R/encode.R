@@ -1,4 +1,8 @@
-#' Encode a line in flexible polyline encoding
+#' Encode a line in the flexible polyline encoding format
+#'
+#' This function calls \code{hf::polyline_encode} of the C++ implementation of
+#' the flexible polyline encoding by HERE. Depending on the dimensions of the
+#' input coordinates, a two or three dimensional line is encoded.
 #'
 #' @param line matrix, coordinates of the line in 2d or 3d (column order: LNG, LAT, DIM3).
 #' @param precision integer, precision to use in encoding (between 1 and 15; only valid results until 7!).
@@ -6,7 +10,7 @@
 #' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15; only valid results until 7!).
 #'
 #' @return
-#' The line as string in the flexible polyline encoding.
+#' The line as string in the flexible polyline encoding format.
 #'
 #' @export
 #'

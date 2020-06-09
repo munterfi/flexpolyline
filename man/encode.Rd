@@ -2,7 +2,7 @@
 % Please edit documentation in R/encode.R
 \name{encode}
 \alias{encode}
-\title{Encode a line in flexible polyline encoding}
+\title{Encode a line in the flexible polyline encoding format}
 \usage{
 encode(line, precision = 5, third_dim = 3, third_dim_precision = precision)
 }
@@ -16,10 +16,12 @@ encode(line, precision = 5, third_dim = 3, third_dim_precision = precision)
 \item{third_dim_precision}{integer, precision to use in encoding for the third dimension (between 1 and 15; only valid results until 7!).}
 }
 \value{
-The line as string in the flexible polyline encoding.
+The line as string in the flexible polyline encoding format.
 }
 \description{
-Encode a line in flexible polyline encoding
+This function calls \code{hf::polyline_encode} of the C++ implementation of
+the flexible polyline encoding by HERE. Depending on the dimensions of the
+input coordinates, a two or three dimensional line is encoded.
 }
 \examples{
 # 2D

@@ -1,9 +1,13 @@
 #' Decode a flexible polyline encoded string
 #'
+#' This function calls \code{hf::polyline_decode} and \code{hf::get_third_dimension}
+#' of the C++ implementation of the flexible polyline encoding by HERE. Depending
+#' on the dimensions of the encoded line, a two or three dimensional line is decoded.
+#'
 #' @param encoded character, encoded flexible polyline string.
 #'
 #' @return
-#' A matrix containing the coordinates.
+#' A matrix containing the coordinates of the decoded line.
 #'
 #' @export
 #'
@@ -13,8 +17,6 @@
 #'
 #' # 3d line
 #' decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
-#'
-#' # routes$geometry[1] %>% decode() %>% st_linestring() %>% st_sfc(crs = 4326) %>% mapview()
 decode <- function(encoded) {
   return(cpp_decode(encoded))
 }
