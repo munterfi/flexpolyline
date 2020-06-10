@@ -1,5 +1,5 @@
 ---
-title: "encode"
+title: "Encode"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{encode}
