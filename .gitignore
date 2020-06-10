@@ -45,3 +45,4 @@ vignettes/*.pdf
 
 # macOS
 *.DS_Store
+inst/doc
