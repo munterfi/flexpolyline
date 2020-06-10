@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Decode a flexible polyline encoded string — decode • flexpolyline</title>
+<title>Changelog • flexpolyline</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,7 @@
 
 
 
-<meta property="og:title" content="Decode a flexible polyline encoded string — decode" />
-<meta property="og:description" content="This function calls hf::polyline_decode and hf::get_third_dimension
-of the C++ implementation of the flexible polyline encoding by HERE. Depending
-on the dimensions of the encoded line, a two or three dimensional line is decoded." />
+<meta property="og:title" content="Changelog" />
 
 
 
@@ -61,7 +58,7 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-topic">
+    <div class="container template-news">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -143,51 +140,27 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Decode a flexible polyline encoded string</h1>
-    
-    <div class="hidden name"><code>decode.Rd</code></div>
+      <h1 data-toc-skip>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="ref-description">
-    <p>This function calls <code>hf::polyline_decode</code> and <code>hf::get_third_dimension</code>
-of the C++ implementation of the flexible polyline encoding by HERE. Depending
-on the dimensions of the encoded line, a two or three dimensional line is decoded.</p>
-    </div>
-
-    <pre class="usage"><span class='fu'>decode</span>(<span class='no'>encoded</span>)</pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>encoded</th>
-      <td><p>character, encoded flexible polyline string.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A matrix containing the coordinates of the decoded line.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># 2d line</span>
-<span class='fu'>decode</span>(<span class='st'>"BFoz5xJ67i1B1B7PzIhaxL7Y"</span>)</div><div class='output co'>#&gt;          LNG      LAT
-#&gt; [1,] 8.69821 50.10228
-#&gt; [2,] 8.69567 50.10201
-#&gt; [3,] 8.69150 50.10063
-#&gt; [4,] 8.68752 50.09878</div><div class='input'>
-<span class='co'># 3d line</span>
-<span class='fu'>decode</span>(<span class='st'>"BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"</span>)</div><div class='output co'>#&gt;          LNG      LAT ALTITUDE
-#&gt; [1,] 8.69821 50.10228       10
-#&gt; [2,] 8.69567 50.10201       20
-#&gt; [3,] 8.69150 50.10063       30
-#&gt; [4,] 8.68752 50.09878       40</div></pre>
+    <div id="flexpolyline-010" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.0">
+<a href="#flexpolyline-010" class="anchor"></a>flexpolyline 0.1.0</h1>
+<p>First release of the <code>flexpolyline</code> package, which provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by:</p>
+<p>(1) Reducing the decimal digits of each value;</p>
+<p>(2) encoding only the offset from the previous point;</p>
+<p>(3) using variable length for each coordinate delta; and</p>
+<p>(4) using 64 URL-safe characters to display the result. The felxible polyline encoding is a variant of the <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a> by Google.</p>
+</div>
   </div>
+
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
+
 </div>
 
 
