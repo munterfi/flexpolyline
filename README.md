@@ -7,18 +7,22 @@
 <!-- badges: end -->
 
 The `flexpolyline` R package provides a binding to the
-[C++ implementation](https://github.com/heremaps/flexible-polyline) of the
-flexible polyline encoding by HERE. The flexible polyline encoding is a lossy
-compressed representation of a list of coordinate pairs or coordinate triples.
-The encoding is achieved by:
+[C++ implementation](https://github.com/heremaps/flexible-polyline/tree/master/cpp) of the
+flexible polyline encoding by [HERE](https://github.com/heremaps/flexible-polyline).
+The flexible polyline encoding is a lossy compressed representation of a list of
+coordinate pairs or coordinate triples. The encoding is achieved by:
 (1) Reducing the decimal digits of each value;
 (2) encoding only the offset from the previous point;
 (3) using variable length for each coordinate delta; and
 (4) using 64 URL-safe characters to display the result.
 The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) by Google.
 
-**Note:** Decoding gives only reliable results up to a precision of 7 digits.
+**Notes:**
+
+* Decoding gives reliable results up to a precision of 7 digits.
 The tests are also limited to this range.
+* The order of the coordinates (lng, lat) does not correspond to the original C ++ implementation (lat, lng).
+This enables simple conversion to `sf` objects, without reordering the columns.
 
 ## Installation
 
@@ -73,6 +77,7 @@ decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ## References
 * [Flexible polyline encoding by HERE](https://github.com/heremaps/flexible-polyline)
 * [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
+* Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package
 
 ## License
 * The `flexpolyline` R Package is licensed under GNU GPL v3.0 - see the [LICENSE.md](LICENSE.md) file for details.
