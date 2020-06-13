@@ -16,7 +16,7 @@ NumericMatrix cpp_decode(SEXP encoded) {
   std::vector<std::tuple<double, double, double>> polyline;
   auto res = hf::polyline_decode(
     encoded_str, [&polyline](double lat, double lng, double z) {
-    polyline.push_back({{lat, lng, z}});
+    polyline.push_back(std::make_tuple(lat, lng, z));
   });
 
   // Check valid encoding
