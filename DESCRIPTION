@@ -22,7 +22,8 @@ RoxygenNote: 7.1.0
 LinkingTo: 
     Rcpp
 Imports: 
-    Rcpp
+    Rcpp,
+    sf (>= 0.9-4)
 Suggests: 
     testthat (>= 2.3.2),
     stringr (>= 1.4.0),
