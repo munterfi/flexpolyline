@@ -34,11 +34,35 @@
 #'   ncol = 3, byrow = TRUE
 #' )
 #' encode(line3d)
-encode <- function(line, precision = 5,
-                   third_dim = 3, third_dim_precision = precision) {
-  return(
-    encode_coords(line, precision, third_dim, third_dim_precision)
-  )
+encode <- function(line, precision = 5, third_dim = 3,
+                   third_dim_precision = precision)
+  UseMethod("encode")
+
+#' @export
+encode.sf <- function(line, precision = 5, third_dim = 3,
+                      third_dim_precision = precision) {
+  encoded <- sapply(sf::st_geometry(line), function(x) {
+    encode_coords(
+      sf::st_coordinates(x)[, c(1:2)],
+      precision, third_dim, third_dim_precision
+    )
+  })
+  return(encoded)
 }
 
+#' @export
+encode.list <- function(line, precision = 5, third_dim = 3,
+                        third_dim_precision = precision) {
+  if(any(!sapply(line, is.matrix))) stop("Input not of type 'matrix array'.")
+  encoded <- sapply(line, function(x) {
+    encode_coords(x, precision, third_dim, third_dim_precision)
+  })
+  return(encoded)
+}
 
+#' @export
+encode.matrix <- function(line, precision = 5, third_dim = 3,
+                          third_dim_precision = precision) {
+  encoded <- encode_coords(line, precision, third_dim, third_dim_precision)
+  return(encoded)
+}
