@@ -37,7 +37,7 @@
 encode <- function(line, precision = 5,
                    third_dim = 3, third_dim_precision = precision) {
   return(
-    cpp_encode(line, precision, third_dim, third_dim_precision)
+    encode_coords(line, precision, third_dim, third_dim_precision)
   )
 }
 

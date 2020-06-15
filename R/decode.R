@@ -18,5 +18,5 @@
 #' # 3d line
 #' decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 decode <- function(encoded) {
-  return(cpp_decode(encoded))
+  return(decode_coords(encoded))
 }
