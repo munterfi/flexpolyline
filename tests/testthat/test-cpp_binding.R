@@ -76,7 +76,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
         if (org[[i]]$third_dim %in% c(4, 5)) return(FALSE)
 
         # Encode
-        encoded <- encode(
+        encoded <- encode_coords(
           line = org[[i]]$coords,
           precision = org[[i]]$precision,
           third_dim = org[[i]]$third_dim,
@@ -108,7 +108,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
         ) return(FALSE)
 
         # Encode
-        decoded <- decode(
+        decoded <- decode_coords(
           enc[i]
         )
 
