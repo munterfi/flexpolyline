@@ -1,5 +1,5 @@
 
-## C++11
-CXX_STD = CXX11
+## C++14
+CXX_STD = CXX14
 
 PKG_CXXFLAGS = -I../inst/include
