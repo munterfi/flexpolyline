@@ -4,10 +4,10 @@
 \alias{decode}
 \title{Decode a flexible polyline encoded string}
 \usage{
-decode(encoded)
+decode(encoded, crs = 4326)
 }
 \arguments{
-\item{encoded}{character, encoded flexible polyline string.}
+\item{encoded}{crs, coordinate reference system (\code{default = 4326}, WGS84).}
 }
 \value{
 A matrix containing the coordinates of the decoded line.

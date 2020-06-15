@@ -5,6 +5,7 @@
 #' on the dimensions of the encoded line, a two or three dimensional line is decoded.
 #'
 #' @param encoded character, encoded flexible polyline string.
+#' @param encoded crs, coordinate reference system (\code{default = 4326}, WGS84).
 #'
 #' @return
 #' A matrix containing the coordinates of the decoded line.
@@ -17,6 +18,16 @@
 #'
 #' # 3d line
 #' decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
-decode <- function(encoded) {
-  return(decode_coords(encoded))
+decode <- function(encoded, crs = 4326) UseMethod("decode")
+
+#' @export
+decode.character <- function(encoded, crs = 4326) {
+  return(sf::st_sfc(lapply(encoded, function(x) {
+    sf::st_linestring(decode_coords(x))
+  }), crs = crs))
+}
+
+#' @export
+decode.factor <- function(encoded, crs = 4326) {
+  return(decode.character(as.character(encoded)))
 }
