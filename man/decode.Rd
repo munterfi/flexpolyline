@@ -17,6 +17,11 @@ This function calls \code{hf::polyline_decode} and \code{hf::get_third_dimension
 of the C++ implementation of the flexible polyline encoding by HERE. Depending
 on the dimensions of the encoded line, a two or three dimensional line is decoded.
 }
+\note{
+The function returns a sf object, therefore the input set of polylines must
+be of consistent dimension (e.g XY or XYZ) to meet the requirements of the constructor of an sf object.
+For mixed dimensions use the \link{decode_coords} function directly.
+}
 \examples{
 # 2d line
 decode("BFoz5xJ67i1B1B7PzIhaxL7Y")
