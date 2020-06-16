@@ -2,6 +2,7 @@
 
 S3method(decode,character)
 S3method(decode,factor)
+S3method(encode,default)
 S3method(encode,list)
 S3method(encode,matrix)
 S3method(encode,sf)

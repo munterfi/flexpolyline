@@ -36,7 +36,7 @@
 #' encode(line3d)
 encode <- function(line, precision = 5, third_dim = 3,
                    third_dim_precision = precision)
-  UseMethod("encode")
+  UseMethod("encode", line)
 
 #' @export
 encode.sf <- function(line, precision = 5, third_dim = 3,
@@ -63,6 +63,13 @@ encode.list <- function(line, precision = 5, third_dim = 3,
 #' @export
 encode.matrix <- function(line, precision = 5, third_dim = 3,
                           third_dim_precision = precision) {
+  encoded <- encode_coords(line, precision, third_dim, third_dim_precision)
+  return(encoded)
+}
+
+#' @export
+encode.default <- function(line, precision = 5, third_dim = 3,
+                           third_dim_precision = precision) {
   encoded <- encode_coords(line, precision, third_dim, third_dim_precision)
   return(encoded)
 }
