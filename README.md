@@ -41,7 +41,7 @@ remotes::install_github("munterfinger/flexpolyline")
 
 ## C++ binding
 
-Encodeing and decoding in R is straight forward by using `encode()` and `decode()`,
+Encoding and decoding in R is straight forward by using `encode()` and `decode()`,
 which are binding to the flexpolyline C++ implementation and have similar arguments
 and return values as their counterparts (`hf::encode_polyline` and `hf::decode_polyline`):
 
