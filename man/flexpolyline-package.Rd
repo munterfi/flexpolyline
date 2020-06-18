@@ -17,6 +17,15 @@ Binding to the C++ implementation of the flexible polyline
     (3) using variable length for each coordinate delta; and
     (4) using 64 URL-safe characters to display the result.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://munterfinger.github.io/flexpolyline}
+  \item \url{https://github.com/munterfinger/flexpolyline}
+  \item Report bugs at \url{https://github.com/munterfinger/flexpolyline/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Merlin Unterfinger \email{info@munterfinger.ch}
 
