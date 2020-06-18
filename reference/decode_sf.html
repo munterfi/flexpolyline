@@ -157,7 +157,7 @@ encoded in the flexible polyline enoding, to simple feature geometries of the sf
 encoded in the flexible polyline enoding, to simple feature geometries of the sf package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>decode_sf</span>(<span class='kw'>encoded</span>, crs = <span class='fl'>4326</span>)</pre>
+    <pre class="usage"><span class='fu'>decode_sf</span>(<span class='kw'>encoded</span>, crs = <span class='kw'>sf</span>::<span class='kw'><a href='https://rdrr.io/pkg/sf/man/st_crs.html'>NA_crs_</a></span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,7 +168,7 @@ encoded in the flexible polyline enoding, to simple feature geometries of the sf
     </tr>
     <tr>
       <th>crs</th>
-      <td><p>integer or character, coordinate reference system to assign to the sf object (<code>default = 4326</code>, WGS84).</p></td>
+      <td><p>integer or character, coordinate reference system to assign to the sf object (<code>default = sf::NA_crs_</code>).</p></td>
     </tr>
     </table>
 
@@ -188,7 +188,7 @@ use the <code>decode</code> function directly.</p>
 #&gt; geometry type:  LINESTRING
 #&gt; dimension:      XY
 #&gt; bbox:           xmin: 8.68752 ymin: 50.09878 xmax: 8.69821 ymax: 50.10228
-#&gt; geographic CRS: WGS 84
+#&gt; CRS:            NA
 #&gt;   id   dim3                       geometry
 #&gt; 1  1 ABSENT LINESTRING (8.69821 50.1022...</div><div class='input'>
 <span class='co'># 3d line</span>
@@ -197,7 +197,7 @@ use the <code>decode</code> function directly.</p>
 #&gt; dimension:      XYZ
 #&gt; bbox:           xmin: 8.68752 ymin: 50.09878 xmax: 8.69821 ymax: 50.10228
 #&gt; z_range:        zmin: 10 zmax: 40
-#&gt; geographic CRS: WGS 84
+#&gt; CRS:            NA
 #&gt;   id     dim3                       geometry
 #&gt; 1  1 ALTITUDE LINESTRING Z (8.69821 50.10...</div></pre>
   </div>

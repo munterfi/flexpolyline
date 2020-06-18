@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flexible Polyline Encoding and Decoding • flexpolyline</title>
+<title>Flexible Polyline Encoding for R • flexpolyline</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Flexible Polyline Encoding and Decoding">
+<script src="pkgdown.js"></script><meta property="og:title" content="Flexible Polyline Encoding for R">
 <meta property="og:description" content="Binding to the C++ implementation of the flexible polyline
     encoding by HERE &lt;https://github.com/heremaps/flexible-polyline&gt;. The
     flexible polyline encoding is a lossy compressed representation of a list of
@@ -110,18 +110,18 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="flexible-polyline-encoding-" class="section level1">
+<div id="flexible-polyline-encoding-for-r-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#flexible-polyline-encoding-" class="anchor"></a>Flexible Polyline Encoding <img src="reference/figures/logo.png" align="right" alt="" width="120">
+<a href="#flexible-polyline-encoding-for-r-" class="anchor"></a>Flexible Polyline Encoding for R <img src="reference/figures/logo.png" align="right" alt="" width="120">
 </h1></div>
 <!-- badges: start -->
 
-<p>The <code>flexpolyline</code> R package provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by:</p>
+<p>The <strong>flexpolyline</strong> R package provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by:</p>
 <p>(1) Reducing the decimal digits of each value;</p>
 <p>(2) encoding only the offset from the previous point;</p>
 <p>(3) using variable length for each coordinate delta; and</p>
 <p>(4) using 64 URL-safe characters to display the result. The felxible polyline encoding is a variant of the <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a> by Google.</p>
-<p><strong>Notes:</strong></p>
+<p><strong>Note:</strong></p>
 <ul>
 <li>Decoding gives reliable results up to a precision of 7 digits. The tests are also limited to this range.</li>
 <li>The order of the coordinates (lng, lat) does not correspond to the original C ++ implementation (lat, lng). This enables simple conversion to <code>sf</code> objects, without reordering the columns.</li>
@@ -130,7 +130,7 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of flexpolyline from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<p>You can install the released version of <strong>flexpolyline</strong> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"flexpolyline"</span>) <span class="co"># Not yet published!</span>
 </pre></div>
@@ -142,7 +142,7 @@
 <div id="c-binding" class="section level2">
 <h2 class="hasAnchor">
 <a href="#c-binding" class="anchor"></a>C++ binding</h2>
-<p>Encoding and decoding in R is straight forward by using <code><a href="reference/encode.html">encode()</a></code> and <code><a href="reference/decode.html">decode()</a></code>, which are binding to the flexpolyline C++ implementation and have similar arguments and return values as their counterparts (<code>hf::encode_polyline</code> and <code>hf::decode_polyline</code>):</p>
+<p>Encoding and decoding in R is straight forward by using <code><a href="reference/encode.html">encode()</a></code> and <code><a href="reference/decode.html">decode()</a></code>. These functions are binding to the flexpolyline C++ implementation and have similar arguments and return values as their counterparts (<code>hf::encode_polyline</code> and <code>hf::decode_polyline</code>):</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="kw">line</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(
   <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10</span>,
@@ -160,7 +160,7 @@
 <div id="simple-feature-support" class="section level2">
 <h2 class="hasAnchor">
 <a href="#simple-feature-support" class="anchor"></a>Simple feature support</h2>
-<p>A common way to deal with spatial data in R is using the <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> package, which is built on the concept of simple features. The functions <code><a href="reference/encode_sf.html">encode_sf()</a></code> and <code><a href="reference/decode_sf.html">decode_sf()</a></code> provide an interface that support the encoding of sf objects:</p>
+<p>A common way to deal with spatial data in R is the <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> package, which is built on the concept of simple features. The functions <code><a href="reference/encode_sf.html">encode_sf()</a></code> and <code><a href="reference/decode_sf.html">decode_sf()</a></code> provide an interface that support the encoding of sf objects:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">sfg</span> <span class="op">&lt;-</span> <span class="kw">sf</span>::<span class="fu"><a href="https://rdrr.io/pkg/sf/man/st.html">st_linestring</a></span>(<span class="kw">line</span>, dim = <span class="st">"XYZ"</span>)
 
@@ -173,7 +173,7 @@
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <ul>
-<li><a href="https://github.com/heremaps/flexible-polyline">Flexible polyline encoding by HERE</a></li>
+<li><a href="https://github.com/heremaps/flexible-polyline">Flexible Polyline Encoding by HERE</a></li>
 <li><a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a></li>
 <li><a href="https://cran.r-project.org/web/packages/sf/index.html">Simple Features for R</a></li>
 <li>Inspired by the <a href="https://github.com/SymbolixAU/googlePolylines">googlePolylines</a> package</li>
@@ -183,7 +183,7 @@
 <h2 class="hasAnchor">
 <a href="#license" class="anchor"></a>License</h2>
 <ul>
-<li>The <code>flexpolyline</code> R Package is licensed under GNU GPL v3.0 - see the <a href="LICENSE.html">LICENSE.md</a> file for details.</li>
+<li>The <strong>flexpolyline</strong> R package is licensed under GNU GPL v3.0 - see the <a href="LICENSE.html">LICENSE.md</a> file for details.</li>
 <li>The C++ implementation by HERE is licensed under MIT - see the <a href="inst/include/hf/LICENSE">LICENSE</a> file for details.</li>
 </ul>
 </div>

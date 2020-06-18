@@ -117,7 +117,7 @@
 <div id="flexible-polyline-encoding" class="section level2">
 <h2 class="hasAnchor">
 <a href="#flexible-polyline-encoding" class="anchor"></a>Flexible polyline encoding</h2>
-<p>The <code>flexpolyline</code> R package provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples.</p>
+<p>The <strong>flexpolyline</strong> R package provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples.</p>
 <p>The encoding is achieved by:</p>
 <ol style="list-style-type: decimal">
 <li>Reducing the decimal digits of each value;</li>
@@ -125,7 +125,7 @@
 <li>using variable length for each coordinate delta; and</li>
 <li>using 64 URL-safe characters to display the result. The felxible polyline encoding is a variant of the <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a> by Google.</li>
 </ol>
-<p><strong>Notes:</strong></p>
+<p><strong>Note:</strong></p>
 <ul>
 <li>Decoding gives reliable results up to a precision of 7 digits. The tests are also limited to this range.</li>
 <li>The order of the coordinates (lng, lat) does not correspond to the original C ++ implementation (lat, lng). This enables simple conversion to <code>sf</code> objects, without reordering the columns.</li>
@@ -135,12 +135,12 @@
 <div id="c-binding" class="section level2">
 <h2 class="hasAnchor">
 <a href="#c-binding" class="anchor"></a>C++ binding</h2>
-<p>The package contains two C++ function, which bind directly to the C++ implementation of the flexible polyline encoding. These functions target a tight interface from C++ to R and have the same input and output as their counterpart in the original implementation. In order to achieve the maximum performance (e.g. in a package), these should be used.</p>
+<p>The package contains two C++ functions, which bind directly to the C++ implementation of the flexible polyline encoding. These functions target a tight interface from C++ to R and have similar arguments and return values as their counterparts (<code>hf::encode_polyline</code> and <code>hf::decode_polyline</code>) in the original implementation. In order to achieve a good performance (e.g. as dependency in a package), these should be used.</p>
 </div>
 <div id="encode" class="section level2">
 <h2 class="hasAnchor">
 <a href="#encode" class="anchor"></a>Encode</h2>
-<p>Encoding a line is straight forward by passing a matrix (column order is longitude, latitude) with coordinates to <code><a href="../reference/encode.html">encode()</a></code>. The default precision value is <code>5</code>. If a matrix with two columns is provided, the third dimension is automatically set to <code>"ABSENT"</code>:</p>
+<p>Encoding a line is straight forward by passing a matrix (column order is longitude, latitude) with its coordinates to <code><a href="../reference/encode.html">encode()</a></code>. The default precision value is set to <code>5</code>. If a matrix with two columns is provided, the third dimension is automatically set to <code>"ABSENT"</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://munterfinger.github.io/flexpolyline">flexpolyline</a></span>)
 
@@ -155,7 +155,7 @@
 (<span class="kw">encodes2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span>(<span class="kw">line2d</span>, precision = <span class="fl">5</span>))
 <span class="co">#&gt; [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</span>
 </pre></div>
-<p>If a matrix with three columns is passed a line with a third dimension is encoded. The type of the third dimension can be passed to the encoding and includes the following selection, that are specified via an integer value in the <code>third_dim</code> argument:</p>
+<p>If a matrix with three columns is passed, a line with a third dimension is encoded. The type of the third dimension can be passed to the encoding and supports the following selection, that are specified via an integer value via the <code>third_dim</code> argument:</p>
 <ul>
 <li>0: ABSENT</li>
 <li>1: LEVEL</li>
@@ -183,7 +183,7 @@
 <div id="decode" class="section level2">
 <h2 class="hasAnchor">
 <a href="#decode" class="anchor"></a>Decode</h2>
-<p>In order to decode the lines from above, the encoded line is passed to the <code><a href="../reference/decode.html">decode()</a></code> function. The function detects the from the encoding if it is a two dimensional or three dimensional line:</p>
+<p>In order to decode the lines from above, the encoded line string is passed to the <code><a href="../reference/decode.html">decode()</a></code> function. The function detects from the encoded string if it is a two-dimensional or three-dimensional line:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="../reference/decode.html">decode</a></span>(<span class="kw">encodes2d</span>)
 <span class="co">#&gt;          LNG      LAT</span>
@@ -192,7 +192,7 @@
 <span class="co">#&gt; [3,] 8.69150 50.10063</span>
 <span class="co">#&gt; [4,] 8.68752 50.09878</span>
 </pre></div>
-<p>In the case of a three dimensional line, the third column is named after the name of the third dimension that was chosen during the encoding (in this example <code>"ELEVATION"</code>):</p>
+<p>In the case of a three-dimensional line, the third column is named after the name of the third dimension that was chosen during the encoding (in this example <code>"ELEVATION"</code>):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="fu"><a href="../reference/decode.html">decode</a></span>(<span class="kw">encodes3d</span>)
 <span class="co">#&gt;          LNG      LAT ELEVATION</span>
@@ -206,7 +206,7 @@
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <ul>
-<li><a href="https://github.com/heremaps/flexible-polyline">Flexible polyline encoding by HERE</a></li>
+<li><a href="https://github.com/heremaps/flexible-polyline">Flexible Polyline Encoding by HERE</a></li>
 <li><a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a></li>
 <li>Inspired by the <a href="https://github.com/SymbolixAU/googlePolylines">googlePolylines</a> package</li>
 </ul>
