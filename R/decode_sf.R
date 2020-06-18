@@ -1,22 +1,19 @@
 #' Wrapper function for decoding to simple features
 #'
-#' A wrapper function for \code{\link{decode}} that converts the input polylines
-#' to simple feature geometries of the sf package.
-#' This function calls \code{hf::polyline_decode} and \code{hf::get_third_dimension}
-#' of the C++ implementation of the flexible polyline encoding by HERE. Depending
-#' on the dimensions of the encoded line, a two or three dimensional line is decoded.
+#' A wrapper function for \code{\link{decode}} that converts the input polylines,
+#' encoded in the flexible polyline enoding, to simple feature geometries of the sf package.
 #'
 #' @note
-#' The function returns a sf object, therefore the input set of polylines must
-#' be of consistent dimension (e.g XY or XYZ) to meet the requirements of the
-#' constructor of an sf object. For mixed dimensions use the \code{\link{decode}}
-#' function directly.
+#' The function returns an sf object, therefore the input set of encoded polylines
+#' must be of consistent dimension (e.g \code{"XY"}, \code{"XYM"} or \code{"XYZ"})
+#' to meet the requirements of the constructor of sf objects. For mixed dimensions
+#' use the \code{\link{decode}} function directly.
 #'
 #' @param encoded character, encoded flexible polyline string.
-#' @param encoded crs, coordinate reference system (\code{default = 4326}, WGS84).
+#' @param crs integer or character, coordinate reference system to assign to the sf object (\code{default = 4326}, WGS84).
 #'
 #' @return
-#' A matrix containing the coordinates of the decoded line.
+#' An \code{sf} object, containing the geometries of the decoded lines (Geometry type: \code{"LINESTRING"}).
 #'
 #' @export
 #'
