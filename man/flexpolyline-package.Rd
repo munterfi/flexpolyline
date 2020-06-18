@@ -4,7 +4,7 @@
 \name{flexpolyline-package}
 \alias{flexpolyline}
 \alias{flexpolyline-package}
-\title{flexpolyline: Flexible Polyline Encoding and Decoding}
+\title{flexpolyline: Flexible Polyline Encoding for R}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 

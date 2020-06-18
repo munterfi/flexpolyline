@@ -4,12 +4,12 @@
 \alias{decode_sf}
 \title{Wrapper function for decoding to simple features}
 \usage{
-decode_sf(encoded, crs = 4326)
+decode_sf(encoded, crs = sf::NA_crs_)
 }
 \arguments{
 \item{encoded}{character, encoded flexible polyline string.}
 
-\item{crs}{integer or character, coordinate reference system to assign to the sf object (\code{default = 4326}, WGS84).}
+\item{crs}{integer or character, coordinate reference system to assign to the sf object (\code{default = sf::NA_crs_}).}
 }
 \value{
 An \code{sf} object, containing the geometries of the decoded lines (Geometry type: \code{"LINESTRING"}).

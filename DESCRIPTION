@@ -1,6 +1,6 @@
 Package: flexpolyline
 Type: Package
-Title: Flexible Polyline Encoding and Decoding
+Title: Flexible Polyline Encoding for R
 Version: 0.1.0
 Authors@R: 
     person(given = "Merlin",
