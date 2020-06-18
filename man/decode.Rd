@@ -13,6 +13,8 @@ decode(encoded, crs = 4326)
 A matrix containing the coordinates of the decoded line.
 }
 \description{
+A wrapper function for \link{decode_coords} that converts the input polylines
+to simple feature geometries of the sf package.
 This function calls \code{hf::polyline_decode} and \code{hf::get_third_dimension}
 of the C++ implementation of the flexible polyline encoding by HERE. Depending
 on the dimensions of the encoded line, a two or three dimensional line is decoded.
