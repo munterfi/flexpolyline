@@ -1,0 +1,80 @@
+---
+title: "Performance"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Performance}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This binding to the C++ implementation of the flexible polyline encoding by HERE
+offers two ways of access:
+
+* Rcpp functions that bind directly to the C++ implementation of the flexible polyline encoding.
+* Simple feature wrapper functions with focus on usability rather than speed.
+
+Direct access should be used for good performance (e.g. when developing a package).
+
+## Benchmark
+### Setup
+```{r setup}
+library(sf)
+library(flexpolyline)
+library(microbenchmark)
+
+gen_2d <- function(l) {
+  cbind(
+    LNG = 8 + rnorm(l),
+    LAT = 45 + rnorm(l)
+  )
+}
+
+gen_3d <- function(l) {
+  cbind(
+    LNG = 8 + rnorm(l),
+    LAT = 45 + rnorm(l),
+    ELEVATION = 10 + rnorm(l)
+  )
+}
+
+bench <- function(test_data_list, fun, times = 10) {
+  sapply(test_data_list, function(x) {
+    mean(microbenchmark(fun(x), times = times)[["time"]])
+  }) / 1e10
+}
+```
+
+### Generate test data
+```{r data}
+# Length of the lines
+steps <- c(1, 10, 100, 650, 1000, 6500, 10000, 65000, 100000, 650000, 1000000)
+
+# Matrices
+test2d <- lapply(steps, gen_2d)
+test3d <- lapply(steps, gen_3d)
+
+# Simple features
+test2d_sf <- lapply(test2d, st_linestring)
+test3d_sf <- lapply(test3d, st_linestring)
+```
+### Benchmark
+```{r bench}
+# Benchmark
+bench2d <- bench(test2d, encode)
+bench3d <- bench(test3d, encode)
+bench2d_sf <- bench(test2d_sf, encode)
+bench3d_sf <- bench(test3d_sf, encode)
+
+# Plot
+plot(steps, bench2d, type = "l", col = "blue", xlab = "Line length", ylab = "Duration [s]")
+lines(steps, bench3d, col = "blue")
+lines(steps, bench2d_sf, col = "red")
+lines(steps, bench3d_sf, col = "red")
+```

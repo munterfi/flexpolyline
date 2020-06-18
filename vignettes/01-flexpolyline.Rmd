@@ -2,7 +2,7 @@
 title: "Flexible polyline encoding"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{flexpolyline}
+  %\VignetteIndexEntry{Flexible polyline encoding}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
