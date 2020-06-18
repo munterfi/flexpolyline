@@ -16,12 +16,12 @@
 #'
 #' @examples
 #' # 2d line
-#' decode_coords("BFoz5xJ67i1B1B7PzIhaxL7Y")
+#' decode("BFoz5xJ67i1B1B7PzIhaxL7Y")
 #'
 #' # 3d line
-#' decode_coords("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
-decode_coords <- function(encoded) {
-    .Call(`_flexpolyline_decode_coords`, encoded)
+#' decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
+decode <- function(encoded) {
+    .Call(`_flexpolyline_decode`, encoded)
 }
 
 #' Encode a line in the flexible polyline encoding format
@@ -49,7 +49,7 @@ decode_coords <- function(encoded) {
 #'     8.68752, 50.09878),
 #'   ncol = 2, byrow = TRUE
 #' )
-#' encode_coords(line2d)
+#' encode(line2d)
 #'
 #' # 3D
 #' line3d <- matrix(
@@ -59,8 +59,8 @@ decode_coords <- function(encoded) {
 #'     8.68752, 50.09878, 40),
 #'   ncol = 3, byrow = TRUE
 #' )
-#' encode_coords(line3d)
-encode_coords <- function(line, precision = 5L, third_dim = 3L, third_dim_precision = 5L) {
-    .Call(`_flexpolyline_encode_coords`, line, precision, third_dim, third_dim_precision)
+#' encode(line3d)
+encode <- function(line, precision = 5L, third_dim = 3L, third_dim_precision = 5L) {
+    .Call(`_flexpolyline_encode`, line, precision, third_dim, third_dim_precision)
 }
 
