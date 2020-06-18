@@ -5,7 +5,7 @@
 #'
 #' @param line simple feature, \code{sf}, \code{sfc} or \code{sfg} object with geometry type \code{"LINESTRING"}.
 #' @param precision integer, precision to use in encoding (between 0 and 15, \code{default=5}).
-#' @param third_dim integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, \code{default=3}).
+#' @param third_dim integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, \code{default=NULL}).
 #' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=precision}).
 #'
 #' @return
@@ -37,13 +37,13 @@
 #'   )
 #' )
 #' encode_sf(line3d)
-encode_sf <- function(line, precision = 5, third_dim = 3,
+encode_sf <- function(line, precision = 5, third_dim = NULL,
                       third_dim_precision = precision) {
   UseMethod("encode_sf", line)
 }
 
 #' @export
-encode_sf.sfg <- function(line, precision = 5, third_dim = 3,
+encode_sf.sfg <- function(line, precision = 5, third_dim = NULL,
                        third_dim_precision = precision) {
   if(sf::st_geometry_type(line) != "LINESTRING"){
     stop(
@@ -54,11 +54,19 @@ encode_sf.sfg <- function(line, precision = 5, third_dim = 3,
     )
   }
   if (class(line)[1] == "XY") {
+    third_dim <- 0
     encoded <- encode(
       sf::st_coordinates(line)[, c(1:2)],
       precision, third_dim, third_dim_precision
     )
   } else {
+    if (is.null(third_dim)) {
+      if (class(line)[1] == "XYZ") {
+        third_dim <- 3
+      } else {
+        third_dim <- 6
+      }
+    }
     encoded <- encode(
       sf::st_coordinates(line)[, c(1:3)],
       precision, third_dim, third_dim_precision
@@ -68,7 +76,7 @@ encode_sf.sfg <- function(line, precision = 5, third_dim = 3,
 }
 
 #' @export
-encode_sf.sfc <- function(line, precision = 5, third_dim = 3,
+encode_sf.sfc <- function(line, precision = 5, third_dim = NULL,
                           third_dim_precision = precision) {
   return(
     sapply(line, function(x) {
@@ -78,7 +86,7 @@ encode_sf.sfc <- function(line, precision = 5, third_dim = 3,
 }
 
 #' @export
-encode_sf.sf <- function(line, precision = 5, third_dim = 3,
+encode_sf.sf <- function(line, precision = 5, third_dim = NULL,
                          third_dim_precision = precision) {
   return(
     encode_sf.sfc(
