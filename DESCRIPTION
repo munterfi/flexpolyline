@@ -16,9 +16,8 @@ Description: Binding to the C++ implementation of the flexible polyline
     (3) using variable length for each coordinate delta; and
     (4) using 64 URL-safe characters to display the result.
 License: GPL-3
-Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.1.0
+URL: https://munterfinger.github.io/flexpolyline, https://github.com/munterfinger/flexpolyline
+BugReports: https://github.com/munterfinger/flexpolyline/issues
 LinkingTo: 
     Rcpp
 Imports: 
@@ -29,5 +28,8 @@ Suggests:
     stringr (>= 1.4.0),
     knitr (>= 1.28),
     rmarkdown (>= 2.1),
-    covr
+    covr (>= 3.5.0)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
 VignetteBuilder: knitr

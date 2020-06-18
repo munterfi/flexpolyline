@@ -1,5 +1,5 @@
 
-# flexpolyline  <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# Flexible Polyline Encoding  <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
 [![R build status](https://github.com/munterfinger/flexpolyline/workflows/R-CMD-check/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
