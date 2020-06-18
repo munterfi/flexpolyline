@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-A binding to the C++ implementation of the flexible polyline
+Binding to the C++ implementation of the flexible polyline
     encoding by HERE <https://github.com/heremaps/flexible-polyline>. The
     flexible polyline encoding is a lossy compressed representation of a list of
     coordinate pairs or coordinate triples. The encoding is achieved by:
