@@ -39,10 +39,11 @@ Install the development version from [GitHub](https://github.com/munterfinger/fl
 remotes::install_github("munterfinger/flexpolyline")
 ```
 
-## Usage
-### C++ binding
+## C++ binding
 
-Encodeing and decoding in R is straight forward by using `encode()` and `decode()`:
+Encodeing and decoding in R is straight forward by using `encode()` and `decode()`,
+which are binding to the flexpolyline C++ implementation and have similar arguments
+and return values as their counterparts (`hf::encode_polyline` and `hf::decode_polyline`):
 
 ``` r
 line <- matrix(
@@ -53,16 +54,16 @@ line <- matrix(
   ncol = 3, byrow = TRUE
 )
 
-encode(line3d)
+encode(line)
 
 decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ```
 
-### Simple feature support
+## Simple feature support
 A common way to deal with spatial data in R is using the
-[sf](https://cran.r-project.org/web/packages/sf/index.html)  package, which is
+[sf](https://cran.r-project.org/web/packages/sf/index.html) package, which is
 built on the concept of simple features. The functions `encode_sf()` and
-`decode_sf()` are an interface which support the encoding of sf objects:
+`decode_sf()` provide an interface that support the encoding of sf objects:
 
 ``` r
 sfg <- sf::st_linestring(line, dim = "XYZ")
