@@ -1,0 +1,120 @@
+---
+title: "Flexible polyline encoding"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Flexible polyline encoding}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Flexible polyline encoding
+
+The `flexpolyline` R package provides a binding to the
+[C++ implementation](https://github.com/heremaps/flexible-polyline/tree/master/cpp) of the
+flexible polyline encoding by [HERE](https://github.com/heremaps/flexible-polyline).
+The flexible polyline encoding is a lossy compressed representation of a list of
+coordinate pairs or coordinate triples.
+
+The encoding is achieved by:
+
+(1) Reducing the decimal digits of each value;
+(2) encoding only the offset from the previous point;
+(3) using variable length for each coordinate delta; and
+(4) using 64 URL-safe characters to display the result.
+The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) by Google.
+
+**Notes:**
+
+* Decoding gives reliable results up to a precision of 7 digits.
+The tests are also limited to this range.
+* The order of the coordinates (lng, lat) does not correspond to the original C ++ implementation (lat, lng).
+This enables simple conversion to `sf` objects, without reordering the columns.
+* The encoding is lossy, this means the encoding process could reduce the precision of your data.
+
+
+## C++ binding
+
+The package contains two C++ function, which bind directly to the C++
+implementation of the flexible polyline encoding. These functions target a tight
+interface from C++ to R and have the same input and output as their counterpart
+in the original implementation. In order to achieve the maximum performance
+(e.g. in a package), these should be used.
+
+
+## Encode
+Encoding a line is straight forward by passing a matrix (column order is
+longitude, latitude) with coordinates to `encode()`. The default precision value
+is `5`. If a matrix with two columns is provided, the third dimension is
+automatically set to `"ABSENT"`:
+
+```{r encode2d}
+library(flexpolyline)
+
+line2d <- matrix(
+  c(8.69821, 50.10228,
+    8.69567, 50.10201,
+    8.69150, 50.10063,
+    8.68752, 50.09878),
+  ncol = 2, byrow = TRUE
+)
+
+(encodes2d <- encode(line2d, precision = 5))
+```
+
+If a matrix with three columns is passed a line with a third dimension is encoded.
+The type of the third dimension can be passed to the encoding and includes the
+following selection, that are specified via an integer value in the `third_dim` argument:
+
+* 0: ABSENT
+* 1: LEVEL
+* 2: ALTITUDE
+* 3: ELEVATION (default)
+* 4: RESERVED1 (not available)
+* 5: RESERVED2 (not available)
+* 6: CUSTOM1
+* 7: CUSTOM2
+
+By default the precision of the third dimension `third_dim_precision` is set to
+the same value as the precision value for the longitude and latitude dimensions.
+```{r encode3d}
+line3d <- matrix(
+  c(8.69821, 50.10228, 10.11111,
+    8.69567, 50.10201, 20.22222,
+    8.69150, 50.10063, 30.33333,
+    8.68752, 50.09878, 40.44444),
+  ncol = 3, byrow = TRUE
+)
+
+(encodes3d <- encode(line3d, precision = 5, third_dim = 3, third_dim_precision = 5))
+```
+
+
+## Decode
+
+In order to decode the lines from above, the encoded line is passed to the `decode()` function.
+The function detects the from the encoding if it is a two dimensional or three dimensional line:
+```{r decode2d}
+decode(encodes2d)
+```
+
+In the case of a three dimensional line, the third column is named after the name
+of the third dimension that was chosen during the encoding (in this example
+`"ELEVATION"`):
+```{r decode3d}
+decode(encodes3d)
+```
+
+
+## References
+
+* [Flexible polyline encoding by HERE](https://github.com/heremaps/flexible-polyline)
+* [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
+* Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package

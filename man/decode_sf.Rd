@@ -12,7 +12,7 @@ decode_sf(encoded, crs = 4326)
 \item{crs}{integer or character, coordinate reference system to assign to the sf object (\code{default = 4326}, WGS84).}
 }
 \value{
-An\code{sf} object, containing the geometries of type \code{"LINESTRING"} of the decoded lines.
+An \code{sf} object, containing the geometries of the decoded lines (Geometry type: \code{"LINESTRING"}).
 }
 \description{
 A wrapper function for \code{\link{decode}} that converts the input polylines,
