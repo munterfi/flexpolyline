@@ -21,12 +21,12 @@ using namespace Rcpp;
 //'
 //' @examples
 //' # 2d line
-//' decode_coords("BFoz5xJ67i1B1B7PzIhaxL7Y")
+//' decode("BFoz5xJ67i1B1B7PzIhaxL7Y")
 //'
 //' # 3d line
-//' decode_coords("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
+//' decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 // [[Rcpp::export]]
-NumericMatrix decode_coords(SEXP encoded) {
+NumericMatrix decode(SEXP encoded) {
 
   // Convert from R SEXP to std::string
   std::string encoded_str = Rcpp::as<std::string>(encoded);
@@ -106,7 +106,7 @@ NumericMatrix decode_coords(SEXP encoded) {
 //'     8.68752, 50.09878),
 //'   ncol = 2, byrow = TRUE
 //' )
-//' encode_coords(line2d)
+//' encode(line2d)
 //'
 //' # 3D
 //' line3d <- matrix(
@@ -116,10 +116,10 @@ NumericMatrix decode_coords(SEXP encoded) {
 //'     8.68752, 50.09878, 40),
 //'   ncol = 3, byrow = TRUE
 //' )
-//' encode_coords(line3d)
+//' encode(line3d)
 // [[Rcpp::export]]
-String encode_coords(NumericMatrix line, int precision = 5,
-                     int third_dim = 3, int third_dim_precision = 5) {
+String encode(NumericMatrix line, int precision = 5,
+              int third_dim = 3, int third_dim_precision = 5) {
 
   String encoded;
   size_t n = line.rows();
