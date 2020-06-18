@@ -10,7 +10,7 @@
 #' use the \code{\link{decode}} function directly.
 #'
 #' @param encoded character, encoded flexible polyline string.
-#' @param crs integer or character, coordinate reference system to assign to the sf object (\code{default = 4326}, WGS84).
+#' @param crs integer or character, coordinate reference system to assign to the sf object (\code{default = sf::NA_crs_}).
 #'
 #' @return
 #' An \code{sf} object, containing the geometries of the decoded lines (Geometry type: \code{"LINESTRING"}).
@@ -23,12 +23,12 @@
 #'
 #' # 3d line
 #' decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
-decode_sf <- function(encoded, crs = 4326) {
+decode_sf <- function(encoded, crs = sf::NA_crs_) {
   UseMethod("decode_sf", encoded)
 }
 
 #' @export
-decode_sf.character <- function(encoded, crs = 4326) {
+decode_sf.character <- function(encoded, crs = sf::NA_crs_) {
 
   dim3 <- character(length(encoded))
   ind3 <- 2
@@ -70,6 +70,6 @@ decode_sf.character <- function(encoded, crs = 4326) {
 }
 
 #' @export
-decode_sf.factor <- function(encoded, crs = 4326) {
+decode_sf.factor <- function(encoded, crs = sf::NA_crs_) {
   return(decode_sf.character(as.character(encoded)))
 }
