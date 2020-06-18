@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Decode a flexible polyline encoded string — decode • flexpolyline</title>
+<title>Wrapper function for encoding simple features — encode_sf • flexpolyline</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,10 +46,9 @@
 
 
 
-<meta property="og:title" content="Decode a flexible polyline encoded string — decode" />
-<meta property="og:description" content="This function calls hf::polyline_decode and hf::get_third_dimension
-of the C++ implementation of the flexible polyline encoding by HERE. Depending
-on the dimensions of the encoded line, a two or three dimensional line is decoded." />
+<meta property="og:title" content="Wrapper function for encoding simple features — encode_sf" />
+<meta property="og:description" content="A wrapper function for encode that converts simple feature geometries
+of the sf package to flexible polyline encoded strings." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -148,45 +147,71 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Decode a flexible polyline encoded string</h1>
+    <h1>Wrapper function for encoding simple features</h1>
     
-    <div class="hidden name"><code>decode.Rd</code></div>
+    <div class="hidden name"><code>encode_sf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function calls <code>hf::polyline_decode</code> and <code>hf::get_third_dimension</code>
-of the C++ implementation of the flexible polyline encoding by HERE. Depending
-on the dimensions of the encoded line, a two or three dimensional line is decoded.</p>
+    <p>A wrapper function for <code>encode</code> that converts simple feature geometries
+of the sf package to flexible polyline encoded strings.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>decode</span>(<span class='kw'>encoded</span>)</pre>
+    <pre class="usage"><span class='fu'>encode_sf</span>(
+  <span class='kw'>line</span>,
+  precision = <span class='fl'>5</span>,
+  third_dim = <span class='kw'>NULL</span>,
+  third_dim_precision = <span class='kw'>precision</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>encoded</th>
-      <td><p>character, encoded flexible polyline string.</p></td>
+      <th>line</th>
+      <td><p>simple feature, <code>sf</code>, <code>sfc</code> or <code>sfg</code> object with geometry type <code>"LINESTRING"</code>.</p></td>
+    </tr>
+    <tr>
+      <th>precision</th>
+      <td><p>integer, precision to use in encoding (between 0 and 15, <code>default=5</code>).</p></td>
+    </tr>
+    <tr>
+      <th>third_dim</th>
+      <td><p>integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, <code>default=NULL</code>).</p></td>
+    </tr>
+    <tr>
+      <th>third_dim_precision</th>
+      <td><p>integer, precision to use in encoding for the third dimension (between 1 and 15, <code>default=precision</code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A matrix containing the coordinates of the decoded line.</p>
+    <p>The line as string in the flexible polyline encoding format.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># 2d line</span>
-<span class='fu'>decode</span>(<span class='st'>"BFoz5xJ67i1B1B7PzIhaxL7Y"</span>)</div><div class='output co'>#&gt;          LNG      LAT
-#&gt; [1,] 8.69821 50.10228
-#&gt; [2,] 8.69567 50.10201
-#&gt; [3,] 8.69150 50.10063
-#&gt; [4,] 8.68752 50.09878</div><div class='input'>
-<span class='co'># 3d line</span>
-<span class='fu'>decode</span>(<span class='st'>"BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"</span>)</div><div class='output co'>#&gt;          LNG      LAT ALTITUDE
-#&gt; [1,] 8.69821 50.10228       10
-#&gt; [2,] 8.69567 50.10201       20
-#&gt; [3,] 8.69150 50.10063       30
-#&gt; [4,] 8.68752 50.09878       40</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># 2D</span>
+<span class='kw'>line2d</span> <span class='op'>&lt;-</span> <span class='kw'>sf</span>::<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st.html'>st_linestring</a></span>(
+  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8.69821</span>, <span class='fl'>50.10228</span>,
+      <span class='fl'>8.69567</span>, <span class='fl'>50.10201</span>,
+      <span class='fl'>8.69150</span>, <span class='fl'>50.10063</span>,
+      <span class='fl'>8.68752</span>, <span class='fl'>50.09878</span>),
+    ncol = <span class='fl'>2</span>, byrow = <span class='fl'>TRUE</span>
+  )
+)
+<span class='fu'>encode_sf</span>(<span class='kw'>line2d</span>)</div><div class='output co'>#&gt; [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</div><div class='input'>
+<span class='co'># 3D</span>
+<span class='kw'>line3d</span> <span class='op'>&lt;-</span> <span class='kw'>sf</span>::<span class='fu'><a href='https://rdrr.io/pkg/sf/man/st.html'>st_linestring</a></span>(
+  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(
+    <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8.69821</span>, <span class='fl'>50.10228</span>, <span class='fl'>10</span>,
+      <span class='fl'>8.69567</span>, <span class='fl'>50.10201</span>, <span class='fl'>20</span>,
+      <span class='fl'>8.69150</span>, <span class='fl'>50.10063</span>, <span class='fl'>30</span>,
+      <span class='fl'>8.68752</span>, <span class='fl'>50.09878</span>, <span class='fl'>40</span>),
+    ncol = <span class='fl'>3</span>, byrow = <span class='fl'>TRUE</span>
+  )
+)
+<span class='fu'>encode_sf</span>(<span class='kw'>line3d</span>)</div><div class='output co'>#&gt; [1] "B1Voz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BxL7Ygkh9B"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
