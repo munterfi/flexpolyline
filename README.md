@@ -23,6 +23,7 @@ The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm F
 The tests are also limited to this range.
 * The order of the coordinates (lng, lat) does not correspond to the original C ++ implementation (lat, lng).
 This enables simple conversion to `sf` objects, without reordering the columns.
+* The encoding is lossy, this means the encoding process could reduce the precision of your data.
 
 ## Installation
 
@@ -38,45 +39,43 @@ Install the development version from [GitHub](https://github.com/munterfinger/fl
 remotes::install_github("munterfinger/flexpolyline")
 ```
 
-## Example
+## Usage
+### C++ binding
 
 Encodeing and decoding in R is straight forward by using `encode()` and `decode()`:
 
 ``` r
-library(flexpolyline)
-
-## Encoding
-# 2d line
-line2d <- matrix(
-  c(8.69821, 50.10228,
-    8.69567, 50.10201,
-    8.69150, 50.10063,
-    8.68752, 50.09878),
-  ncol = 2, byrow = TRUE
-)
-encode(line2d)
-
-# 3d line
-line3d <- matrix(
+line <- matrix(
   c(8.69821, 50.10228, 10,
     8.69567, 50.10201, 20,
     8.69150, 50.10063, 30,
     8.68752, 50.09878, 40),
   ncol = 3, byrow = TRUE
 )
+
 encode(line3d)
 
-## Decodeing
-# 2d line
-decode("BFoz5xJ67i1B1B7PzIhaxL7Y")
-
-# 3d line
 decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
+```
+
+### Simple feature support
+A common way to deal with spatial data in R is using the
+[sf](https://cran.r-project.org/web/packages/sf/index.html)  package, which is
+built on the concept of simple features. The functions `encode_sf()` and
+`decode_sf()` are an interface which support the encoding of sf objects:
+
+``` r
+sfg <- sf::st_linestring(line, dim = "XYZ")
+
+encode_sf(sfg)
+
+decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ```
 
 ## References
 * [Flexible polyline encoding by HERE](https://github.com/heremaps/flexible-polyline)
 * [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
+* [Simple Features for R](https://cran.r-project.org/web/packages/sf/index.html)
 * Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package
 
 ## License
