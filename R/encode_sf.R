@@ -2,11 +2,8 @@
 #'
 #' A wrapper function for \code{\link{encode}} that converts simple feature geometries
 #' of the sf package to flexible polyline encoded strings.
-#' This function calls \code{hf::polyline_encode} of the C++ implementation of
-#' the flexible polyline encoding by HERE. Depending on the dimensions of the
-#' input coordinates, a two or three dimensional line is encoded.
 #'
-#' @param line simple feature, coordinates of the line in 2d or 3d (column order: LNG, LAT, DIM3).
+#' @param line simple feature, \code{sf}, \code{sfc} or \code{sfg} object with geometry type \code{"LINESTRING"}.
 #' @param precision integer, precision to use in encoding (between 0 and 15, \code{default=5}).
 #' @param third_dim integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, \code{default=3}).
 #' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=precision}).
@@ -48,6 +45,14 @@ encode_sf <- function(line, precision = 5, third_dim = 3,
 #' @export
 encode_sf.sfg <- function(line, precision = 5, third_dim = 3,
                        third_dim_precision = precision) {
+  if(sf::st_geometry_type(line) != "LINESTRING"){
+    stop(
+      sprintf(
+        "Invalid geometry type '%s' of input, only 'LINESTRING' is supported.",
+        sf::st_geometry_type(line)
+      )
+    )
+  }
   if (class(line)[1] == "XY") {
     encoded <- encode(
       sf::st_coordinates(line)[, c(1:2)],
