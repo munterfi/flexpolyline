@@ -4,6 +4,7 @@
 <!-- badges: start -->
 [![R build status](https://github.com/munterfinger/flexpolyline/workflows/R-CMD-check/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
 [![pkgdown](https://github.com/munterfinger/flexpolyline/workflows/pkgdown/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
+[![Codecov test coverage](https://codecov.io/gh/munterfinger/flexpolyline/branch/master/graph/badge.svg)](https://codecov.io/gh/munterfinger/flexpolyline?branch=master)
 <!-- badges: end -->
 
 The `flexpolyline` R package provides a binding to the
@@ -30,7 +31,7 @@ This enables simple conversion to `sf` objects, without reordering the columns.
 You can install the released version of flexpolyline from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("flexpolyline")
+install.packages("flexpolyline") # Not yet published!
 ```
 
 Install the development version from [GitHub](https://github.com/munterfinger/flexpolyline/) with:

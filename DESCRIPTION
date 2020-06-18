@@ -28,5 +28,6 @@ Suggests:
     testthat (>= 2.3.2),
     stringr (>= 1.4.0),
     knitr (>= 1.28),
-    rmarkdown (>= 2.1)
+    rmarkdown (>= 2.1),
+    covr
 VignetteBuilder: knitr
