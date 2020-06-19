@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 ## Simple features
 A common way to deal with spatial data in R is the
-[sf](https://cran.r-project.org/web/packages/sf/index.html) package, which is
+[sf](https://CRAN.R-project.org/package=sf) package, which is
 built on the concept of simple features. According to the the sf package
 [vignette](https://r-spatial.github.io/sf/articles/sf1.html), simple features are
 *"...a formal standard (ISO 19125-1:2004) that describes how objects in the real
@@ -117,6 +117,6 @@ Otherwise it is set to `sf::NA_crs_`.
 
 ## References
 
-* [CRAN: Simple Features for R](https://cran.r-project.org/web/packages/sf/index.html)
+* [CRAN: Simple Features for R](https://CRAN.R-project.org/package=sf)
 * [Wikipedia: Simple Features](https://en.wikipedia.org/wiki/Simple_Features)
 * [OGC: Simple Feature Access](https://www.ogc.org/standards/sfa)

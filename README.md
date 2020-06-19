@@ -34,7 +34,7 @@ You can install the released version of **flexpolyline** from [CRAN](https://CRA
 install.packages("flexpolyline") # Not yet published!
 ```
 
-Install the development version from [GitHub](https://github.com/munterfinger/flexpolyline/) with:
+Install the development version from [GitHub](https://github.com/munterfinger/flexpolyline) with:
 
 ``` r
 remotes::install_github("munterfinger/flexpolyline")
@@ -62,7 +62,7 @@ decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 
 ## Simple feature support
 A common way to deal with spatial data in R is the
-[sf](https://cran.r-project.org/web/packages/sf/index.html) package, which is
+[sf](https://CRAN.R-project.org/package=sf) package, which is
 built on the concept of simple features. The functions `encode_sf()` and
 `decode_sf()` provide an interface that support the encoding of sf objects:
 
@@ -77,9 +77,9 @@ decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ## References
 * [Flexible Polyline Encoding by HERE](https://github.com/heremaps/flexible-polyline)
 * [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
-* [Simple Features for R](https://cran.r-project.org/web/packages/sf/index.html)
+* [Simple Features for R](https://CRAN.R-project.org/package=sf)
 * Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package
 
 ## License
-* The **flexpolyline** R package is licensed under GNU GPL v3.0 - see the [LICENSE.md](LICENSE.md) file for details.
-* The C++ implementation by HERE is licensed under MIT - see the [LICENSE](inst/include/hf/LICENSE) file for details.
+* The **flexpolyline** R package is licensed under GNU GPL v3.0.
+* The C++ implementation by HERE is licensed under MIT.
