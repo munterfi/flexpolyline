@@ -134,7 +134,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"flexpolyline"</span>) <span class="co"># Not yet published!</span>
 </pre></div>
-<p>Install the development version from <a href="https://github.com/munterfinger/flexpolyline/">GitHub</a> with:</p>
+<p>Install the development version from <a href="https://github.com/munterfinger/flexpolyline">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"munterfinger/flexpolyline"</span>)
 </pre></div>
@@ -160,7 +160,7 @@
 <div id="simple-feature-support" class="section level2">
 <h2 class="hasAnchor">
 <a href="#simple-feature-support" class="anchor"></a>Simple feature support</h2>
-<p>A common way to deal with spatial data in R is the <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a> package, which is built on the concept of simple features. The functions <code><a href="reference/encode_sf.html">encode_sf()</a></code> and <code><a href="reference/decode_sf.html">decode_sf()</a></code> provide an interface that support the encoding of sf objects:</p>
+<p>A common way to deal with spatial data in R is the <a href="https://CRAN.R-project.org/package=sf">sf</a> package, which is built on the concept of simple features. The functions <code><a href="reference/encode_sf.html">encode_sf()</a></code> and <code><a href="reference/decode_sf.html">decode_sf()</a></code> provide an interface that support the encoding of sf objects:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">sfg</span> <span class="op">&lt;-</span> <span class="kw">sf</span>::<span class="fu"><a href="https://rdrr.io/pkg/sf/man/st.html">st_linestring</a></span>(<span class="kw">line</span>, dim = <span class="st">"XYZ"</span>)
 
@@ -175,7 +175,7 @@
 <ul>
 <li><a href="https://github.com/heremaps/flexible-polyline">Flexible Polyline Encoding by HERE</a></li>
 <li><a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a></li>
-<li><a href="https://cran.r-project.org/web/packages/sf/index.html">Simple Features for R</a></li>
+<li><a href="https://CRAN.R-project.org/package=sf">Simple Features for R</a></li>
 <li>Inspired by the <a href="https://github.com/SymbolixAU/googlePolylines">googlePolylines</a> package</li>
 </ul>
 </div>
@@ -183,8 +183,8 @@
 <h2 class="hasAnchor">
 <a href="#license" class="anchor"></a>License</h2>
 <ul>
-<li>The <strong>flexpolyline</strong> R package is licensed under GNU GPL v3.0 - see the <a href="LICENSE.html">LICENSE.md</a> file for details.</li>
-<li>The C++ implementation by HERE is licensed under MIT - see the <a href="inst/include/hf/LICENSE">LICENSE</a> file for details.</li>
+<li>The <strong>flexpolyline</strong> R package is licensed under GNU GPL v3.0.</li>
+<li>The C++ implementation by HERE is licensed under MIT.</li>
 </ul>
 </div>
 </div>
