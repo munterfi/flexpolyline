@@ -1,6 +1,6 @@
 # flexpolyline 0.1.0
 
-First release of the `flexpolyline` package, which provides a binding to the
+First release of the **flexpolyline** package, which provides a binding to the
 [C++ implementation](https://github.com/heremaps/flexible-polyline/tree/master/cpp) of the
 flexible polyline encoding by [HERE](https://github.com/heremaps/flexible-polyline).
 The flexible polyline encoding is a lossy compressed representation of a list of
