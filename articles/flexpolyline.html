@@ -67,6 +67,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/cpp-binding.html">C++ binding</a>
+    </li>
+    <li>
       <a href="../articles/sf-support.html">Simple feature support</a>
     </li>
   </ul>
@@ -114,9 +117,9 @@
 
     
     
-<div id="flexible-polyline-encoding" class="section level2">
-<h2 class="hasAnchor">
-<a href="#flexible-polyline-encoding" class="anchor"></a>Flexible polyline encoding</h2>
+<div id="flexible-polyline-encoding" class="section level1">
+<h1 class="hasAnchor">
+<a href="#flexible-polyline-encoding" class="anchor"></a>Flexible polyline encoding</h1>
 <p>The <strong>flexpolyline</strong> R package provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples.</p>
 <p>The encoding is achieved by:</p>
 <ol style="list-style-type: decimal">
@@ -131,75 +134,69 @@
 <li>The order of the coordinates (lng, lat) does not correspond to the original C ++ implementation (lat, lng). This enables simple conversion to <code>sf</code> objects, without reordering the columns.</li>
 <li>The encoding is lossy, this means the encoding process could reduce the precision of your data.</li>
 </ul>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the released version of <strong>flexpolyline</strong> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"flexpolyline"</span>) <span class="co"># Not yet published!</span>
+</pre></div>
+<p>Install the development version from <a href="https://github.com/munterfinger/flexpolyline">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw">remotes</span>::<span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"munterfinger/flexpolyline"</span>)
+</pre></div>
 </div>
 <div id="c-binding" class="section level2">
 <h2 class="hasAnchor">
 <a href="#c-binding" class="anchor"></a>C++ binding</h2>
-<p>The package contains two C++ functions, which bind directly to the C++ implementation of the flexible polyline encoding. These functions target a tight interface from C++ to R and have similar arguments and return values as their counterparts (<code>hf::encode_polyline</code> and <code>hf::decode_polyline</code>) in the original implementation. In order to achieve a good performance (e.g. as dependency in a package), these should be used.</p>
-</div>
-<div id="encode" class="section level2">
-<h2 class="hasAnchor">
-<a href="#encode" class="anchor"></a>Encode</h2>
-<p>Encoding a line is straight forward by passing a matrix (column order is longitude, latitude) with its coordinates to <code><a href="../reference/encode.html">encode()</a></code>. The default precision value is set to <code>5</code>. If a matrix with two columns is provided, the third dimension is automatically set to <code>"ABSENT"</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
+<p>Encoding and decoding in R is straight forward by using <code><a href="../reference/encode.html">encode()</a></code> and <code><a href="../reference/decode.html">decode()</a></code>. These functions are binding to the flexpolyline C++ implementation and have similar arguments and return values as their counterparts (<code>hf::encode_polyline</code> and <code>hf::decode_polyline</code>):</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://munterfinger.github.io/flexpolyline">flexpolyline</a></span>)
 
-<span class="kw">line2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(
-  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">8.69821</span>, <span class="fl">50.10228</span>,
-    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>,
-    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>,
-    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>),
-  ncol = <span class="fl">2</span>, byrow = <span class="fl">TRUE</span>
-)
-
-(<span class="kw">encodes2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span>(<span class="kw">line2d</span>, precision = <span class="fl">5</span>))
-<span class="co">#&gt; [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</span>
-</pre></div>
-<p>If a matrix with three columns is passed, a line with a third dimension is encoded. The type of the third dimension can be passed to the encoding and supports the following selection, that are specified via an integer value via the <code>third_dim</code> argument:</p>
-<ul>
-<li>0: ABSENT</li>
-<li>1: LEVEL</li>
-<li>2: ALTITUDE</li>
-<li>3: ELEVATION (default)</li>
-<li>4: RESERVED1 (not available)</li>
-<li>5: RESERVED2 (not available)</li>
-<li>6: CUSTOM1</li>
-<li>7: CUSTOM2</li>
-</ul>
-<p>By default the precision of the third dimension <code>third_dim_precision</code> is set to the same value as the precision value for the longitude and latitude dimensions.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">line3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(
-  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10.11111</span>,
-    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>, <span class="fl">20.22222</span>,
-    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>, <span class="fl">30.33333</span>,
-    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40.44444</span>),
+(<span class="kw">line</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(
+  <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10</span>,
+    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>, <span class="fl">20</span>,
+    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>, <span class="fl">30</span>,
+    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40</span>),
   ncol = <span class="fl">3</span>, byrow = <span class="fl">TRUE</span>
-)
+))
+<span class="co">#&gt;         [,1]     [,2] [,3]</span>
+<span class="co">#&gt; [1,] 8.69821 50.10228   10</span>
+<span class="co">#&gt; [2,] 8.69567 50.10201   20</span>
+<span class="co">#&gt; [3,] 8.69150 50.10063   30</span>
+<span class="co">#&gt; [4,] 8.68752 50.09878   40</span>
 
-(<span class="kw">encodes3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span>(<span class="kw">line3d</span>, precision = <span class="fl">5</span>, third_dim = <span class="fl">3</span>, third_dim_precision = <span class="fl">5</span>))
-<span class="co">#&gt; [1] "B1Voz5xJ67i1Bu629B1B7Pu629BzIhau629BxL7Yu629B"</span>
+(<span class="kw">encoded</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span>(<span class="kw">line</span>))
+<span class="co">#&gt; [1] "B1Voz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BxL7Ygkh9B"</span>
+
+(<span class="kw">decoded</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decode.html">decode</a></span>(<span class="kw">encoded</span>))
+<span class="co">#&gt;          LNG      LAT ELEVATION</span>
+<span class="co">#&gt; [1,] 8.69821 50.10228        10</span>
+<span class="co">#&gt; [2,] 8.69567 50.10201        20</span>
+<span class="co">#&gt; [3,] 8.69150 50.10063        30</span>
+<span class="co">#&gt; [4,] 8.68752 50.09878        40</span>
 </pre></div>
 </div>
-<div id="decode" class="section level2">
+<div id="simple-feature-support" class="section level2">
 <h2 class="hasAnchor">
-<a href="#decode" class="anchor"></a>Decode</h2>
-<p>In order to decode the lines from above, the encoded line string is passed to the <code><a href="../reference/decode.html">decode()</a></code> function. The function detects from the encoded string if it is a two-dimensional or three-dimensional line:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="../reference/decode.html">decode</a></span>(<span class="kw">encodes2d</span>)
-<span class="co">#&gt;          LNG      LAT</span>
-<span class="co">#&gt; [1,] 8.69821 50.10228</span>
-<span class="co">#&gt; [2,] 8.69567 50.10201</span>
-<span class="co">#&gt; [3,] 8.69150 50.10063</span>
-<span class="co">#&gt; [4,] 8.68752 50.09878</span>
-</pre></div>
-<p>In the case of a three-dimensional line, the third column is named after the name of the third dimension that was chosen during the encoding (in this example <code>"ELEVATION"</code>):</p>
+<a href="#simple-feature-support" class="anchor"></a>Simple feature support</h2>
+<p>A common way to deal with spatial data in R is the <a href="https://CRAN.R-project.org/package=sf">sf</a> package, which is built on the concept of simple features. The functions <code><a href="../reference/encode_sf.html">encode_sf()</a></code> and <code><a href="../reference/decode_sf.html">decode_sf()</a></code> provide an interface that support the encoding of sf objects:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="../reference/decode.html">decode</a></span>(<span class="kw">encodes3d</span>)
-<span class="co">#&gt;          LNG      LAT ELEVATION</span>
-<span class="co">#&gt; [1,] 8.69821 50.10228  10.11111</span>
-<span class="co">#&gt; [2,] 8.69567 50.10201  20.22222</span>
-<span class="co">#&gt; [3,] 8.69150 50.10063  30.33333</span>
-<span class="co">#&gt; [4,] 8.68752 50.09878  40.44444</span>
+(<span class="kw">sfg</span> <span class="op">&lt;-</span> <span class="kw">sf</span>::<span class="fu"><a href="https://rdrr.io/pkg/sf/man/st.html">st_linestring</a></span>(<span class="kw">line</span>, dim = <span class="st">"XYZ"</span>))
+<span class="co">#&gt; LINESTRING Z (8.69821 50.10228 10, 8.69567 50.10201 20, 8.6915 50.10063 30, 8.68752 50.09878 40)</span>
+
+(<span class="kw">encoded</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode_sf.html">encode_sf</a></span>(<span class="kw">sfg</span>))
+<span class="co">#&gt; [1] "B1Voz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BxL7Ygkh9B"</span>
+
+(<span class="kw">decoded</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/decode_sf.html">decode_sf</a></span>(<span class="kw">encoded</span>))
+<span class="co">#&gt; Simple feature collection with 1 feature and 2 fields</span>
+<span class="co">#&gt; geometry type:  LINESTRING</span>
+<span class="co">#&gt; dimension:      XYZ</span>
+<span class="co">#&gt; bbox:           xmin: 8.68752 ymin: 50.09878 xmax: 8.69821 ymax: 50.10228</span>
+<span class="co">#&gt; z_range:        zmin: 10 zmax: 40</span>
+<span class="co">#&gt; CRS:            NA</span>
+<span class="co">#&gt;   id      dim3                       geometry</span>
+<span class="co">#&gt; 1  1 ELEVATION LINESTRING Z (8.69821 50.10...</span>
 </pre></div>
 </div>
 <div id="references" class="section level2">
@@ -208,8 +205,10 @@
 <ul>
 <li><a href="https://github.com/heremaps/flexible-polyline">Flexible Polyline Encoding by HERE</a></li>
 <li><a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a></li>
+<li><a href="https://CRAN.R-project.org/package=sf">Simple Features for R</a></li>
 <li>Inspired by the <a href="https://github.com/SymbolixAU/googlePolylines">googlePolylines</a> package</li>
 </ul>
+</div>
 </div>
   </div>
 
@@ -224,7 +223,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.munterfinger.ch">Merlin Unterfinger</a>.</p>
+  <p>Developed by <a href="https://www.munterfinger.ch">Merlin Unterfinger</a>,  HERE Europe B.V..</p>
 </div>
 
 <div class="pkgdown">

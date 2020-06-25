@@ -67,6 +67,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/cpp-binding.html">C++ binding</a>
+    </li>
+    <li>
       <a href="../articles/sf-support.html">Simple feature support</a>
     </li>
   </ul>
@@ -196,31 +199,31 @@
 <span class="co">#&gt; Geometry set for 5 features </span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 7.891676 ymin: 49.30294 xmax: 8.987161 ymax: 50.39123</span>
+<span class="co">#&gt; bbox:           xmin: 8.186573 ymin: 49.59783 xmax: 9.690987 ymax: 51.09506</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt; LINESTRING (8.987161 50.39123, 8.984621 50.3909...</span>
-<span class="co">#&gt; LINESTRING (8.221706 49.62578, 8.219166 49.6255...</span>
-<span class="co">#&gt; LINESTRING (8.940098 50.34417, 8.937558 50.3439...</span>
-<span class="co">#&gt; LINESTRING (8.303694 49.70776, 8.301154 49.7074...</span>
-<span class="co">#&gt; LINESTRING (7.902366 49.30644, 7.899826 49.3061...</span>
+<span class="co">#&gt; LINESTRING (9.690987 51.09506, 9.688447 51.0947...</span>
+<span class="co">#&gt; LINESTRING (8.538464 49.94253, 8.535924 49.9422...</span>
+<span class="co">#&gt; LINESTRING (8.197263 49.60133, 8.194723 49.6010...</span>
+<span class="co">#&gt; LINESTRING (8.819567 50.22364, 8.817027 50.2233...</span>
+<span class="co">#&gt; LINESTRING (8.76822 50.17229, 8.76568 50.17202,...</span>
 
 (<span class="kw">sfc_enc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode_sf.html">encode_sf</a></span>(<span class="kw">sfc</span>))
-<span class="co">#&gt; [1] "BFmhyzJ4p72B1B7PzIhaxL7Y" "BFkx8uJ25lyB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [3] "BFi7ozJ0jy2B1B7PzIhaxL7Y" "BFwxsvJi61yB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [5] "BFol-sJ6tnwB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [1] "BFkw73J24k7B1B7PzIhaxL7Y" "BF6s6wJs1j0B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [3] "BFq43uJ8ghyB1B7PzIhaxL7Y" "BF4pxyJqy61B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [5] "BF6onyJsxw1B1B7PzIhaxL7Y"</span>
 
 <span class="fu"><a href="../reference/decode_sf.html">decode_sf</a></span>(<span class="kw">sfc_enc</span>, crs = <span class="fl">4326</span>)
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 7.89168 ymin: 49.30294 xmax: 8.98716 ymax: 50.39123</span>
+<span class="co">#&gt; bbox:           xmin: 8.18657 ymin: 49.59783 xmax: 9.69099 ymax: 51.09506</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
 <span class="co">#&gt;   id   dim3                       geometry</span>
-<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.98716 50.3912...</span>
-<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.22171 49.6257...</span>
-<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.9401 50.34417...</span>
-<span class="co">#&gt; 4  4 ABSENT LINESTRING (8.30369 49.7077...</span>
-<span class="co">#&gt; 5  5 ABSENT LINESTRING (7.90237 49.3064...</span>
+<span class="co">#&gt; 1  1 ABSENT LINESTRING (9.69099 51.0950...</span>
+<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.53846 49.9425...</span>
+<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.19726 49.6013...</span>
+<span class="co">#&gt; 4  4 ABSENT LINESTRING (8.81957 50.2236...</span>
+<span class="co">#&gt; 5  5 ABSENT LINESTRING (8.76822 50.1722...</span>
 </pre></div>
 </div>
 <div id="simple-feature-sf" class="section level3">
@@ -238,32 +241,32 @@
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 7.891676 ymin: 49.30294 xmax: 8.987161 ymax: 50.39123</span>
+<span class="co">#&gt; bbox:           xmin: 8.186573 ymin: 49.59783 xmax: 9.690987 ymax: 51.09506</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
 <span class="co">#&gt;   id color                       geometry</span>
-<span class="co">#&gt; 1  1   red LINESTRING (8.987161 50.391...</span>
-<span class="co">#&gt; 2  2 green LINESTRING (8.221706 49.625...</span>
-<span class="co">#&gt; 3  3  blue LINESTRING (8.940098 50.344...</span>
-<span class="co">#&gt; 4  4  blue LINESTRING (8.303694 49.707...</span>
-<span class="co">#&gt; 5  5  blue LINESTRING (7.902366 49.306...</span>
+<span class="co">#&gt; 1  1  blue LINESTRING (9.690987 51.095...</span>
+<span class="co">#&gt; 2  2 green LINESTRING (8.538464 49.942...</span>
+<span class="co">#&gt; 3  3  blue LINESTRING (8.197263 49.601...</span>
+<span class="co">#&gt; 4  4 green LINESTRING (8.819567 50.223...</span>
+<span class="co">#&gt; 5  5  blue LINESTRING (8.76822 50.1722...</span>
 
 (<span class="kw">sf_enc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode_sf.html">encode_sf</a></span>(<span class="kw">sf</span>))
-<span class="co">#&gt; [1] "BFmhyzJ4p72B1B7PzIhaxL7Y" "BFkx8uJ25lyB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [3] "BFi7ozJ0jy2B1B7PzIhaxL7Y" "BFwxsvJi61yB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [5] "BFol-sJ6tnwB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [1] "BFkw73J24k7B1B7PzIhaxL7Y" "BF6s6wJs1j0B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [3] "BFq43uJ8ghyB1B7PzIhaxL7Y" "BF4pxyJqy61B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [5] "BF6onyJsxw1B1B7PzIhaxL7Y"</span>
 
 <span class="fu"><a href="../reference/decode_sf.html">decode_sf</a></span>(<span class="kw">sf_enc</span>, crs = <span class="fl">4326</span>)
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 7.89168 ymin: 49.30294 xmax: 8.98716 ymax: 50.39123</span>
+<span class="co">#&gt; bbox:           xmin: 8.18657 ymin: 49.59783 xmax: 9.69099 ymax: 51.09506</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
 <span class="co">#&gt;   id   dim3                       geometry</span>
-<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.98716 50.3912...</span>
-<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.22171 49.6257...</span>
-<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.9401 50.34417...</span>
-<span class="co">#&gt; 4  4 ABSENT LINESTRING (8.30369 49.7077...</span>
-<span class="co">#&gt; 5  5 ABSENT LINESTRING (7.90237 49.3064...</span>
+<span class="co">#&gt; 1  1 ABSENT LINESTRING (9.69099 51.0950...</span>
+<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.53846 49.9425...</span>
+<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.19726 49.6013...</span>
+<span class="co">#&gt; 4  4 ABSENT LINESTRING (8.81957 50.2236...</span>
+<span class="co">#&gt; 5  5 ABSENT LINESTRING (8.76822 50.1722...</span>
 </pre></div>
 <p><strong>Note:</strong> The columns <code>"id"</code> and <code>"color"</code> were not encoded and are missing after decoding. The CRS has to be provided in the decoding by the <code>crs</code> argument. Otherwise it is set to <code><a href="https://rdrr.io/pkg/sf/man/st_crs.html">sf::NA_crs_</a></code>.</p>
 </div>
@@ -290,7 +293,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.munterfinger.ch">Merlin Unterfinger</a>.</p>
+  <p>Developed by <a href="https://www.munterfinger.ch">Merlin Unterfinger</a>,  HERE Europe B.V..</p>
 </div>
 
 <div class="pkgdown">
