@@ -1,12 +1,15 @@
 Package: flexpolyline
 Type: Package
-Title: Flexible Polyline Encoding for R
+Title: Flexible Polyline Encoding
 Version: 0.1.0
-Authors@R: 
-    person(given = "Merlin",
-           family = "Unterfinger",
-           role = c("aut", "cre"),
-           email = "info@munterfinger.ch")
+Authors@R:
+    c(person(given = "Merlin",
+             family = "Unterfinger",
+             role = c("aut", "cre"),
+             email = "info@munterfinger.ch"),
+      person(family = "HERE Europe B.V.",
+             role = c("aut", "cph"),
+             comment = "Flexible polyline encoding C++ implementation"))
 Description: Binding to the C++ implementation of the flexible polyline
     encoding by HERE <https://github.com/heremaps/flexible-polyline>. The
     flexible polyline encoding is a lossy compressed representation of a list of

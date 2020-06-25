@@ -4,7 +4,7 @@
 \name{flexpolyline-package}
 \alias{flexpolyline}
 \alias{flexpolyline-package}
-\title{flexpolyline: Flexible Polyline Encoding for R}
+\title{flexpolyline: Flexible Polyline Encoding}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
@@ -28,6 +28,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Merlin Unterfinger \email{info@munterfinger.ch}
+
+Authors:
+\itemize{
+  \item  HERE Europe B.V. (Flexible polyline encoding C++ implementation) [copyright holder]
+}
 
 }
 \keyword{internal}
