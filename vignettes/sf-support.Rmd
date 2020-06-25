@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Simple features
 A common way to deal with spatial data in R is the
 [sf](https://CRAN.R-project.org/package=sf) package, which is
 built on the concept of simple features. According to the the sf package
