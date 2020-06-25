@@ -29,5 +29,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Merlin Unterfinger \email{info@munterfinger.ch}
 
+Authors:
+\itemize{
+  \item  HERE Europe B.V. (Flexible polyline encoding C++ implementation) [copyright holder]
+}
+
 }
 \keyword{internal}
