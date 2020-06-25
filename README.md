@@ -75,11 +75,13 @@ decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ```
 
 ## References
+
 * [Flexible Polyline Encoding by HERE](https://github.com/heremaps/flexible-polyline)
 * [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
 * [Simple Features for R](https://CRAN.R-project.org/package=sf)
 * Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package
 
 ## License
+
 * The **flexpolyline** R package is licensed under GNU GPL v3.0.
 * The C++ implementation by HERE is licensed under MIT.

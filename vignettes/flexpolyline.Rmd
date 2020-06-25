@@ -1,8 +1,8 @@
 ---
-title: "Flexible polyline encoding"
+title: "Get started"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Flexible polyline encoding}
+  %\VignetteIndexEntry{Get started}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -13,9 +13,6 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-
-
-# Flexible polyline encoding
 
 The **flexpolyline** R package provides a binding to the
 [C++ implementation](https://github.com/heremaps/flexible-polyline/tree/master/cpp) of the
@@ -39,9 +36,7 @@ The tests are also limited to this range.
 This enables simple conversion to `sf` objects, without reordering the columns.
 * The encoding is lossy, this means the encoding process could reduce the precision of your data.
 
-
 ## Installation
-
 You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org) with:
 
 ```{r, eval=FALSE}
@@ -55,7 +50,6 @@ remotes::install_github("munterfinger/flexpolyline")
 ```
 
 ## C++ binding
-
 Encoding and decoding in R is straight forward by using `encode()` and `decode()`.
 These functions are binding to the flexpolyline C++ implementation and have similar arguments
 and return values as their counterparts (`hf::encode_polyline` and `hf::decode_polyline`):
@@ -91,6 +85,7 @@ built on the concept of simple features. The functions `encode_sf()` and
 ```
 
 ## References
+
 * [Flexible Polyline Encoding by HERE](https://github.com/heremaps/flexible-polyline)
 * [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
 * [Simple Features for R](https://CRAN.R-project.org/package=sf)
