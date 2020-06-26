@@ -30,7 +30,7 @@ This enables simple conversion to `sf` objects, without reordering the columns.
 
 ## Installation
 
-You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org/package=flexpolyline) with:
 
 ``` r
 install.packages("flexpolyline")
@@ -86,4 +86,4 @@ decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ## License
 
 * The **flexpolyline** R package is licensed under GNU GPL v3.0.
-* The C++ implementation by HERE is licensed under MIT.
+* The C++ implementation by HERE Europe B.V. is licensed under MIT.

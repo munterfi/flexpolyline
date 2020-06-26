@@ -12,3 +12,8 @@ coordinate pairs or coordinate triples. The encoding is achieved by:
 (4) using 64 URL-safe characters to display the result.
 
 The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) by Google.
+
+**License:**
+
+* The **flexpolyline** R package is licensed under GNU GPL v3.0.
+* The C++ implementation by HERE Europe B.V. is licensed under MIT.

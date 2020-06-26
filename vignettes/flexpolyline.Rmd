@@ -37,7 +37,7 @@ This enables simple conversion to `sf` objects, without reordering the columns.
 * The encoding is lossy, this means the encoding process could reduce the precision of your data.
 
 ## Installation
-You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org/package=flexpolyline) with:
 
 ```{r, eval=FALSE}
 install.packages("flexpolyline")
