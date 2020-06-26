@@ -2,6 +2,8 @@
 # Flexible Polyline Encoding for R <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/flexpolyline)](https://CRAN.R-project.org/package=flexpolyline)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/flexpolyline?color=brightgreen)](https://CRAN.R-project.org/package=flexpolyline)
 [![R build status](https://github.com/munterfinger/flexpolyline/workflows/R-CMD-check/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
 [![pkgdown](https://github.com/munterfinger/flexpolyline/workflows/pkgdown/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
 [![Codecov test coverage](https://codecov.io/gh/munterfinger/flexpolyline/branch/master/graph/badge.svg)](https://codecov.io/gh/munterfinger/flexpolyline?branch=master)
@@ -22,7 +24,7 @@ The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm F
 
 * Decoding gives reliable results up to a precision of 7 digits.
 The tests are also limited to this range.
-* The order of the coordinates (lng, lat) does not correspond to the original C ++ implementation (lat, lng).
+* The order of the coordinates (lng, lat) does not correspond to the original C++ implementation (lat, lng).
 This enables simple conversion to `sf` objects, without reordering the columns.
 * The encoding is lossy, this means the encoding process could reduce the precision of your data.
 
@@ -31,7 +33,7 @@ This enables simple conversion to `sf` objects, without reordering the columns.
 You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org) with:
 
 ``` r
-install.packages("flexpolyline") # Not yet published!
+install.packages("flexpolyline")
 ```
 
 Install the development version from [GitHub](https://github.com/munterfinger/flexpolyline) with:
