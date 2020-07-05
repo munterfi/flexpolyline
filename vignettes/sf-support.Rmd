@@ -99,7 +99,7 @@ columns and the CRS information are not encoded and stored in the string:
 ```{r sf}
 (sf <- st_as_sf(
   data.frame(
-    name = c("A", "B", "C"),
+    name = c("A", "B", "C", "D", "E"),
     color = sample(c("red", "green", "blue"), 5, replace = TRUE),
     geometry = sfc
   )
