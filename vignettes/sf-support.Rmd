@@ -99,7 +99,7 @@ columns and the CRS information are not encoded and stored in the string:
 ```{r sf}
 (sf <- st_as_sf(
   data.frame(
-    id = seq(1,length(sfc)),
+    name = c("A", "B", "C", "D", "E"),
     color = sample(c("red", "green", "blue"), 5, replace = TRUE),
     geometry = sfc
   )
@@ -110,7 +110,7 @@ columns and the CRS information are not encoded and stored in the string:
 decode_sf(sf_enc, crs = 4326)
 ```
 
-**Note:** The columns `"id"` and `"color"` were not encoded and are missing
+**Note:** The columns `"name"` and `"color"` were not encoded and are missing
 after decoding. The CRS has to be provided in the decoding by the `crs` argument.
 Otherwise it is set to `sf::NA_crs_`.
 

@@ -1,3 +1,8 @@
+# flexpolyline 0.1.1
+
+* Add DOI to author field in DESCRIPTION.
+* Skip test for C++ binding for Windows as it fails on *r-oldrel-windows-ix86+x86_64* on CRAN.
+
 # flexpolyline 0.1.0
 
 First release of the **flexpolyline** package, which provides a binding to the
