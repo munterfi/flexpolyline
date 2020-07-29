@@ -1,7 +1,7 @@
 # flexpolyline 0.1.1
 
 * Add ORCID to author field in DESCRIPTION.
-* Skip test for C++ binding for Windows as it fails on *r-oldrel-windows-ix86+x86_64* on CRAN.
+* Also limit the encoding check in the C++ binding test to 7 digits.
 
 # flexpolyline 0.1.0
 
