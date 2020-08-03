@@ -136,7 +136,6 @@
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://munterfinger.github.io/flexpolyline">flexpolyline</a></span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://r-spatial.github.io/sf">sf</a></span>)
-<span class="co">#&gt; Loading required package: methods</span>
 <span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 7.0.0</span>
 
 <span class="kw">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(
@@ -196,31 +195,31 @@
 <span class="co">#&gt; Geometry set for 5 features </span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 8.259719 ymin: 49.67098 xmax: 9.665335 ymax: 51.06941</span>
+<span class="co">#&gt; bbox:           xmin: 7.780882 ymin: 49.19214 xmax: 8.756077 ymax: 50.16015</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
-<span class="co">#&gt; LINESTRING (9.177011 50.58108, 9.174471 50.5808...</span>
-<span class="co">#&gt; LINESTRING (9.24913 50.6532, 9.24659 50.65293, ...</span>
-<span class="co">#&gt; LINESTRING (8.270409 49.67448, 8.267869 49.6742...</span>
-<span class="co">#&gt; LINESTRING (9.504949 50.90902, 9.502409 50.9087...</span>
-<span class="co">#&gt; LINESTRING (9.665335 51.06941, 9.662795 51.0691...</span>
+<span class="co">#&gt; LINESTRING (8.69363 50.0977, 8.69109 50.09743, ...</span>
+<span class="co">#&gt; LINESTRING (8.385693 49.78976, 8.383153 49.7894...</span>
+<span class="co">#&gt; LINESTRING (8.455166 49.85924, 8.452626 49.8589...</span>
+<span class="co">#&gt; LINESTRING (7.791572 49.19564, 7.789032 49.1953...</span>
+<span class="co">#&gt; LINESTRING (8.756077 50.16015, 8.753537 50.1598...</span>
 
 (<span class="kw">sfc_enc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode_sf.html">encode_sf</a></span>(<span class="kw">sfc</span>))
-<span class="co">#&gt; [1] "BF4j30Jqsg4B1B7PzIhaxL7Y" "BFwml1Jivu4B1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [3] "BFwhmvJiqvyB1B7PzIhaxL7Y" "BFsl32J-tg6B1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [5] "BF6v23Js4_6B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [1] "BF024xJm_h1B1B7PzIhaxL7Y" "BFgy8vJy6lzB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [3] "BFokqwJ6szzB1B7PzIhaxL7Y" "BF4wosJq5xvB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [5] "BF-8kyJwlu1B1B7PzIhaxL7Y"</span>
 
 <span class="fu"><a href="../reference/decode_sf.html">decode_sf</a></span>(<span class="kw">sfc_enc</span>, crs = <span class="fl">4326</span>)
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 8.25972 ymin: 49.67098 xmax: 9.66534 ymax: 51.06941</span>
+<span class="co">#&gt; bbox:           xmin: 7.78088 ymin: 49.19214 xmax: 8.75608 ymax: 50.16015</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
 <span class="co">#&gt;   id   dim3                       geometry</span>
-<span class="co">#&gt; 1  1 ABSENT LINESTRING (9.17701 50.5810...</span>
-<span class="co">#&gt; 2  2 ABSENT LINESTRING (9.24913 50.6532...</span>
-<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.27041 49.6744...</span>
-<span class="co">#&gt; 4  4 ABSENT LINESTRING (9.50495 50.9090...</span>
-<span class="co">#&gt; 5  5 ABSENT LINESTRING (9.66534 51.0694...</span>
+<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.69363 50.0977...</span>
+<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.38569 49.7897...</span>
+<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.45517 49.8592...</span>
+<span class="co">#&gt; 4  4 ABSENT LINESTRING (7.79157 49.1956...</span>
+<span class="co">#&gt; 5  5 ABSENT LINESTRING (8.75608 50.1601...</span>
 </pre></div>
 </div>
 <div id="simple-feature-sf" class="section level3">
@@ -238,32 +237,32 @@
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 8.259719 ymin: 49.67098 xmax: 9.665335 ymax: 51.06941</span>
+<span class="co">#&gt; bbox:           xmin: 7.780882 ymin: 49.19214 xmax: 8.756077 ymax: 50.16015</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
 <span class="co">#&gt;   name color                       geometry</span>
-<span class="co">#&gt; 1    A  blue LINESTRING (9.177011 50.581...</span>
-<span class="co">#&gt; 2    B green LINESTRING (9.24913 50.6532...</span>
-<span class="co">#&gt; 3    C  blue LINESTRING (8.270409 49.674...</span>
-<span class="co">#&gt; 4    D green LINESTRING (9.504949 50.909...</span>
-<span class="co">#&gt; 5    E green LINESTRING (9.665335 51.069...</span>
+<span class="co">#&gt; 1    A  blue LINESTRING (8.69363 50.0977...</span>
+<span class="co">#&gt; 2    B   red LINESTRING (8.385693 49.789...</span>
+<span class="co">#&gt; 3    C  blue LINESTRING (8.455166 49.859...</span>
+<span class="co">#&gt; 4    D   red LINESTRING (7.791572 49.195...</span>
+<span class="co">#&gt; 5    E   red LINESTRING (8.756077 50.160...</span>
 
 (<span class="kw">sf_enc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode_sf.html">encode_sf</a></span>(<span class="kw">sf</span>))
-<span class="co">#&gt; [1] "BF4j30Jqsg4B1B7PzIhaxL7Y" "BFwml1Jivu4B1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [3] "BFwhmvJiqvyB1B7PzIhaxL7Y" "BFsl32J-tg6B1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [5] "BF6v23Js4_6B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [1] "BF024xJm_h1B1B7PzIhaxL7Y" "BFgy8vJy6lzB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [3] "BFokqwJ6szzB1B7PzIhaxL7Y" "BF4wosJq5xvB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [5] "BF-8kyJwlu1B1B7PzIhaxL7Y"</span>
 
 <span class="fu"><a href="../reference/decode_sf.html">decode_sf</a></span>(<span class="kw">sf_enc</span>, crs = <span class="fl">4326</span>)
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; geometry type:  LINESTRING</span>
 <span class="co">#&gt; dimension:      XY</span>
-<span class="co">#&gt; bbox:           xmin: 8.25972 ymin: 49.67098 xmax: 9.66534 ymax: 51.06941</span>
+<span class="co">#&gt; bbox:           xmin: 7.78088 ymin: 49.19214 xmax: 8.75608 ymax: 50.16015</span>
 <span class="co">#&gt; geographic CRS: WGS 84</span>
 <span class="co">#&gt;   id   dim3                       geometry</span>
-<span class="co">#&gt; 1  1 ABSENT LINESTRING (9.17701 50.5810...</span>
-<span class="co">#&gt; 2  2 ABSENT LINESTRING (9.24913 50.6532...</span>
-<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.27041 49.6744...</span>
-<span class="co">#&gt; 4  4 ABSENT LINESTRING (9.50495 50.9090...</span>
-<span class="co">#&gt; 5  5 ABSENT LINESTRING (9.66534 51.0694...</span>
+<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.69363 50.0977...</span>
+<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.38569 49.7897...</span>
+<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.45517 49.8592...</span>
+<span class="co">#&gt; 4  4 ABSENT LINESTRING (7.79157 49.1956...</span>
+<span class="co">#&gt; 5  5 ABSENT LINESTRING (8.75608 50.1601...</span>
 </pre></div>
 <p><strong>Note:</strong> The columns <code>"name"</code> and <code>"color"</code> were not encoded and are missing after decoding. The CRS has to be provided in the decoding by the <code>crs</code> argument. Otherwise it is set to <code><a href="https://rdrr.io/pkg/sf/man/st_crs.html">sf::NA_crs_</a></code>.</p>
 </div>
