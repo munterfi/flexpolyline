@@ -1,6 +1,6 @@
 /*
  * Copy from    :https://github.com/heremaps/flexible-polyline/blob/master/cpp/
- * Modified     :Line 211
+ * Modified     :Line 93, 211
  * Date         :2020-06-09, Merlin Unterfinger <info@munterfinger.ch>
  *
  * Copyright (C) 2019 HERE Europe B.V.
@@ -90,7 +90,7 @@ public:
     m_last_value = scaled_value;
 
     // make room on lowest bit
-    delta <<= 1;
+    delta = (int64_t)((uint64_t)delta << 1); // Mod: Use explicit casts of 'delta <<= 1;' to avoid UBSAN 'left shift of negative value'
 
     // invert bits if the value is negative
     if (negative) {

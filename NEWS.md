@@ -2,6 +2,7 @@
 
 * Add ORCID to author field in DESCRIPTION.
 * Also limit the encoding check in the C++ binding test to 7 digits.
+* Use explicit type casts instead of `delta <<= 1'` to avoid UBSAN runtime error 'left shift of negative value' in `flexpolyline.h`.
 
 # flexpolyline 0.1.0
 
