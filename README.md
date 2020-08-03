@@ -18,7 +18,7 @@ coordinate pairs or coordinate triples. The encoding is achieved by:
 (2) encoding only the offset from the previous point;
 (3) using variable length for each coordinate delta; and
 (4) using 64 URL-safe characters to display the result.
-The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) by Google.
+The flexible polyline encoding is a variant of the [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) by Google.
 
 **Note:**
 
