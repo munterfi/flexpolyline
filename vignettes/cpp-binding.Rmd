@@ -16,10 +16,9 @@ knitr::opts_chunk$set(
 
 The package contains two [Rcpp](https://CRAN.R-project.org/package=Rcpp) functions,
 which bind directly to the C++ implementation of the flexible polyline encoding.
-These functions target a tight interface from C++ to R and have similar arguments
-and return values as their counterparts (`hf::encode_polyline` and
-`hf::decode_polyline`) in the original implementation. In order to achieve a good
-performance (e.g. as dependency in a package), these should be used.
+These functions target a tight interface from C++ to R and reflect the arguments
+and return values of their counterparts (`hf::encode_polyline` and
+`hf::decode_polyline`) in the C++ implementation.
 
 ## Encode
 Encoding a line is straight forward by passing a matrix (column order is
