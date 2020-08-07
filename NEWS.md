@@ -1,8 +1,8 @@
 # flexpolyline 0.1.1
 
-* Add ORCID to author field in DESCRIPTION.
-* Also limit the encoding check in the C++ binding test to 7 digits.
-* Use explicit type casts before left shifting and reassigning (`x <<= y`) to avoid UBSAN runtime error 'left shift of negative value' in `flexpolyline.h`.
+* Add ORCID to author field in `DESCRIPTION`.
+* Limit the encoding check in the C++ binding test to 7 digits.
+* Use explicit type casts before left shifting and reassigning (`x <<= y`) to avoid UBSAN runtime error *'left shift of negative value'* in `flexpolyline.h`.
 
 # flexpolyline 0.1.0
 
