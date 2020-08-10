@@ -40,7 +40,7 @@ NumericMatrix decode(SEXP encoded) {
 
   // Check valid encoding
   if (!res) {
-    stop("Invalid encoding.");
+    throw std::invalid_argument("Invalid encoding");
   }
 
   // Extract third dimension type
@@ -150,7 +150,7 @@ String encode(NumericMatrix line, int precision = 5,
 
   } else {
 
-    stop("Invalid input dimensions.");
+    throw std::invalid_argument("Invalid input dimensions");
 
   }
 
