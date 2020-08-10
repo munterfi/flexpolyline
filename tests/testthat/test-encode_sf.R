@@ -1,4 +1,4 @@
-test_that("encode works", {
+test_that("encode_sf works", {
 
   # 2d line
   line2d <- matrix(
@@ -24,19 +24,21 @@ test_that("encode works", {
     "Invalid geometry type 'POINT' of input, only 'LINESTRING' is supported."
   )
 
-  ## sfg
+  ## sfg (XY, XYZ and XYM)
   line2d_sfg <- sf::st_linestring(line2d)
-  line3d_sfg <- sf::st_linestring(line3d)
+  line3d_sfg <- sf::st_linestring(line3d, dim = "XYZ")
+  line3dm_sfg <- sf::st_linestring(line3d, dim = "XYM")
   expect_type(encode_sf(line2d_sfg), "character")
   expect_type(encode_sf(line3d_sfg), "character")
+  expect_type(encode_sf(line3dm_sfg), "character")
 
-  ## sfc
+  ## sfc (XY and XYZ)
   line2d_sfc <- sf::st_as_sfc(list(line2d_sfg, line2d_sfg), crs = 4326)
   line3d_sfc <- sf::st_as_sfc(list(line3d_sfg, line3d_sfg), crs = 4326)
   expect_type(encode_sf(line2d_sfc), "character")
   expect_type(encode_sf(line3d_sfc), "character")
 
-  ## sf
+  ## sf (XY and XYZ)
   line2d_sf <- sf::st_as_sf(line2d_sfc)
   line3d_sf <- sf::st_as_sf(line3d_sfc)
   expect_type(encode_sf(line2d_sf), "character")
