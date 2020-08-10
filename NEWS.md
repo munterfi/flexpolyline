@@ -1,3 +1,8 @@
+# flexpolyline 0.1.1.9000
+
+* Use exception classes when throwing an exception in C++.
+* Improve coverage of tests.
+
 # flexpolyline 0.1.1
 
 * Add ORCID to author field in `DESCRIPTION`.
