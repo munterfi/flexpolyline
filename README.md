@@ -3,9 +3,9 @@
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/flexpolyline)](https://CRAN.R-project.org/package=flexpolyline)
+[![CRAN checks](https://cranchecks.info/badges/worst/flexpolyline)](https://cran.r-project.org/web/checks/check_results_flexpolyline.html)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/flexpolyline?color=brightgreen)](https://CRAN.R-project.org/package=flexpolyline)
 [![R build status](https://github.com/munterfinger/flexpolyline/workflows/R-CMD-check/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
-[![pkgdown](https://github.com/munterfinger/flexpolyline/workflows/pkgdown/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
 [![Codecov test coverage](https://codecov.io/gh/munterfinger/flexpolyline/branch/master/graph/badge.svg)](https://codecov.io/gh/munterfinger/flexpolyline?branch=master)
 <!-- badges: end -->
 
