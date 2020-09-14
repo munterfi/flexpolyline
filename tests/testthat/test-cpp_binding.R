@@ -77,7 +77,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   # Test encoding
   expect_equal(
     any(
-      sapply(1:length(enc), function(i) {
+      vapply(seq_along(enc), function(i) {
 
         # Omit reserved dimensions and encoding with precision higher than 7
         if (
@@ -101,7 +101,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
         # Test equality
         enc[i] != encoded
 
-      })
+      }, logical(1))
     ),
     FALSE
   )
@@ -109,7 +109,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   # Test decoding
   expect_equal(
     any(
-      sapply(1:length(dec), function(i) {
+      vapply(seq_along(dec), function(i) {
 
         # Omit reserved dimensions and decoding with precision higher than 7
         if (
@@ -130,7 +130,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
         # Test equality
         any(dec[[i]]$coords != decoded)
 
-      })
+      }, logical(1))
     ),
     FALSE
   )
