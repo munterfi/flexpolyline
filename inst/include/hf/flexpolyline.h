@@ -1,6 +1,6 @@
 /*
  * Copy from    :https://github.com/heremaps/flexible-polyline/blob/master/cpp/
- * Modified     :Line 93, 211
+ * Modified     :Line 93, 210
  * Date         :2020-06-09, Merlin Unterfinger <info@munterfinger.ch>
  *
  * Copyright (C) 2019 HERE Europe B.V.
@@ -201,7 +201,6 @@ public:
   std::string get_encoded() {
     return m_result;
   }
-
 };
 
 class Decoder {
