@@ -1,5 +1,6 @@
 # flexpolyline 0.1.1.9000
 
+* Sign in to CodeFactor.io and add badge to continuously track code quality.
 * Use exception classes when throwing an exception in C++.
 * Improve coverage of tests.
 

@@ -7,6 +7,7 @@
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/flexpolyline?color=brightgreen)](https://CRAN.R-project.org/package=flexpolyline)
 [![R build status](https://github.com/munterfinger/flexpolyline/workflows/R-CMD-check/badge.svg)](https://github.com/munterfinger/flexpolyline/actions)
 [![Codecov test coverage](https://codecov.io/gh/munterfinger/flexpolyline/branch/master/graph/badge.svg)](https://codecov.io/gh/munterfinger/flexpolyline?branch=master)
+[![CodeFactor](https://www.codefactor.io/repository/github/munterfinger/flexpolyline/badge)](https://www.codefactor.io/repository/github/munterfinger/flexpolyline)
 <!-- badges: end -->
 
 The **flexpolyline** R package provides a binding to the
