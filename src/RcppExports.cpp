@@ -30,10 +30,35 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// get_third_dimension
+std::string get_third_dimension(SEXP encoded);
+RcppExport SEXP _flexpolyline_get_third_dimension(SEXP encodedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type encoded(encodedSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_third_dimension(encoded));
+    return rcpp_result_gen;
+END_RCPP
+}
+// set_third_dimension
+std::string set_third_dimension(SEXP encoded, SEXP third_dim_name);
+RcppExport SEXP _flexpolyline_set_third_dimension(SEXP encodedSEXP, SEXP third_dim_nameSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type encoded(encodedSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type third_dim_name(third_dim_nameSEXP);
+    rcpp_result_gen = Rcpp::wrap(set_third_dimension(encoded, third_dim_name));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_flexpolyline_decode", (DL_FUNC) &_flexpolyline_decode, 1},
     {"_flexpolyline_encode", (DL_FUNC) &_flexpolyline_encode, 4},
+    {"_flexpolyline_get_third_dimension", (DL_FUNC) &_flexpolyline_get_third_dimension, 1},
+    {"_flexpolyline_set_third_dimension", (DL_FUNC) &_flexpolyline_set_third_dimension, 2},
     {NULL, NULL, 0}
 };
 

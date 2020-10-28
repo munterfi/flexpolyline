@@ -74,11 +74,9 @@ NumericMatrix decode(SEXP encoded) {
       coords( i, 1 ) = std::get<0>(polyline[i]);
     }
     colnames(coords) = CharacterVector({"LNG", "LAT"});
-
   }
 
   return coords;
-
 }
 
 //' Encode a line in the flexible polyline encoding format
@@ -151,10 +149,100 @@ String encode(NumericMatrix line, int precision = 5,
   } else {
 
     throw std::invalid_argument("Invalid input dimensions");
-
   }
 
   return encoded;
-
 }
 
+
+//' Get third dimension of a flexible polyline encoded string
+//'
+//' This function calls \code{hf::get_third_dimension} of the C++ implementation
+//' of the flexible polyline encoding by HERE and return the type of the third
+//' dimension.
+//'
+//' @param encoded character, encoded flexible polyline string.
+//'
+//' @return
+//' A string describing the third dimension.
+//'
+//' @export
+//'
+//' @examples
+//' # 2d line
+//' get_third_dimension("BFoz5xJ67i1B1B7PzIhaxL7Y")
+//'
+//' # 3d line
+//' get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
+// [[Rcpp::export]]
+std::string get_third_dimension(SEXP encoded) {
+
+  const char * dim_name[] = {
+    "ABSENT", "LEVEL", "ALTITUDE", "ELEVATION",
+    "RESERVED1", "RESERVED2", // Should not be used...
+    "CUSTOM1", "CUSTOM2"
+  };
+
+  // Convert from R SEXP to std::string
+  std::string encoded_str = Rcpp::as<std::string>(encoded);
+
+  // Extract third dimension type
+  hf::ThirdDim thrd = hf::get_third_dimension(encoded_str);
+  int index = static_cast<std::underlying_type<hf::ThirdDim>::type>(thrd);
+
+  return dim_name[index];
+}
+
+//' Set third dimension of a flexible polyline encoded string
+//'
+//' This function decodes the flexible polyline encoded line changes the third
+//' dimension and encodes the line again.
+//'
+//' @param encoded character, encoded flexible polyline string.
+//' @param third_dim character, name of the third dimension (ABSENT, LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).
+//'
+//' @return
+//' The line with the new third dimension as string in the flexible polyline
+//' encoding format.
+//'
+//' @export
+//'
+//' @examples
+//' # 2d line (nothing happens...)
+//' set_third_dimension("BFoz5xJ67i1B1B7PzIhaxL7Y", "ELEVATION")
+//'
+//' # 3d line
+//' set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "ELEVATION")
+// [[Rcpp::export]]
+std::string set_third_dimension(SEXP encoded, SEXP third_dim_name) {
+
+  int third_dim_ind = -1;
+  const char * dim_name[] = {
+    "ABSENT", "LEVEL", "ALTITUDE", "ELEVATION",
+    "RESERVED1", "RESERVED2", // Should not be used...
+    "CUSTOM1", "CUSTOM2"
+  };
+
+  // Convert from R SEXP to std::string
+  std::string third_dim_str = Rcpp::as<std::string>(third_dim_name);
+
+  // Decode
+  NumericMatrix decoded = decode(encoded);
+
+  // Match third dimension type
+  for (size_t i = 0; i != (sizeof dim_name / sizeof *dim_name); i++) {
+    if (dim_name[i] == third_dim_str) {
+      third_dim_ind = i;
+    }
+  }
+
+  // Check if dimension is valid.
+  if (third_dim_ind == -1) {
+    throw std::invalid_argument("Invalid input name of third dimension.");
+  }
+
+  // Encode with new third dimension
+  String encoded_new = encode(decoded, 5, third_dim_ind, 5);
+
+  return encoded_new;
+}
