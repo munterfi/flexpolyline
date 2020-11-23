@@ -6,6 +6,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   expect_error(encode(matrix(1,2,3), third_dim = -1), "third_dim out of range", class = "std::out_of_range")
   expect_error(encode(matrix(1,2,3), third_dim_precision = -1), "third_dim_precision out of range", class = "std::out_of_range")
   expect_error(decode("123"), "Invalid encoding", class = "std::invalid_argument")
+  expect_error(set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "NOT A DIM"), "Invalid input name of third dimension", class = "std::invalid_argument")
 
   # Get and set third dimension
   expect_equal(get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"), "ALTITUDE")
