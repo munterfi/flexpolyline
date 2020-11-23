@@ -64,3 +64,55 @@ encode <- function(line, precision = 5L, third_dim = 3L, third_dim_precision = 5
     .Call(`_flexpolyline_encode`, line, precision, third_dim, third_dim_precision)
 }
 
+#' Get third dimension of a flexible polyline encoded string
+#'
+#' This function calls \code{hf::get_third_dimension} of the C++ implementation
+#' of the flexible polyline encoding by HERE and return the type of the third
+#' dimension.
+#'
+#' @param encoded character, encoded flexible polyline string.
+#'
+#' @return
+#' A string describing the third dimension.
+#'
+#' @export
+#'
+#' @examples
+#' # 2d line
+#' get_third_dimension("BFoz5xJ67i1B1B7PzIhaxL7Y")
+#'
+#' # 3d line
+#' get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
+get_third_dimension <- function(encoded) {
+    .Call(`_flexpolyline_get_third_dimension`, encoded)
+}
+
+#' Set third dimension of a flexible polyline encoded string
+#'
+#' This function decodes the flexible polyline encoded line, changes the third
+#' dimension and encodes the line again.
+#'
+#' @note
+#' The precision is not read from the header of the encoded line. Therefore it must be provided as a parameter for re-encoding.
+#'
+#' @param encoded character, encoded flexible polyline string.
+#' @param third_dim_name character, name of the third dimension to set (ABSENT, LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).
+#' @param precision integer, precision to use in encoding (between 0 and 15, \code{default=5}).
+#' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=5}).
+#'
+#' @return
+#' The line with the new third dimension as string in the flexible polyline
+#' encoding format.
+#'
+#' @export
+#'
+#' @examples
+#' # 2d line (nothing happens...)
+#' set_third_dimension("BFoz5xJ67i1B1B7PzIhaxL7Y", "ELEVATION")
+#'
+#' # 3d line
+#' set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "ELEVATION")
+set_third_dimension <- function(encoded, third_dim_name, precision = 5L, third_dim_precision = 5L) {
+    .Call(`_flexpolyline_set_third_dimension`, encoded, third_dim_name, precision, third_dim_precision)
+}
+
