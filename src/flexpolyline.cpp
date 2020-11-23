@@ -195,11 +195,16 @@ std::string get_third_dimension(SEXP encoded) {
 
 //' Set third dimension of a flexible polyline encoded string
 //'
-//' This function decodes the flexible polyline encoded line changes the third
+//' This function decodes the flexible polyline encoded line, changes the third
 //' dimension and encodes the line again.
 //'
+//' @note
+//' The precision is not read from the header of the encoded line. Therefore it must be provided as a parameter for re-encoding.
+//'
 //' @param encoded character, encoded flexible polyline string.
-//' @param third_dim character, name of the third dimension (ABSENT, LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).
+//' @param third_dim_name character, name of the third dimension to set (ABSENT, LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).
+//' @param precision integer, precision to use in encoding (between 0 and 15, \code{default=5}).
+//' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=5}).
 //'
 //' @return
 //' The line with the new third dimension as string in the flexible polyline
@@ -214,7 +219,8 @@ std::string get_third_dimension(SEXP encoded) {
 //' # 3d line
 //' set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "ELEVATION")
 // [[Rcpp::export]]
-std::string set_third_dimension(SEXP encoded, SEXP third_dim_name) {
+std::string set_third_dimension(SEXP encoded, SEXP third_dim_name, int precision = 5,
+                                int third_dim_precision = 5) {
 
   int third_dim_ind = -1;
   const char * dim_name[] = {
@@ -238,11 +244,11 @@ std::string set_third_dimension(SEXP encoded, SEXP third_dim_name) {
 
   // Check if dimension is valid.
   if (third_dim_ind == -1) {
-    throw std::invalid_argument("Invalid input name of third dimension.");
+    throw std::invalid_argument("Invalid input name of third dimension");
   }
 
   // Encode with new third dimension
-  String encoded_new = encode(decoded, 5, third_dim_ind, 5);
+  String encoded_new = encode(decoded, precision, third_dim_ind, third_dim_precision);
 
   return encoded_new;
 }
