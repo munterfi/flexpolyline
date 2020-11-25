@@ -3,7 +3,7 @@
 #' A wrapper function for \code{\link{encode}} that converts simple feature geometries
 #' of the sf package to flexible polyline encoded strings.
 #'
-#' @param line simple feature, \code{sf}, \code{sfc} or \code{sfg} object with geometry type \code{"LINESTRING"}.
+#' @param geom simple feature, \code{sf}, \code{sfc} or \code{sfg} object with geometry type \code{"POINT"}, \code{"LINESTRING"} or \code{"POLYGON"}.
 #' @param precision integer, precision to use in encoding (between 0 and 15, \code{default=5}).
 #' @param third_dim integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, \code{default=NULL}).
 #' @param third_dim_precision integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=precision}).
@@ -14,61 +14,57 @@
 #' @export
 #'
 #' @examples
-#' # 2D
+#' # 3D point
+#' point3d <- sf::st_point(
+#'   matrix(c(8.69821, 50.10228, 10), ncol = 3, byrow = TRUE), dim = "XYZ")
+#' encode_sf(point3d)
+#'
+#' # 2D linestring
 #' line2d <- sf::st_linestring(
-#'   matrix(
-#'     c(8.69821, 50.10228,
-#'       8.69567, 50.10201,
-#'       8.69150, 50.10063,
-#'       8.68752, 50.09878),
-#'     ncol = 2, byrow = TRUE
-#'   )
-#' )
+#'   matrix(c(8.69821, 50.10228,
+#'            8.69567, 50.10201,
+#'            8.68752, 50.09878), ncol = 2, byrow = TRUE))
 #' encode_sf(line2d)
 #'
-#' # 3D
-#' line3d <- sf::st_linestring(
-#'   matrix(
-#'     c(8.69821, 50.10228, 10,
-#'       8.69567, 50.10201, 20,
-#'       8.69150, 50.10063, 30,
-#'       8.68752, 50.09878, 40),
-#'     ncol = 3, byrow = TRUE
-#'   )
-#' )
-#' encode_sf(line3d)
-encode_sf <- function(line, precision = 5, third_dim = NULL,
+#' # 3D polygon
+#' poly3d <- sf::st_polygon(list(
+#'   matrix(c(8.69821, 50.10228, 10,
+#'            8.69567, 50.10201, 20,
+#'            8.69150, 50.10063, 30,
+#'            8.69821, 50.10228, 10), ncol = 3, byrow = TRUE)), dim = "XYM")
+#' encode_sf(poly3d)
+encode_sf <- function(geom, precision = 5, third_dim = NULL,
                       third_dim_precision = precision) {
-  UseMethod("encode_sf", line)
+  UseMethod("encode_sf", geom)
 }
 
 #' @export
-encode_sf.sfg <- function(line, precision = 5, third_dim = NULL,
+encode_sf.sfg <- function(geom, precision = 5, third_dim = NULL,
                        third_dim_precision = precision) {
-  if(sf::st_geometry_type(line) != "LINESTRING"){
+  if(!sf::st_geometry_type(geom) %in% c("POINT", "LINESTRING", "POLYGON")){
     stop(
       sprintf(
-        "Invalid geometry type '%s' of input, only 'LINESTRING' is supported.",
-        sf::st_geometry_type(line)
+        "Invalid geometry type '%s' of input, only 'POINT', 'LINESTRING' and 'POLYGON' is supported.",
+        sf::st_geometry_type(geom)
       )
     )
   }
-  if (class(line)[1] == "XY") {
+  if (class(geom)[1] == "XY") {
     third_dim <- 0
     encoded <- encode(
-      sf::st_coordinates(line)[, c(1:2)],
+      sf::st_coordinates(geom)[, c(1:2), drop = FALSE],
       precision, third_dim, third_dim_precision
     )
   } else {
     if (is.null(third_dim)) {
-      if (class(line)[1] == "XYZ") {
+      if (class(geom)[1] == "XYZ") {
         third_dim <- 3
       } else {
         third_dim <- 6
       }
     }
     encoded <- encode(
-      sf::st_coordinates(line)[, c(1:3)],
+      sf::st_coordinates(geom)[, c(1:3), drop = FALSE],
       precision, third_dim, third_dim_precision
     )
   }
@@ -76,21 +72,21 @@ encode_sf.sfg <- function(line, precision = 5, third_dim = NULL,
 }
 
 #' @export
-encode_sf.sfc <- function(line, precision = 5, third_dim = NULL,
+encode_sf.sfc <- function(geom, precision = 5, third_dim = NULL,
                           third_dim_precision = precision) {
   return(
-    sapply(line, function(x) {
+    sapply(geom, function(x) {
       encode_sf.sfg(x, precision, third_dim, third_dim_precision)
     })
   )
 }
 
 #' @export
-encode_sf.sf <- function(line, precision = 5, third_dim = NULL,
+encode_sf.sf <- function(geom, precision = 5, third_dim = NULL,
                          third_dim_precision = precision) {
   return(
     encode_sf.sfc(
-      sf::st_geometry(line),
+      sf::st_geometry(geom),
       precision, third_dim, third_dim_precision
     )
   )

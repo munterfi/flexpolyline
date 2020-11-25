@@ -18,22 +18,18 @@
 #' @export
 #'
 #' @examples
-#' # 2d line
-#' decode_sf("BFoz5xJ67i1B1B7PzIhaxL7Y")
-#'
-#' # 3d line
-#' decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
+#' decode_sf("B1Voz5xJ67i1Bgkh9B")
+#' decode_sf("BFoz5xJ67i1B1B7PlU9yB")
+#' decode_sf("BlXoz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BqK-pB_ni6D")
 decode_sf <- function(encoded, crs = sf::NA_crs_) {
   UseMethod("decode_sf", encoded)
 }
 
 #' @export
 decode_sf.character <- function(encoded, crs = sf::NA_crs_) {
-
   dim3 <- character(length(encoded))
   ind3 <- 2
   sfdi <- "XY"
-
   geom <- sf::st_sfc(
     lapply(1:length(encoded), function(x) {
       m <- decode(encoded[[x]])
@@ -51,13 +47,19 @@ decode_sf.character <- function(encoded, crs = sf::NA_crs_) {
           sfdi <<- "XYM"
         }
       }
-      sf::st_linestring(m, dim = sfdi)
+      if (nrow(m) <= 1) {
+        sf::st_point(m, dim = sfdi)
+      } else {
+        if (all(m[1, ] == m[nrow(m), ])) {
+          sf::st_polygon(list(m), dim = sfdi)
+        } else {
+          sf::st_linestring(m, dim = sfdi)
+        }
+      }
     }),
     crs = crs
   )
-
   dim3[is.na(dim3)] <- "ABSENT"
-
   return(
     sf::st_as_sf(
       data.frame(
