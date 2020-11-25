@@ -1,5 +1,6 @@
 # flexpolyline 0.1.1.9000
 
+* Support for geometry types `"POLYGON"` and `"POINT"` in `encode_sf()` and `decode_sf()`.
 * Added functions to get (`get_third_dimension()`) and set (`set_third_dimension()`) the third dimension type of a flexible polyline encoded string.
 * Sign in to CodeFactor.io and add badge to continuously track code quality.
 * Use exception classes when throwing an exception in C++.

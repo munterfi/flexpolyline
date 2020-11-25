@@ -25,8 +25,8 @@ from databases, and which geometrical operations should be defined for them."*
 
 The most common geometry types of simple features are: POINT, LINESTRING, POLYGON,
 MULTIPOINT, MULTILINESTRING, MULTIPOLYGON. All geometry types are based on POINTs.
-This package only supports the encoding and decoding of the geometry type
-LINESTRING.
+This package supports the encoding and decoding of the geometry types POINT,
+LINESTRING and POLYGON.
 
 There are four possible dimension combinations of geometries in the sf package.
 In the `flexpolyine` package the first three dimension combinations are
