@@ -5,14 +5,14 @@
 \title{Wrapper function for encoding simple features}
 \usage{
 encode_sf(
-  line,
+  geom,
   precision = 5,
   third_dim = NULL,
   third_dim_precision = precision
 )
 }
 \arguments{
-\item{line}{simple feature, \code{sf}, \code{sfc} or \code{sfg} object with geometry type \code{"LINESTRING"}.}
+\item{geom}{simple feature, \code{sf}, \code{sfc} or \code{sfg} object with geometry type \code{"POINT"}, \code{"LINESTRING"} or \code{"POLYGON"}.}
 
 \item{precision}{integer, precision to use in encoding (between 0 and 15, \code{default=5}).}
 
@@ -28,27 +28,23 @@ A wrapper function for \code{\link{encode}} that converts simple feature geometr
 of the sf package to flexible polyline encoded strings.
 }
 \examples{
-# 2D
+# 3D point
+point3d <- sf::st_point(
+  matrix(c(8.69821, 50.10228, 10), ncol = 3, byrow = TRUE), dim = "XYZ")
+encode_sf(point3d)
+
+# 2D linestring
 line2d <- sf::st_linestring(
-  matrix(
-    c(8.69821, 50.10228,
-      8.69567, 50.10201,
-      8.69150, 50.10063,
-      8.68752, 50.09878),
-    ncol = 2, byrow = TRUE
-  )
-)
+  matrix(c(8.69821, 50.10228,
+           8.69567, 50.10201,
+           8.68752, 50.09878), ncol = 2, byrow = TRUE))
 encode_sf(line2d)
 
-# 3D
-line3d <- sf::st_linestring(
-  matrix(
-    c(8.69821, 50.10228, 10,
-      8.69567, 50.10201, 20,
-      8.69150, 50.10063, 30,
-      8.68752, 50.09878, 40),
-    ncol = 3, byrow = TRUE
-  )
-)
-encode_sf(line3d)
+# 3D polygon
+poly3d <- sf::st_polygon(list(
+  matrix(c(8.69821, 50.10228, 10,
+           8.69567, 50.10201, 20,
+           8.69150, 50.10063, 30,
+           8.69821, 50.10228, 10), ncol = 3, byrow = TRUE)), dim = "XYM")
+encode_sf(poly3d)
 }
