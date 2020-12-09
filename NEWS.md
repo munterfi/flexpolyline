@@ -1,4 +1,4 @@
-# flexpolyline 0.1.1.9000
+# flexpolyline 0.2.0
 
 * Fix clang range-loop-analysis warning on MacOS in `flexpolyline.h` (Apple clang version 12.0.0).
 * Support for geometry types `"POLYGON"` and `"POINT"` in `encode_sf()` and `decode_sf()`.
