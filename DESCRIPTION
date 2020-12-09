@@ -20,8 +20,8 @@ Description: Binding to the C++ implementation of the flexible polyline
     (3) using variable length for each coordinate delta; and
     (4) using 64 URL-safe characters to display the result.
 License: GPL-3
-URL: https://munterfinger.github.io/flexpolyline, https://github.com/munterfinger/flexpolyline
-BugReports: https://github.com/munterfinger/flexpolyline/issues
+URL: https://munterfinger.github.io/flexpolyline/, https://github.com/munterfinger/flexpolyline/
+BugReports: https://github.com/munterfinger/flexpolyline/issues/
 LinkingTo: 
     Rcpp
 Imports: 
