@@ -14,11 +14,14 @@ set_third_dimension(
 \arguments{
 \item{encoded}{character, encoded flexible polyline string.}
 
-\item{third_dim_name}{character, name of the third dimension to set (ABSENT, LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).}
+\item{third_dim_name}{character, name of the third dimension to set (ABSENT,
+LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).}
 
-\item{precision}{integer, precision to use in encoding (between 0 and 15, \code{default=5}).}
+\item{precision}{integer, precision to use in encoding (between 0 and 15,
+\code{default=5}).}
 
-\item{third_dim_precision}{integer, precision to use in encoding for the third dimension (between 1 and 15, \code{default=5}).}
+\item{third_dim_precision}{integer, precision to use in encoding for the
+third dimension (between 1 and 15, \code{default=5}).}
 }
 \value{
 The line with the new third dimension as string in the flexible polyline
@@ -29,7 +32,8 @@ This function decodes the flexible polyline encoded line, changes the third
 dimension and encodes the line again.
 }
 \note{
-The precision is not read from the header of the encoded line. Therefore it must be provided as a parameter for re-encoding.
+The precision is not read from the header of the encoded line. Therefore it
+must be provided as a parameter for re-encoding.
 }
 \examples{
 # 2d line (nothing happens...)

@@ -13,9 +13,10 @@ decode(encoded)
 A matrix containing the coordinates of the decoded line.
 }
 \description{
-This function calls \code{hf::polyline_decode} and \code{hf::get_third_dimension}
-of the C++ implementation of the flexible polyline encoding by HERE. Depending
-on the dimensions of the encoded line, a two or three dimensional line is decoded.
+This function calls \code{hf::polyline_decode} and
+\code{hf::get_third_dimension} of the C++ implementation of the flexible
+polyline encoding by HERE. Depending on the dimensions of the encoded line,
+a two or three dimensional line is decoded.
 }
 \examples{
 # 2d line
