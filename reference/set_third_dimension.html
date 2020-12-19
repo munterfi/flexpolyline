@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Wrapper function for encoding simple features — encode_sf • flexpolyline</title>
+<title>Set third dimension of a flexible polyline encoded string — set_third_dimension • flexpolyline</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,9 @@
 
 
 
-<meta property="og:title" content="Wrapper function for encoding simple features — encode_sf" />
-<meta property="og:description" content="A wrapper function for encode that converts simple feature geometries
-of the sf package to flexible polyline encoded strings." />
+<meta property="og:title" content="Set third dimension of a flexible polyline encoded string — set_third_dimension" />
+<meta property="og:description" content="This function decodes the flexible polyline encoded line, changes the third
+dimension and encodes the line again." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -144,69 +144,63 @@ of the sf package to flexible polyline encoded strings." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Wrapper function for encoding simple features</h1>
-    <small class="dont-index">Source: <a href='https://github.com/munterfinger/flexpolyline/blob/master/R/encode_sf.R'><code>R/encode_sf.R</code></a></small>
-    <div class="hidden name"><code>encode_sf.Rd</code></div>
+    <h1>Set third dimension of a flexible polyline encoded string</h1>
+    <small class="dont-index">Source: <a href='https://github.com/munterfinger/flexpolyline/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
+    <div class="hidden name"><code>set_third_dimension.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A wrapper function for <code><a href='encode.html'>encode</a></code> that converts simple feature geometries
-of the sf package to flexible polyline encoded strings.</p>
+    <p>This function decodes the flexible polyline encoded line, changes the third
+dimension and encodes the line again.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>encode_sf</span><span class='op'>(</span>
-  <span class='va'>geom</span>,
-  precision <span class='op'>=</span> <span class='fl'>5</span>,
-  third_dim <span class='op'>=</span> <span class='cn'>NULL</span>,
-  third_dim_precision <span class='op'>=</span> <span class='va'>precision</span>
+    <pre class="usage"><span class='fu'>set_third_dimension</span><span class='op'>(</span>
+  <span class='va'>encoded</span>,
+  <span class='va'>third_dim_name</span>,
+  precision <span class='op'>=</span> <span class='fl'>5L</span>,
+  third_dim_precision <span class='op'>=</span> <span class='fl'>5L</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>geom</th>
-      <td><p>simple feature, <code>sf</code>, <code>sfc</code> or <code>sfg</code> object with geometry type <code>"POINT"</code>, <code>"LINESTRING"</code> or <code>"POLYGON"</code>.</p></td>
+      <th>encoded</th>
+      <td><p>character, encoded flexible polyline string.</p></td>
+    </tr>
+    <tr>
+      <th>third_dim_name</th>
+      <td><p>character, name of the third dimension to set (ABSENT,
+LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).</p></td>
     </tr>
     <tr>
       <th>precision</th>
-      <td><p>integer, precision to use in encoding (between 0 and 15, <code>default=5</code>).</p></td>
-    </tr>
-    <tr>
-      <th>third_dim</th>
-      <td><p>integer, type of the third dimension (0: ABSENT, 1: LEVEL, 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, <code>default=NULL</code>).</p></td>
+      <td><p>integer, precision to use in encoding (between 0 and 15,
+<code>default=5</code>).</p></td>
     </tr>
     <tr>
       <th>third_dim_precision</th>
-      <td><p>integer, precision to use in encoding for the third dimension (between 1 and 15, <code>default=precision</code>).</p></td>
+      <td><p>integer, precision to use in encoding for the
+third dimension (between 1 and 15, <code>default=5</code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The line as string in the flexible polyline encoding format.</p>
+    <p>The line with the new third dimension as string in the flexible polyline
+encoding format.</p>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>The precision is not read from the header of the encoded line. Therefore it
+must be provided as a parameter for re-encoding.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># 3D point</span>
-<span class='va'>point3d</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st.html'>st_point</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8.69821</span>, <span class='fl'>50.10228</span>, <span class='fl'>10</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>, dim <span class='op'>=</span> <span class='st'>"XYZ"</span><span class='op'>)</span>
-<span class='fu'>encode_sf</span><span class='op'>(</span><span class='va'>point3d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "B1Voz5xJ67i1Bgkh9B"</div><div class='input'>
-<span class='co'># 2D linestring</span>
-<span class='va'>line2d</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st.html'>st_linestring</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8.69821</span>, <span class='fl'>50.10228</span>,
-           <span class='fl'>8.69567</span>, <span class='fl'>50.10201</span>,
-           <span class='fl'>8.68752</span>, <span class='fl'>50.09878</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>2</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>encode_sf</span><span class='op'>(</span><span class='va'>line2d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "BFoz5xJ67i1B1B7PlU9yB"</div><div class='input'>
-<span class='co'># 3D polygon</span>
-<span class='va'>poly3d</span> <span class='op'>&lt;-</span> <span class='fu'>sf</span><span class='fu'>::</span><span class='fu'><a href='https://r-spatial.github.io/sf/reference/st.html'>st_polygon</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8.69821</span>, <span class='fl'>50.10228</span>, <span class='fl'>10</span>,
-           <span class='fl'>8.69567</span>, <span class='fl'>50.10201</span>, <span class='fl'>20</span>,
-           <span class='fl'>8.69150</span>, <span class='fl'>50.10063</span>, <span class='fl'>30</span>,
-           <span class='fl'>8.69821</span>, <span class='fl'>50.10228</span>, <span class='fl'>10</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span>, byrow <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>, dim <span class='op'>=</span> <span class='st'>"XYM"</span><span class='op'>)</span>
-<span class='fu'>encode_sf</span><span class='op'>(</span><span class='va'>poly3d</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "BlXoz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BqK-pB_ni6D"</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># 2d line (nothing happens...)</span>
+<span class='fu'>set_third_dimension</span><span class='op'>(</span><span class='st'>"BFoz5xJ67i1B1B7PzIhaxL7Y"</span>, <span class='st'>"ELEVATION"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</div><div class='input'>
+<span class='co'># 3d line</span>
+<span class='fu'>set_third_dimension</span><span class='op'>(</span><span class='st'>"BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"</span>, <span class='st'>"ELEVATION"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "B1Voz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BxL7Ygkh9B"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

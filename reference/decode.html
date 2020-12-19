@@ -47,9 +47,10 @@
 
 
 <meta property="og:title" content="Decode a flexible polyline encoded string — decode" />
-<meta property="og:description" content="This function calls hf::polyline_decode and hf::get_third_dimension
-of the C++ implementation of the flexible polyline encoding by HERE. Depending
-on the dimensions of the encoded line, a two or three dimensional line is decoded." />
+<meta property="og:description" content="This function calls hf::polyline_decode and
+hf::get_third_dimension of the C++ implementation of the flexible
+polyline encoding by HERE. Depending on the dimensions of the encoded line,
+a two or three dimensional line is decoded." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -82,19 +83,13 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -122,19 +117,19 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/munterfinger/flexpolyline">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://twitter.com/munterfi1">
-    <span class="fa fa-twitter fa-lg"></span>
+    <span class="fas fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="https://munterfinger.ch">
-    <span class="fa fa-globe fa-lg"></span>
+    <span class="fas fa-globe fa-lg"></span>
      
   </a>
 </li>
@@ -157,12 +152,13 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
     </div>
 
     <div class="ref-description">
-    <p>This function calls <code>hf::polyline_decode</code> and <code>hf::get_third_dimension</code>
-of the C++ implementation of the flexible polyline encoding by HERE. Depending
-on the dimensions of the encoded line, a two or three dimensional line is decoded.</p>
+    <p>This function calls <code>hf::polyline_decode</code> and
+<code>hf::get_third_dimension</code> of the C++ implementation of the flexible
+polyline encoding by HERE. Depending on the dimensions of the encoded line,
+a two or three dimensional line is decoded.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>decode</span>(<span class='kw'>encoded</span>)</pre>
+    <pre class="usage"><span class='fu'>decode</span><span class='op'>(</span><span class='va'>encoded</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,14 +175,14 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># 2d line</span>
-<span class='fu'>decode</span>(<span class='st'>"BFoz5xJ67i1B1B7PzIhaxL7Y"</span>)
+<span class='fu'>decode</span><span class='op'>(</span><span class='st'>"BFoz5xJ67i1B1B7PzIhaxL7Y"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          LNG      LAT
 #&gt; [1,] 8.69821 50.10228
 #&gt; [2,] 8.69567 50.10201
 #&gt; [3,] 8.69150 50.10063
 #&gt; [4,] 8.68752 50.09878</div><div class='input'>
 <span class='co'># 3d line</span>
-<span class='fu'>decode</span>(<span class='st'>"BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"</span>)
+<span class='fu'>decode</span><span class='op'>(</span><span class='st'>"BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;          LNG      LAT ALTITUDE
 #&gt; [1,] 8.69821 50.10228       10
 #&gt; [2,] 8.69567 50.10201       20
@@ -207,7 +203,7 @@ on the dimensions of the encoded line, a two or three dimensional line is decode
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
