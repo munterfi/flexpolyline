@@ -1,7 +1,7 @@
-# flexpolyline 0.1.1.9000
+# flexpolyline 0.2.0
 
-* Fix clang range-loop-analysis warning on MacOS in `flexpolyline.h` (Apple clang version 12.0.0).
-* Support for geometry types `"POLYGON"` and `"POINT"` in `encode_sf()` and `decode_sf()`.
+* Fix clang range-loop-analysis warning on macOS in `flexpolyline.h` (Apple clang version 12.0.0).
+* Support for geometry types `"POLYGON"` and `"POINT"` in `encode_sf()` and `decode_sf()`, closes #31.
 * Added functions to get (`get_third_dimension()`) and set (`set_third_dimension()`) the third dimension type of a flexible polyline encoded string.
 * Sign in to CodeFactor.io and add badge to continuously track code quality.
 * Use exception classes when throwing an exception in C++.
