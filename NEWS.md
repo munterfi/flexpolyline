@@ -1,3 +1,5 @@
+# flexpolyline 0.2.0.9000
+
 # flexpolyline 0.2.0
 
 * Fix clang range-loop-analysis warning on macOS in `flexpolyline.h` (Apple clang version 12.0.0).
