@@ -25,9 +25,7 @@ to meet the requirements of the constructor of sf objects. For mixed dimensions
 use the \code{\link{decode}} function directly.
 }
 \examples{
-# 2d line
-decode_sf("BFoz5xJ67i1B1B7PzIhaxL7Y")
-
-# 3d line
-decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
+decode_sf("B1Voz5xJ67i1Bgkh9B")
+decode_sf("BFoz5xJ67i1B1B7PlU9yB")
+decode_sf("BlXoz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BqK-pB_ni6D")
 }

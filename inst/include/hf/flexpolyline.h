@@ -1,6 +1,6 @@
 /*
  * Copy from    :https://github.com/heremaps/flexible-polyline/blob/master/cpp/
- * Modified     :Line 93, 211
+ * Modified     :Line 93, 210, 278
  * Date         :2020-06-09, Merlin Unterfinger <info@munterfinger.ch>
  *
  * Copyright (C) 2019 HERE Europe B.V.
@@ -201,7 +201,6 @@ public:
   std::string get_encoded() {
     return m_result;
   }
-
 };
 
 class Decoder {
@@ -276,9 +275,9 @@ template<typename Iter>
 std::string polyline_encode(Iter iter, int precision, ThirdDim third_dim, int third_dim_precision) {
   auto enc = encoder::Encoder(precision, third_dim, third_dim_precision);
 
-  for (const auto item : iter) {
-    enc.add(&item);
-  }
+  for (const auto& item : iter) { // Mod: Return by reference to avoid clang (Apple clang version 12.0.0) range-loop-analysis
+    enc.add(&item);               // warning on MacOS: "loop variable 'item' of type 'const std::__1::pair<double, double>'
+  }                               // creates a copy from type 'const std::__1::pair<double, double>'"
 
   return enc.get_encoded();
 }

@@ -47,3 +47,6 @@ vignettes/*.pdf
 *.DS_Store
 inst/doc
 docs
+
+# vscode
+.vscode

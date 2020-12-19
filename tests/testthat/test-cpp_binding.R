@@ -6,6 +6,11 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   expect_error(encode(matrix(1,2,3), third_dim = -1), "third_dim out of range", class = "std::out_of_range")
   expect_error(encode(matrix(1,2,3), third_dim_precision = -1), "third_dim_precision out of range", class = "std::out_of_range")
   expect_error(decode("123"), "Invalid encoding", class = "std::invalid_argument")
+  expect_error(set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "NOT A DIM"), "Invalid input name of third dimension", class = "std::invalid_argument")
+
+  # Get and set third dimension
+  expect_equal(get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"), "ALTITUDE")
+  expect_equal(get_third_dimension(set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "ELEVATION")), "ELEVATION")
 
   # Read and preprocess test data
   parse_test_examples <- function(input) {
@@ -77,7 +82,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   # Test encoding
   expect_equal(
     any(
-      sapply(1:length(enc), function(i) {
+      vapply(seq_along(enc), function(i) {
 
         # Omit reserved dimensions and encoding with precision higher than 7
         if (
@@ -101,7 +106,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
         # Test equality
         enc[i] != encoded
 
-      })
+      }, logical(1))
     ),
     FALSE
   )
@@ -109,7 +114,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   # Test decoding
   expect_equal(
     any(
-      sapply(1:length(dec), function(i) {
+      vapply(seq_along(dec), function(i) {
 
         # Omit reserved dimensions and decoding with precision higher than 7
         if (
@@ -130,7 +135,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
         # Test equality
         any(dec[[i]]$coords != decoded)
 
-      })
+      }, logical(1))
     ),
     FALSE
   )
