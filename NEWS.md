@@ -1,4 +1,4 @@
-# flexpolyline 0.2.0.9000
+# flexpolyline 0.2.1
 
 * Skip input tests of C++ binding on CRAN, closes #35.
 
