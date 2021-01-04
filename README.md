@@ -40,7 +40,7 @@ install.packages("flexpolyline")
 Install the development version from [GitHub](https://github.com/munterfinger/flexpolyline) with:
 
 ``` r
-remotes::install_github("munterfinger/flexpolyline")
+remotes::install_github("munterfinger/flexpolyline@develop")
 ```
 
 ## C++ binding
