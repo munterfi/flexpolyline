@@ -1,6 +1,6 @@
 /*
  * Copy from    :https://github.com/heremaps/flexible-polyline/blob/master/cpp/
- * Modified     :Line 93, 210, 278
+ * Modified     :Line 93, 116, 210, 278
  * Date         :2020-06-09, Merlin Unterfinger <info@munterfinger.ch>
  *
  * Copyright (C) 2019 HERE Europe B.V.
@@ -113,7 +113,7 @@ public:
 
       index++;
 
-      delta |= (value & 0x1F) << shift;
+      delta |= (static_cast<int64_t>(value) & 0x1F) << shift; // Mod: Fix integer shift resulting in lost bits (4d23bd2)
       if ((value & 0x20) == 0) {
         result = delta;
         return true;

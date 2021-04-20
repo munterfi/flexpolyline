@@ -1,3 +1,10 @@
+# flexpolyline 0.2.2
+
+* Fix wrong integer shift resulting in lost bits for precision values greater than 7 (see [heremaps/flexible-polyline#36](https://github.com/heremaps/flexible-polyline/issues/36), closes [#44](https://github.com/munterfinger/flexpolyline/issues/44)).
+* Fix CRAN note for a specified lazy data statement without data directory (closes [#43](https://github.com/munterfinger/flexpolyline/issues/43)).
+* Use **styler** package and use `tyler::tidyverse_style()`to format the package.
+* Solve **lintr** issues, except from line length issues (limit of 80 characters).
+
 # flexpolyline 0.2.1
 
 * Skip input tests of C++ binding on CRAN, closes #35.

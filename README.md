@@ -23,10 +23,7 @@ The flexible polyline encoding is a variant of the [Encoded Polyline Algorithm F
 
 **Note:**
 
-* Decoding gives reliable results up to a precision of 7 digits.
-The tests are also limited to this range.
-* The order of the coordinates (lng, lat) does not correspond to the original C++ implementation (lat, lng).
-This enables direct conversion to `sf` objects, without reordering the columns.
+* The order of the coordinates (lng, lat) does not correspond to the original C++ implementation (lat, lng). This enables direct conversion to `sf` objects, without reordering the columns.
 * The encoding is lossy, this means the encoding process could reduce the precision of your data.
 
 ## Installation
