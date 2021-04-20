@@ -30,21 +30,29 @@ of the sf package to flexible polyline encoded strings.
 \examples{
 # 3D point
 point3d <- sf::st_point(
-  matrix(c(8.69821, 50.10228, 10), ncol = 3, byrow = TRUE), dim = "XYZ")
+  matrix(c(8.69821, 50.10228, 10), ncol = 3, byrow = TRUE),
+  dim = "XYZ"
+)
 encode_sf(point3d)
 
 # 2D linestring
 line2d <- sf::st_linestring(
-  matrix(c(8.69821, 50.10228,
-           8.69567, 50.10201,
-           8.68752, 50.09878), ncol = 2, byrow = TRUE))
+  matrix(c(
+    8.69821, 50.10228,
+    8.69567, 50.10201,
+    8.68752, 50.09878
+  ), ncol = 2, byrow = TRUE)
+)
 encode_sf(line2d)
 
 # 3D polygon
 poly3d <- sf::st_polygon(list(
-  matrix(c(8.69821, 50.10228, 10,
-           8.69567, 50.10201, 20,
-           8.69150, 50.10063, 30,
-           8.69821, 50.10228, 10), ncol = 3, byrow = TRUE)), dim = "XYM")
+  matrix(c(
+    8.69821, 50.10228, 10,
+    8.69567, 50.10201, 20,
+    8.69150, 50.10063, 30,
+    8.69821, 50.10228, 10
+  ), ncol = 3, byrow = TRUE)
+), dim = "XYM")
 encode_sf(poly3d)
 }

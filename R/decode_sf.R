@@ -31,7 +31,7 @@ decode_sf.character <- function(encoded, crs = sf::NA_crs_) {
   ind3 <- 2
   sfdi <- "XY"
   geom <- sf::st_sfc(
-    lapply(1:length(encoded), function(x) {
+    lapply(seq_len(length(encoded)), function(x) {
       m <- decode(encoded[[x]])
       d3 <- colnames(m)[3]
       if (is.na(d3)) {
