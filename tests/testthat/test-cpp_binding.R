@@ -81,11 +81,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
           is.na(org[[i]]$third_dim_precision) |
           is.na(org[[i]]$precision)
         ) return(FALSE)
-        if (
-          org[[i]]$third_dim %in% c(4, 5) |
-          org[[i]]$third_dim_precision > 7 |
-          org[[i]]$precision > 7
-        ) return(FALSE)
+        if (org[[i]]$third_dim %in% c(4, 5)) return(FALSE)
 
         # Encode
         encoded <- encode(
@@ -113,11 +109,7 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
           is.na(dec[[i]]$third_dim_precision) |
           is.na(dec[[i]]$precision)
         ) return(FALSE)
-        if (
-          dec[[i]]$third_dim %in% c(4, 5) |
-          dec[[i]]$third_dim_precision > 7 |
-          dec[[i]]$precision > 7
-        ) return(FALSE)
+        if (dec[[i]]$third_dim %in% c(4, 5)) return(FALSE)
 
         # Encode
         decoded <- decode(
