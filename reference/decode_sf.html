@@ -54,6 +54,8 @@ encoded in the flexible polyline enoding, to simple feature geometries of the sf
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -65,9 +67,18 @@ encoded in the flexible polyline enoding, to simple feature geometries of the sf
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -81,20 +92,17 @@ encoded in the flexible polyline enoding, to simple feature geometries of the sf
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-<li>
   <a href="../articles/flexpolyline.html">Get started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -110,6 +118,9 @@ encoded in the flexible polyline enoding, to simple feature geometries of the sf
       <a href="../articles/sf-support.html">Simple feature support</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -182,26 +193,26 @@ use the <code><a href='decode.html'>decode</a></code> function directly.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>decode_sf</span><span class='op'>(</span><span class='st'>"B1Voz5xJ67i1Bgkh9B"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Simple feature collection with 1 feature and 2 fields
-#&gt; geometry type:  POINT
-#&gt; dimension:      XYZ
-#&gt; bbox:           xmin: 8.69821 ymin: 50.10228 xmax: 8.69821 ymax: 50.10228
-#&gt; z_range:        zmin: 10 zmax: 10
-#&gt; CRS:            NA
+#&gt; Geometry type: POINT
+#&gt; Dimension:     XYZ
+#&gt; Bounding box:  xmin: 8.69821 ymin: 50.10228 xmax: 8.69821 ymax: 50.10228
+#&gt; z_range:       zmin: 10 zmax: 10
+#&gt; CRS:           NA
 #&gt;   id      dim3                      geometry
 #&gt; 1  1 ELEVATION POINT Z (8.69821 50.10228 10)</div><div class='input'><span class='fu'>decode_sf</span><span class='op'>(</span><span class='st'>"BFoz5xJ67i1B1B7PlU9yB"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Simple feature collection with 1 feature and 2 fields
-#&gt; geometry type:  LINESTRING
-#&gt; dimension:      XY
-#&gt; bbox:           xmin: 8.68752 ymin: 50.09878 xmax: 8.69821 ymax: 50.10228
-#&gt; CRS:            NA
+#&gt; Geometry type: LINESTRING
+#&gt; Dimension:     XY
+#&gt; Bounding box:  xmin: 8.68752 ymin: 50.09878 xmax: 8.69821 ymax: 50.10228
+#&gt; CRS:           NA
 #&gt;   id   dim3                       geometry
 #&gt; 1  1 ABSENT LINESTRING (8.69821 50.1022...</div><div class='input'><span class='fu'>decode_sf</span><span class='op'>(</span><span class='st'>"BlXoz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BqK-pB_ni6D"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Simple feature collection with 1 feature and 2 fields
-#&gt; geometry type:  POLYGON
-#&gt; dimension:      XYM
-#&gt; bbox:           xmin: 8.6915 ymin: 50.10063 xmax: 8.69821 ymax: 50.10228
-#&gt; m_range:        mmin: 10 mmax: 30
-#&gt; CRS:            NA
+#&gt; Geometry type: POLYGON
+#&gt; Dimension:     XYM
+#&gt; Bounding box:  xmin: 8.6915 ymin: 50.10063 xmax: 8.69821 ymax: 50.10228
+#&gt; m_range:       mmin: 10 mmax: 30
+#&gt; CRS:           NA
 #&gt;   id    dim3                       geometry
 #&gt; 1  1 CUSTOM1 POLYGON M ((8.69821 50.1022...</div></pre>
   </div>
@@ -215,11 +226,11 @@ use the <code><a href='decode.html'>decode</a></code> function directly.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.munterfinger.ch'>Merlin Unterfinger</a>,  HERE Europe B.V..</p>
+  <p><p>Developed by <a href="https://www.munterfinger.ch" class="external-link">Merlin Unterfinger</a>, HERE Europe B.V..</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -227,6 +238,8 @@ use the <code><a href='decode.html'>decode</a></code> function directly.</p>
 
   
 
+
+  
 
   </body>
 </html>

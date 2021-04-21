@@ -52,6 +52,8 @@
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -63,9 +65,16 @@
 
 
 
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-news">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -79,20 +88,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-<li>
   <a href="../articles/flexpolyline.html">Get started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -108,6 +114,9 @@
       <a href="../articles/sf-support.html">Simple feature support</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -146,6 +155,17 @@
       <small>Source: <a href='https://github.com/munterfinger/flexpolyline/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="flexpolyline-022" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.2">
+<a href="#flexpolyline-022" class="anchor"></a>flexpolyline 0.2.2<small> 2021-04-20 </small>
+</h1>
+<ul>
+<li>Fix wrong integer shift resulting in lost bits for precision values greater than 7 (see <a href="https://github.com/heremaps/flexible-polyline/issues/36" class="external-link">heremaps/flexible-polyline<a href='https://github.com/munterfinger/flexpolyline/issues/36'>#36</a></a>, closes <a href="https://github.com/munterfinger/flexpolyline/issues/44" class="external-link"><a href='https://github.com/munterfinger/flexpolyline/issues/44'>#44</a></a>).</li>
+<li>Fix CRAN note for a specified lazy data statement without data directory (closes <a href="https://github.com/munterfinger/flexpolyline/issues/43" class="external-link"><a href='https://github.com/munterfinger/flexpolyline/issues/43'>#43</a></a>).</li>
+<li>Use <strong>styler</strong> package and use <code>tyler::tidyverse_style()</code>to format the package.</li>
+<li>Solve <strong>lintr</strong> issues, except from line length issues (limit of 80 characters).</li>
+</ul>
+</div>
     <div id="flexpolyline-021" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.1">
 <a href="#flexpolyline-021" class="anchor"></a>flexpolyline 0.2.1<small> 2021-01-04 </small>
@@ -182,12 +202,14 @@
 <h1 class="page-header" data-toc-text="0.1.0">
 <a href="#flexpolyline-010" class="anchor"></a>flexpolyline 0.1.0<small> 2020-06-25 </small>
 </h1>
-<p>First release of the <strong>flexpolyline</strong> package, which provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by:</p>
-<p>(1) Reducing the decimal digits of each value;</p>
-<p>(2) encoding only the offset from the previous point;</p>
-<p>(3) using variable length for each coordinate delta; and</p>
-<p>(4) using 64 URL-safe characters to display the result.</p>
-<p>The felxible polyline encoding is a variant of the <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm">Encoded Polyline Algorithm Format</a> by Google.</p>
+<p>First release of the <strong>flexpolyline</strong> package, which provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp" class="external-link">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline" class="external-link">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by:</p>
+<ol style="list-style-type: decimal">
+<li>Reducing the decimal digits of each value;</li>
+<li>encoding only the offset from the previous point;</li>
+<li>using variable length for each coordinate delta; and</li>
+<li>using 64 URL-safe characters to display the result.</li>
+</ol>
+<p>The felxible polyline encoding is a variant of the <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm" class="external-link">Encoded Polyline Algorithm Format</a> by Google.</p>
 <p><strong>License:</strong></p>
 <ul>
 <li>The <strong>flexpolyline</strong> R package is licensed under GNU GPL v3.0.</li>
@@ -207,11 +229,11 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by <a href='https://www.munterfinger.ch'>Merlin Unterfinger</a>,  HERE Europe B.V..</p>
+  <p><p>Developed by <a href="https://www.munterfinger.ch" class="external-link">Merlin Unterfinger</a>, HERE Europe B.V..</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -219,6 +241,8 @@
 
   
 
+
+  
 
   </body>
 </html>
