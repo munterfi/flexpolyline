@@ -28,13 +28,13 @@ The flexible polyline encoding is a variant of the [Encoded Polyline Algorithm F
 
 ## Installation
 
-You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org/package=flexpolyline) with:
+Install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org/package=flexpolyline):
 
 ``` r
 install.packages("flexpolyline")
 ```
 
-Install the development version from [GitHub](https://github.com/munterfinger/flexpolyline) with:
+Or get the development version from [GitHub](https://github.com/munterfinger/flexpolyline):
 
 ``` r
 remotes::install_github("munterfinger/flexpolyline@develop")
