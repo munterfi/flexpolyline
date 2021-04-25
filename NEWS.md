@@ -1,4 +1,4 @@
-# flexpolyline 0.2.2.9000
+# flexpolyline 0.2.3
 
 * Deactivate encoding and decoding validation tests on CRAN due to minor deviations in the results due to rounding (half up vs. half even) on different platforms (e.g. Apple M1) on high precision values (closes [#49](https://github.com/munterfinger/flexpolyline/issues/49))
 

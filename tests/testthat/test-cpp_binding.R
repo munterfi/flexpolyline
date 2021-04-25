@@ -1,5 +1,6 @@
 test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
 
+  # Skip tests on CRAN due to platform specific rounding at high precision
   skip_on_cran()
 
   # Get and set third dimension
