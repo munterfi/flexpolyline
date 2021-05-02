@@ -1,3 +1,5 @@
+# flexpolyline 0.2.3.9000
+
 # flexpolyline 0.2.3
 
 * Skip encoding and decoding validation tests on CRAN due to minor deviations in the results due to rounding (half up vs. half even) on different platforms (e.g. Apple M1) at high precision values (closes [#49](https://github.com/munterfinger/flexpolyline/issues/49))
