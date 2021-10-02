@@ -43,10 +43,10 @@ You can install the released version of **flexpolyline** from [CRAN](https://CRA
 install.packages("flexpolyline")
 ```
 
-Install the development version from [GitHub](https://github.com/munterfinger/flexpolyline) with:
+Install the development version from [GitHub](https://github.com/munterfi/flexpolyline) with:
 
 ```{r, eval=FALSE}
-remotes::install_github("munterfinger/flexpolyline")
+remotes::install_github("munterfi/flexpolyline")
 ```
 
 ## C++ binding

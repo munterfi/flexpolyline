@@ -20,9 +20,9 @@ Binding to the C++ implementation of the flexible polyline
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://munterfinger.github.io/flexpolyline/}
-  \item \url{https://github.com/munterfinger/flexpolyline/}
-  \item Report bugs at \url{https://github.com/munterfinger/flexpolyline/issues/}
+  \item \url{https://munterfi.github.io/flexpolyline/}
+  \item \url{https://github.com/munterfi/flexpolyline/}
+  \item Report bugs at \url{https://github.com/munterfi/flexpolyline/issues/}
 }
 
 }
