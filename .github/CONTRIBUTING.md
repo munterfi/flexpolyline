@@ -89,8 +89,8 @@ Add your GitHub username to the bugfix or feature entry in the `NEWS.md` to ensu
 ```
 # version x.x.x.9000
 
-* Added <feature description> (@<github_username>, [#1](https://github.com/munterfinger/flexpolyline/pull/1)).
-* Bugfix: <description> (@<github_username>, closes [#2](https://github.com/munterfinger/flexpolyline/issues/2)).
+* Added <feature description> (@<github_username>, [#1](https://github.com/munterfi/flexpolyline/pull/1)).
+* Bugfix: <description> (@<github_username>, closes [#2](https://github.com/munterfi/flexpolyline/issues/2)).
 
 ```
 
