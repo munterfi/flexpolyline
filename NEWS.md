@@ -1,11 +1,15 @@
+# flexpolyline 0.2.4
+
+* Adjust URLs to GitHub account due to renaming munterfinger to @munterfi.
+
 # flexpolyline 0.2.3
 
-* Skip encoding and decoding validation tests on CRAN due to minor deviations in the results due to rounding (half up vs. half even) on different platforms (e.g. Apple M1) at high precision values (closes [#49](https://github.com/munterfinger/flexpolyline/issues/49))
+* Skip encoding and decoding validation tests on CRAN due to minor deviations in the results due to rounding (half up vs. half even) on different platforms (e.g. Apple M1) at high precision values (closes [#49](https://github.com/munterfi/flexpolyline/issues/49))
 
 # flexpolyline 0.2.2
 
-* Fix wrong integer shift resulting in lost bits for precision values greater than 7 (see [heremaps/flexible-polyline#36](https://github.com/heremaps/flexible-polyline/issues/36), closes [#44](https://github.com/munterfinger/flexpolyline/issues/44)).
-* Fix CRAN note for a specified lazy data statement without data directory (closes [#43](https://github.com/munterfinger/flexpolyline/issues/43)).
+* Fix wrong integer shift resulting in lost bits for precision values greater than 7 (see [heremaps/flexible-polyline#36](https://github.com/heremaps/flexible-polyline/issues/36), closes [#44](https://github.com/munterfi/flexpolyline/issues/44)).
+* Fix CRAN note for a specified lazy data statement without data directory (closes [#43](https://github.com/munterfi/flexpolyline/issues/43)).
 * Use **styler** package and use `tyler::tidyverse_style()`to format the package.
 * Solve **lintr** issues, except from line length issues (limit of 80 characters).
 
