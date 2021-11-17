@@ -1,3 +1,7 @@
+# flexpolyline 0.2.4.9000
+
+* Changed workflow from git flow to trunc-based development. Removed develop branch. New features are merged directly into `master` and releases are tagged after CRAN has accepted the package submission, which triggers the documentation build.
+
 # flexpolyline 0.2.4
 
 * Adjust URLs to GitHub account due to renaming munterfinger to @munterfi.

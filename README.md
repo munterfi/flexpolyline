@@ -37,7 +37,7 @@ install.packages("flexpolyline")
 Or get the development version from [GitHub](https://github.com/munterfi/flexpolyline):
 
 ``` r
-remotes::install_github("munterfi/flexpolyline@develop")
+remotes::install_github("munterfi/flexpolyline")
 ```
 
 ## C++ binding
@@ -75,8 +75,7 @@ decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 
 ## Contributing
 
-* Contributions to this package are very welcome, issues and pull requests are the preferred ways to share them.
-* Please see the [Contribution Guidelines](https://github.com/munterfi/flexpolyline/blob/master/.github/CONTRIBUTING.md) and direct pull requests to the `develop` branch.
+* Contributions to this package are very welcome, issues and pull requests are the preferred ways to share them. Please see the [Contribution Guidelines](https://github.com/munterfi/flexpolyline/blob/master/.github/CONTRIBUTING.md).
 * This project is released with a [Contributor Code of Conduct](https://github.com/munterfi/flexpolyline/blob/master/.github/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 ## References
