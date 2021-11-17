@@ -1,4 +1,4 @@
-# flexpolyline 0.2.4.9000
+# flexpolyline 0.2.5
 
 * Changed workflow from git flow to trunc-based development. Removed develop branch. New features are merged directly into `master` and releases are tagged after CRAN has accepted the package submission, which triggers the documentation build.
 
