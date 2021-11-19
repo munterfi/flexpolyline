@@ -6,7 +6,7 @@
 [![CRAN checks](https://cranchecks.info/badges/worst/flexpolyline)](https://cran.r-project.org/web/checks/check_results_flexpolyline.html)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/flexpolyline?color=brightgreen)](https://CRAN.R-project.org/package=flexpolyline)
 [![R build status](https://github.com/munterfi/flexpolyline/workflows/R-CMD-check/badge.svg)](https://github.com/munterfi/flexpolyline/actions)
-[![Codecov test coverage](https://codecov.io/gh/munterfi/flexpolyline/branch/master/graph/badge.svg)](https://codecov.io/gh/munterfi/flexpolyline?branch=master)
+[![Codecov test coverage](https://codecov.io/gh/munterfi/flexpolyline/branch/master/graph/badge.svg)](https://app.codecov.io/gh/munterfi/flexpolyline?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/munterfi/flexpolyline/badge)](https://www.codefactor.io/repository/github/munterfi/flexpolyline)
 <!-- badges: end -->
 
