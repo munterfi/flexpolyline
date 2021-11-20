@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.5</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>Simple feature support</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/munterfi/flexpolyline/blob/master/vignettes/sf-support.Rmd" class="external-link"><code>vignettes/sf-support.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/munterfi/flexpolyline/blob/HEAD/vignettes/sf-support.Rmd" class="external-link"><code>vignettes/sf-support.Rmd</code></a></small>
       <div class="hidden name"><code>sf-support.Rmd</code></div>
 
     </div>
@@ -122,17 +122,17 @@
 <li>XYM: Represented as line with LNG, LAT and CUSTOM1/CUSTOM2 as third dimension.</li>
 <li>XYZM: Not supported.</li>
 </ul>
-<div id="encoding-and-decoding" class="section level2">
-<h2 class="hasAnchor">
-<a href="#encoding-and-decoding" class="anchor" aria-hidden="true"></a>Encoding and decoding</h2>
-<div id="simple-feature-geometry-sfg" class="section level3">
-<h3 class="hasAnchor">
-<a href="#simple-feature-geometry-sfg" class="anchor" aria-hidden="true"></a>Simple feature geometry (sfg)</h3>
+<div class="section level2">
+<h2 id="encoding-and-decoding">Encoding and decoding<a class="anchor" aria-label="anchor" href="#encoding-and-decoding"></a>
+</h2>
+<div class="section level3">
+<h3 id="simple-feature-geometry-sfg">Simple feature geometry (sfg)<a class="anchor" aria-label="anchor" href="#simple-feature-geometry-sfg"></a>
+</h3>
 <p>If no value for <code>third_dim</code> is provided in <code><a href="../reference/encode_sf.html">encode_sf()</a></code>, the dimensions of the sf geometry are considered. In case of <code>"XYZ"</code> the third dimension is set to <code>"ELEVATION"</code> and thereby recognized again as <code>"XYZ"</code> by <code><a href="../reference/decode_sf.html">decode_sf()</a></code> during decoding:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://munterfi.github.io/flexpolyline/" class="external-link">flexpolyline</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
-<span class="co">#&gt; Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.1</span>
+<span class="co">#&gt; Linking to GEOS 3.9.1, GDAL 3.3.2, PROJ 7.2.1</span>
 
 <span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>
     <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10.11111</span>,
@@ -175,9 +175,9 @@
 <span class="co">#&gt;   id    dim3                       geometry</span>
 <span class="co">#&gt; 1  1 CUSTOM1 LINESTRING M (8.69821 50.10...</span></code></pre></div>
 </div>
-<div id="simple-feature-geometry-list-column-sfc" class="section level3">
-<h3 class="hasAnchor">
-<a href="#simple-feature-geometry-list-column-sfc" class="anchor" aria-hidden="true"></a>Simple feature geometry list-column (sfc)</h3>
+<div class="section level3">
+<h3 id="simple-feature-geometry-list-column-sfc">Simple feature geometry list-column (sfc)<a class="anchor" aria-label="anchor" href="#simple-feature-geometry-list-column-sfc"></a>
+</h3>
 <p>The geometry column in simple feature data sets is called simple feature geometry list-column. The sfc object has a Coordinate Reference System (CRS) assigned. In the case of longitude and latitude data this is most often WGS84 (EPSG: 4326). Objects of type <code>sfc</code> are supported as input in encoding:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">sfc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sfc.html" class="external-link">st_as_sfc</a></span><span class="op">(</span>
@@ -189,35 +189,35 @@
 <span class="co">#&gt; Geometry set for 5 features </span>
 <span class="co">#&gt; Geometry type: LINESTRING</span>
 <span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: 7.867425 ymin: 49.27868 xmax: 9.300151 ymax: 50.70422</span>
+<span class="co">#&gt; Bounding box:  xmin: 7.890188 ymin: 49.30145 xmax: 8.474591 ymax: 49.87866</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
-<span class="co">#&gt; LINESTRING (8.127241 49.53131, 8.124701 49.5310...</span>
-<span class="co">#&gt; LINESTRING (8.342695 49.74676, 8.340155 49.7464...</span>
-<span class="co">#&gt; LINESTRING (9.300151 50.70422, 9.297611 50.7039...</span>
-<span class="co">#&gt; LINESTRING (7.878115 49.28218, 7.875575 49.2819...</span>
-<span class="co">#&gt; LINESTRING (8.709039 50.11311, 8.706499 50.1128...</span>
+<span class="co">#&gt; LINESTRING (8.371956 49.77603, 8.369416 49.7757...</span>
+<span class="co">#&gt; LINESTRING (8.130972 49.53504, 8.128432 49.5347...</span>
+<span class="co">#&gt; LINESTRING (8.474591 49.87866, 8.472051 49.8783...</span>
+<span class="co">#&gt; LINESTRING (8.289285 49.69336, 8.286745 49.6930...</span>
+<span class="co">#&gt; LINESTRING (7.900878 49.30495, 7.898338 49.3046...</span>
 
 <span class="op">(</span><span class="va">sfc_enc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode_sf.html">encode_sf</a></span><span class="op">(</span><span class="va">sfc</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "BF2iquJorzxB1B7PzIhaxL7Y" "BFol0vJ6t9yB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [3] "BFslv1J-t44B1B7PzIhaxL7Y" "BF0t5sJm2iwB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [5] "BF-27xJw_k1B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [1] "BFm85vJ4kjzB1B7PzIhaxL7Y" "BFg6quJyi0xB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [3] "BF09twJmm3zB1B7PzIhaxL7Y" "BFw3pvJigzyB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [5] "BF-79sJwknwB1B7PzIhaxL7Y"</span>
 
 <span class="fu"><a href="../reference/decode_sf.html">decode_sf</a></span><span class="op">(</span><span class="va">sfc_enc</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; Geometry type: LINESTRING</span>
 <span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: 7.86742 ymin: 49.27868 xmax: 9.30015 ymax: 50.70422</span>
+<span class="co">#&gt; Bounding box:  xmin: 7.89019 ymin: 49.30145 xmax: 8.47459 ymax: 49.87866</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt;   id   dim3                       geometry</span>
-<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.12724 49.5313...</span>
-<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.34269 49.7467...</span>
-<span class="co">#&gt; 3  3 ABSENT LINESTRING (9.30015 50.7042...</span>
-<span class="co">#&gt; 4  4 ABSENT LINESTRING (7.87811 49.2821...</span>
-<span class="co">#&gt; 5  5 ABSENT LINESTRING (8.70904 50.1131...</span></code></pre></div>
+<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.37196 49.7760...</span>
+<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.13097 49.5350...</span>
+<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.47459 49.8786...</span>
+<span class="co">#&gt; 4  4 ABSENT LINESTRING (8.28929 49.6933...</span>
+<span class="co">#&gt; 5  5 ABSENT LINESTRING (7.90088 49.3049...</span></code></pre></div>
 </div>
-<div id="simple-feature-sf" class="section level3">
-<h3 class="hasAnchor">
-<a href="#simple-feature-sf" class="anchor" aria-hidden="true"></a>Simple feature (sf)</h3>
+<div class="section level3">
+<h3 id="simple-feature-sf">Simple feature (sf)<a class="anchor" aria-label="anchor" href="#simple-feature-sf"></a>
+</h3>
 <p>A simple feature is a geometry that is connected with further characteristics (other than it’s coordinates), which in practice means a <code>data.frame</code> (also <code>data.table</code> or <code>tibble</code>) with an <code>sfc</code> column. The <strong>flexpolyline</strong> package only takes care of the coordinates of the LINESTRINGs in the sf object, other columns and the CRS information are not encoded and stored in the string:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="op">(</span><span class="va">sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span>
@@ -230,38 +230,38 @@
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; Geometry type: LINESTRING</span>
 <span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: 7.867425 ymin: 49.27868 xmax: 9.300151 ymax: 50.70422</span>
+<span class="co">#&gt; Bounding box:  xmin: 7.890188 ymin: 49.30145 xmax: 8.474591 ymax: 49.87866</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt;   name color                       geometry</span>
-<span class="co">#&gt; 1    A  blue LINESTRING (8.127241 49.531...</span>
-<span class="co">#&gt; 2    B  blue LINESTRING (8.342695 49.746...</span>
-<span class="co">#&gt; 3    C green LINESTRING (9.300151 50.704...</span>
-<span class="co">#&gt; 4    D green LINESTRING (7.878115 49.282...</span>
-<span class="co">#&gt; 5    E   red LINESTRING (8.709039 50.113...</span>
+<span class="co">#&gt; 1    A  blue LINESTRING (8.371956 49.776...</span>
+<span class="co">#&gt; 2    B  blue LINESTRING (8.130972 49.535...</span>
+<span class="co">#&gt; 3    C  blue LINESTRING (8.474591 49.878...</span>
+<span class="co">#&gt; 4    D  blue LINESTRING (8.289285 49.693...</span>
+<span class="co">#&gt; 5    E   red LINESTRING (7.900878 49.304...</span>
 
 <span class="op">(</span><span class="va">sf_enc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode_sf.html">encode_sf</a></span><span class="op">(</span><span class="va">sf</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "BF2iquJorzxB1B7PzIhaxL7Y" "BFol0vJ6t9yB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [3] "BFslv1J-t44B1B7PzIhaxL7Y" "BF0t5sJm2iwB1B7PzIhaxL7Y"</span>
-<span class="co">#&gt; [5] "BF-27xJw_k1B1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [1] "BFm85vJ4kjzB1B7PzIhaxL7Y" "BFg6quJyi0xB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [3] "BF09twJmm3zB1B7PzIhaxL7Y" "BFw3pvJigzyB1B7PzIhaxL7Y"</span>
+<span class="co">#&gt; [5] "BF-79sJwknwB1B7PzIhaxL7Y"</span>
 
 <span class="fu"><a href="../reference/decode_sf.html">decode_sf</a></span><span class="op">(</span><span class="va">sf_enc</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
 <span class="co">#&gt; Simple feature collection with 5 features and 2 fields</span>
 <span class="co">#&gt; Geometry type: LINESTRING</span>
 <span class="co">#&gt; Dimension:     XY</span>
-<span class="co">#&gt; Bounding box:  xmin: 7.86742 ymin: 49.27868 xmax: 9.30015 ymax: 50.70422</span>
+<span class="co">#&gt; Bounding box:  xmin: 7.89019 ymin: 49.30145 xmax: 8.47459 ymax: 49.87866</span>
 <span class="co">#&gt; Geodetic CRS:  WGS 84</span>
 <span class="co">#&gt;   id   dim3                       geometry</span>
-<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.12724 49.5313...</span>
-<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.34269 49.7467...</span>
-<span class="co">#&gt; 3  3 ABSENT LINESTRING (9.30015 50.7042...</span>
-<span class="co">#&gt; 4  4 ABSENT LINESTRING (7.87811 49.2821...</span>
-<span class="co">#&gt; 5  5 ABSENT LINESTRING (8.70904 50.1131...</span></code></pre></div>
+<span class="co">#&gt; 1  1 ABSENT LINESTRING (8.37196 49.7760...</span>
+<span class="co">#&gt; 2  2 ABSENT LINESTRING (8.13097 49.5350...</span>
+<span class="co">#&gt; 3  3 ABSENT LINESTRING (8.47459 49.8786...</span>
+<span class="co">#&gt; 4  4 ABSENT LINESTRING (8.28929 49.6933...</span>
+<span class="co">#&gt; 5  5 ABSENT LINESTRING (7.90088 49.3049...</span></code></pre></div>
 <p><strong>Note:</strong> The columns <code>"name"</code> and <code>"color"</code> were not encoded and are missing after decoding. The CRS has to be provided in the decoding by the <code>crs</code> argument. Otherwise it is set to <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html" class="external-link">sf::NA_crs_</a></code>.</p>
 </div>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor" aria-hidden="true"></a>References</h2>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ul>
 <li><a href="https://CRAN.R-project.org/package=sf" class="external-link">CRAN: Simple Features for R</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Simple_Features" class="external-link">Wikipedia: Simple Features</a></li>
@@ -282,12 +282,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://www.munterfinger.ch" class="external-link external-link">Merlin Unterfinger</a>, HERE Europe B.V..</p>
+<p>Developed by <a href="https://www.munterfinger.ch" class="external-link">Merlin Unterfinger</a>, HERE Europe B.V..</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>

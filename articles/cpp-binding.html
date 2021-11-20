@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.5</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
       <h1 data-toc-skip>C++ binding</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/munterfi/flexpolyline/blob/master/vignettes/cpp-binding.Rmd" class="external-link"><code>vignettes/cpp-binding.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/munterfi/flexpolyline/blob/HEAD/vignettes/cpp-binding.Rmd" class="external-link"><code>vignettes/cpp-binding.Rmd</code></a></small>
       <div class="hidden name"><code>cpp-binding.Rmd</code></div>
 
     </div>
@@ -114,9 +114,9 @@
     
     
 <p>The package contains two <a href="https://CRAN.R-project.org/package=Rcpp" class="external-link">Rcpp</a> functions, which bind directly to the C++ implementation of the flexible polyline encoding. These functions target a tight interface from C++ to R and reflect the arguments and return values of their counterparts (<code>hf::encode_polyline</code> and <code>hf::decode_polyline</code>) in the C++ implementation.</p>
-<div id="encode" class="section level2">
-<h2 class="hasAnchor">
-<a href="#encode" class="anchor" aria-hidden="true"></a>Encode</h2>
+<div class="section level2">
+<h2 id="encode">Encode<a class="anchor" aria-label="anchor" href="#encode"></a>
+</h2>
 <p>Encoding a line is straight forward by passing a matrix (column order is longitude, latitude) with its coordinates to <code><a href="../reference/encode.html">encode()</a></code>. The default precision value is set to <code>5</code>. If a matrix with two columns is provided, the third dimension is automatically set to <code>"ABSENT"</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://munterfi.github.io/flexpolyline/" class="external-link">flexpolyline</a></span><span class="op">)</span>
@@ -155,9 +155,9 @@
 <span class="op">(</span><span class="va">encodes3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span><span class="op">(</span><span class="va">line3d</span>, precision <span class="op">=</span> <span class="fl">5</span>, third_dim <span class="op">=</span> <span class="fl">3</span>, third_dim_precision <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "B1Voz5xJ67i1Bu629B1B7Pu629BzIhau629BxL7Yu629B"</span></code></pre></div>
 </div>
-<div id="decode" class="section level2">
-<h2 class="hasAnchor">
-<a href="#decode" class="anchor" aria-hidden="true"></a>Decode</h2>
+<div class="section level2">
+<h2 id="decode">Decode<a class="anchor" aria-label="anchor" href="#decode"></a>
+</h2>
 <p>In order to decode the lines from above, the encoded line string is passed to the <code><a href="../reference/decode.html">decode()</a></code> function. The function detects from the encoded string if it is a two-dimensional or three-dimensional line:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/decode.html">decode</a></span><span class="op">(</span><span class="va">encodes2d</span><span class="op">)</span>
@@ -175,9 +175,9 @@
 <span class="co">#&gt; [3,] 8.69150 50.10063  30.33333</span>
 <span class="co">#&gt; [4,] 8.68752 50.09878  40.44444</span></code></pre></div>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor" aria-hidden="true"></a>References</h2>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ul>
 <li><a href="https://github.com/heremaps/flexible-polyline" class="external-link">Flexible Polyline Encoding by HERE</a></li>
 <li><a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm" class="external-link">Encoded Polyline Algorithm Format</a></li>
@@ -198,12 +198,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by <a href="https://www.munterfinger.ch" class="external-link external-link">Merlin Unterfinger</a>, HERE Europe B.V..</p>
+<p>Developed by <a href="https://www.munterfinger.ch" class="external-link">Merlin Unterfinger</a>, HERE Europe B.V..</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>
