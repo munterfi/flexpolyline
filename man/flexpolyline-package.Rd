@@ -6,9 +6,9 @@
 \alias{flexpolyline-package}
 \title{flexpolyline: Flexible Polyline Encoding}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Binding to the C++ implementation of the flexible polyline encoding by HERE <https://github.com/heremaps/flexible-polyline>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by: (1) Reducing the decimal digits of each value; (2) encoding only the offset from the previous point; (3) using variable length for each coordinate delta; and (4) using 64 URL-safe characters to display the result.
+Binding to the C++ implementation of the flexible polyline encoding by HERE \url{https://github.com/heremaps/flexible-polyline}. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by: (1) Reducing the decimal digits of each value; (2) encoding only the offset from the previous point; (3) using variable length for each coordinate delta; and (4) using 64 URL-safe characters to display the result.
 }
 \seealso{
 Useful links:

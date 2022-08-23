@@ -1,3 +1,7 @@
+# flexpolyline 0.2.6
+
+* Switch to HTML5 for documentation pages, closes [#56](https://github.com/munterfi/flexpolyline/issues/56).
+
 # flexpolyline 0.2.5
 
 * Changed workflow from git flow to trunc-based development. Removed develop branch. New features are merged directly into `master` and releases are tagged after CRAN has accepted the package submission, which triggers the documentation build.
