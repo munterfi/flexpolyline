@@ -1,5 +1,5 @@
 
-# Flexible Polyline Encoding for R <img src="man/figures/logo.png" style="text-align: right;" alt="" width="120" />
+# Flexible Polyline Encoding for R <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/flexpolyline)](https://CRAN.R-project.org/package=flexpolyline)
