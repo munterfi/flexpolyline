@@ -18,7 +18,7 @@ dimension and encodes the line again."><meta property="og:image" content="/logo.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.6</span>
       </span>
     </div>
 
@@ -30,7 +30,7 @@ dimension and encodes the line again."><meta property="og:image" content="/logo.
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -82,31 +82,41 @@ dimension and encodes the line again."><meta property="og:image" content="/logo.
 dimension and encodes the line again.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">set_third_dimension</span><span class="op">(</span>
-  <span class="va">encoded</span>,
-  <span class="va">third_dim_name</span>,
-  precision <span class="op">=</span> <span class="fl">5L</span>,
-  third_dim_precision <span class="op">=</span> <span class="fl">5L</span>
-<span class="op">)</span></code></pre></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">set_third_dimension</span><span class="op">(</span></span>
+<span>  <span class="va">encoded</span>,</span>
+<span>  <span class="va">third_dim_name</span>,</span>
+<span>  precision <span class="op">=</span> <span class="fl">5L</span>,</span>
+<span>  third_dim_precision <span class="op">=</span> <span class="fl">5L</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>encoded</dt>
 <dd><p>character, encoded flexible polyline string.</p></dd>
+
+
 <dt>third_dim_name</dt>
 <dd><p>character, name of the third dimension to set (ABSENT,
 LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).</p></dd>
+
+
 <dt>precision</dt>
 <dd><p>integer, precision to use in encoding (between 0 and 15,
 <code>default=5</code>).</p></dd>
+
+
 <dt>third_dim_precision</dt>
 <dd><p>integer, precision to use in encoding for the
 third dimension (between 1 and 15, <code>default=5</code>).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The line with the new third dimension as string in the flexible polyline
+    
+
+<p>The line with the new third dimension as string in the flexible polyline
 encoding format.</p>
     </div>
     <div id="note">
@@ -114,16 +124,15 @@ encoding format.</p>
     <p>The precision is not read from the header of the encoded line. Therefore it
 must be provided as a parameter for re-encoding.</p>
     </div>
-    </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># 2d line (nothing happens...)</span></span>
-<span class="r-in"><span class="fu">set_third_dimension</span><span class="op">(</span><span class="st">"BFoz5xJ67i1B1B7PzIhaxL7Y"</span>, <span class="st">"ELEVATION"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># 2d line (nothing happens...)</span></span></span>
+<span class="r-in"><span><span class="fu">set_third_dimension</span><span class="op">(</span><span class="st">"BFoz5xJ67i1B1B7PzIhaxL7Y"</span>, <span class="st">"ELEVATION"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># 3d line</span></span>
-<span class="r-in"><span class="fu">set_third_dimension</span><span class="op">(</span><span class="st">"BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"</span>, <span class="st">"ELEVATION"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 3d line</span></span></span>
+<span class="r-in"><span><span class="fu">set_third_dimension</span><span class="op">(</span><span class="st">"BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"</span>, <span class="st">"ELEVATION"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "B1Voz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BxL7Ygkh9B"</span>
 </code></pre></div>
     </div>
@@ -139,7 +148,7 @@ must be provided as a parameter for re-encoding.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

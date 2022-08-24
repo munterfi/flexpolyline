@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.6</span>
       </span>
     </div>
 
@@ -53,7 +53,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -119,18 +119,18 @@
 </h2>
 <p>Encoding a line is straight forward by passing a matrix (column order is longitude, latitude) with its coordinates to <code><a href="../reference/encode.html">encode()</a></code>. The default precision value is set to <code>5</code>. If a matrix with two columns is provided, the third dimension is automatically set to <code>"ABSENT"</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://munterfi.github.io/flexpolyline/" class="external-link">flexpolyline</a></span><span class="op">)</span>
-
-<span class="va">line2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>,
-    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>,
-    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>,
-    <span class="fl">8.68752</span>, <span class="fl">50.09878</span><span class="op">)</span>,
-  ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="op">(</span><span class="va">encodes2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span><span class="op">(</span><span class="va">line2d</span>, precision <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://munterfi.github.io/flexpolyline/" class="external-link">flexpolyline</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">line2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>,</span>
+<span>    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>,</span>
+<span>    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>,</span>
+<span>    <span class="fl">8.68752</span>, <span class="fl">50.09878</span><span class="op">)</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">encodes2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span><span class="op">(</span><span class="va">line2d</span>, precision <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</span></span></code></pre></div>
 <p>If a matrix with three columns is passed, a line with a third dimension is encoded. The type of the third dimension can be passed to the encoding and supports the following selection, that are specified via an integer value via the <code>third_dim</code> argument:</p>
 <ul>
 <li>0: ABSENT</li>
@@ -144,36 +144,36 @@
 </ul>
 <p>By default the precision of the third dimension <code>third_dim_precision</code> is set to the same value as the precision value for the longitude and latitude dimensions.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">line3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10.11111</span>,
-    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>, <span class="fl">20.22222</span>,
-    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>, <span class="fl">30.33333</span>,
-    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40.44444</span><span class="op">)</span>,
-  ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span>
-
-<span class="op">(</span><span class="va">encodes3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span><span class="op">(</span><span class="va">line3d</span>, precision <span class="op">=</span> <span class="fl">5</span>, third_dim <span class="op">=</span> <span class="fl">3</span>, third_dim_precision <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "B1Voz5xJ67i1Bu629B1B7Pu629BzIhau629BxL7Yu629B"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">line3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10.11111</span>,</span>
+<span>    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>, <span class="fl">20.22222</span>,</span>
+<span>    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>, <span class="fl">30.33333</span>,</span>
+<span>    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40.44444</span><span class="op">)</span>,</span>
+<span>  ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">encodes3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/encode.html">encode</a></span><span class="op">(</span><span class="va">line3d</span>, precision <span class="op">=</span> <span class="fl">5</span>, third_dim <span class="op">=</span> <span class="fl">3</span>, third_dim_precision <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "B1Voz5xJ67i1Bu629B1B7Pu629BzIhau629BxL7Yu629B"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="decode">Decode<a class="anchor" aria-label="anchor" href="#decode"></a>
 </h2>
 <p>In order to decode the lines from above, the encoded line string is passed to the <code><a href="../reference/decode.html">decode()</a></code> function. The function detects from the encoded string if it is a two-dimensional or three-dimensional line:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/decode.html">decode</a></span><span class="op">(</span><span class="va">encodes2d</span><span class="op">)</span>
-<span class="co">#&gt;          LNG      LAT</span>
-<span class="co">#&gt; [1,] 8.69821 50.10228</span>
-<span class="co">#&gt; [2,] 8.69567 50.10201</span>
-<span class="co">#&gt; [3,] 8.69150 50.10063</span>
-<span class="co">#&gt; [4,] 8.68752 50.09878</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/decode.html">decode</a></span><span class="op">(</span><span class="va">encodes2d</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          LNG      LAT</span></span>
+<span><span class="co">#&gt; [1,] 8.69821 50.10228</span></span>
+<span><span class="co">#&gt; [2,] 8.69567 50.10201</span></span>
+<span><span class="co">#&gt; [3,] 8.69150 50.10063</span></span>
+<span><span class="co">#&gt; [4,] 8.68752 50.09878</span></span></code></pre></div>
 <p>In the case of a three-dimensional line, the third column is named after the name of the third dimension that was chosen during the encoding (in this example <code>"ELEVATION"</code>):</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/decode.html">decode</a></span><span class="op">(</span><span class="va">encodes3d</span><span class="op">)</span>
-<span class="co">#&gt;          LNG      LAT ELEVATION</span>
-<span class="co">#&gt; [1,] 8.69821 50.10228  10.11111</span>
-<span class="co">#&gt; [2,] 8.69567 50.10201  20.22222</span>
-<span class="co">#&gt; [3,] 8.69150 50.10063  30.33333</span>
-<span class="co">#&gt; [4,] 8.68752 50.09878  40.44444</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/decode.html">decode</a></span><span class="op">(</span><span class="va">encodes3d</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          LNG      LAT ELEVATION</span></span>
+<span><span class="co">#&gt; [1,] 8.69821 50.10228  10.11111</span></span>
+<span><span class="co">#&gt; [2,] 8.69567 50.10201  20.22222</span></span>
+<span><span class="co">#&gt; [3,] 8.69150 50.10063  30.33333</span></span>
+<span><span class="co">#&gt; [4,] 8.68752 50.09878  40.44444</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -203,7 +203,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer>

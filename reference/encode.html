@@ -19,7 +19,7 @@ input coordinates, a two or three dimensional line is encoded."><meta property="
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.6</span>
       </span>
     </div>
 
@@ -31,7 +31,7 @@ input coordinates, a two or three dimensional line is encoded."><meta property="
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -84,52 +84,61 @@ the flexible polyline encoding by HERE. Depending on the dimensions of the
 input coordinates, a two or three dimensional line is encoded.</p>
     </div>
 
-    <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">encode</span><span class="op">(</span><span class="va">line</span>, precision <span class="op">=</span> <span class="fl">5L</span>, third_dim <span class="op">=</span> <span class="fl">3L</span>, third_dim_precision <span class="op">=</span> <span class="fl">5L</span><span class="op">)</span></code></pre></div>
+    <div id="ref-usage">
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">encode</span><span class="op">(</span><span class="va">line</span>, precision <span class="op">=</span> <span class="fl">5L</span>, third_dim <span class="op">=</span> <span class="fl">3L</span>, third_dim_precision <span class="op">=</span> <span class="fl">5L</span><span class="op">)</span></span></code></pre></div>
+    </div>
 
-    <div id="ref-sections">
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>line</dt>
 <dd><p>matrix, coordinates of the line in 2d or 3d (column order: LNG,
 LAT, DIM3).</p></dd>
+
+
 <dt>precision</dt>
 <dd><p>integer, precision to use in encoding (between 0 and 15,
 <code>default=5</code>).</p></dd>
+
+
 <dt>third_dim</dt>
 <dd><p>integer, type of the third dimension (0: ABSENT, 1: LEVEL,
 2: ALTITUDE, 3: ELEVATION, 4, 6: CUSTOM1, 7: CUSTOM2, <code>default=3</code>).</p></dd>
+
+
 <dt>third_dim_precision</dt>
 <dd><p>integer, precision to use in encoding for the
 third dimension (between 1 and 15, <code>default=5</code>).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The line as string in the flexible polyline encoding format.</p>
-    </div>
+    
+
+<p>The line as string in the flexible polyline encoding format.</p>
     </div>
 
-    <div id="examples">
+    <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># 2D</span></span>
-<span class="r-in"><span class="va">line2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>,</span>
-<span class="r-in">    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>,</span>
-<span class="r-in">    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>,</span>
-<span class="r-in">    <span class="fl">8.68752</span>, <span class="fl">50.09878</span><span class="op">)</span>,</span>
-<span class="r-in">  ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="fu">encode</span><span class="op">(</span><span class="va">line2d</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># 2D</span></span></span>
+<span class="r-in"><span><span class="va">line2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">8.68752</span>, <span class="fl">50.09878</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">encode</span><span class="op">(</span><span class="va">line2d</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "BFoz5xJ67i1B1B7PzIhaxL7Y"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># 3D</span></span>
-<span class="r-in"><span class="va">line3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10</span>,</span>
-<span class="r-in">    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>, <span class="fl">20</span>,</span>
-<span class="r-in">    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>, <span class="fl">30</span>,</span>
-<span class="r-in">    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40</span><span class="op">)</span>,</span>
-<span class="r-in">  ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in"><span class="op">)</span></span>
-<span class="r-in"><span class="fu">encode</span><span class="op">(</span><span class="va">line3d</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># 3D</span></span></span>
+<span class="r-in"><span><span class="va">line3d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>, <span class="fl">20</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>, <span class="fl">30</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">encode</span><span class="op">(</span><span class="va">line3d</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "B1Voz5xJ67i1Bgkh9B1B7Pgkh9BzIhagkh9BxL7Ygkh9B"</span>
 </code></pre></div>
     </div>
@@ -145,7 +154,7 @@ third dimension (between 1 and 15, <code>default=5</code>).</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>
