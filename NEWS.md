@@ -1,3 +1,8 @@
+# flexpolyline 0.2.7
+
+* Fix missing missing inclusion of `<cstdint>`, closes [#58](https://github.com/munterfi/flexpolyline/issues/58).
+* Resubmit to CRAN due to since the package was archived on 2022-12-27 as email to the maintainer was temporarily not deliverable.
+
 # flexpolyline 0.2.6
 
 * Switch to HTML5 for documentation pages, closes [#56](https://github.com/munterfi/flexpolyline/issues/56).

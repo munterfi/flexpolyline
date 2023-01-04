@@ -1,6 +1,6 @@
 /*
  * Copy from    :https://github.com/heremaps/flexible-polyline/blob/master/cpp/
- * Modified     :Line 93, 116, 210, 278
+ * Modified     :Line 16, 94, 117, 211, 279
  * Date         :2020-06-09, Merlin Unterfinger <info@munterfinger.ch>
  *
  * Copyright (C) 2019 HERE Europe B.V.
@@ -13,6 +13,7 @@
 #include <array>
 #include <stdexcept>
 #include <tuple>
+#include <cstdint> // Mod: Fix missing include, see issue #58
 
 namespace hf {
 
