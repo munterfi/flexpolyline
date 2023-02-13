@@ -1,3 +1,7 @@
+# flexpolyline 0.3.0
+
+* Update C++11 to current CRAN default of C++17.
+
 # flexpolyline 0.2.7
 
 * Fix missing missing inclusion of `<cstdint>`, closes [#58](https://github.com/munterfi/flexpolyline/issues/58).
