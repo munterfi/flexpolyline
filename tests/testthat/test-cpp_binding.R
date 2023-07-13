@@ -1,5 +1,4 @@
 test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
-
   # Skip tests on CRAN due to platform specific rounding at high precision
   skip_on_cran()
 
@@ -14,7 +13,6 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
     )
 
     lapply(strsplit(input, ";"), function(x) {
-
       # Get header part of input
       header <-
         as.numeric(
@@ -76,7 +74,6 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   expect_equal(
     any(
       vapply(seq_along(enc), function(i) {
-
         # Omit reserved dimensions and encoding with precision higher than 7
         if (
           is.na(org[[i]]$third_dim_precision) |
@@ -107,7 +104,6 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   expect_equal(
     any(
       vapply(seq_along(dec), function(i) {
-
         # Omit reserved dimensions and decoding with precision higher than 7
         if (
           is.na(dec[[i]]$third_dim_precision) |

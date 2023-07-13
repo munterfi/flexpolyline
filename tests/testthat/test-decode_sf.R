@@ -1,5 +1,4 @@
 test_that("decode_sf works", {
-
   # Encoded lines
   n <- 5
   encoded_xyz <- "B1Voz5xJ67i1Bgkh9B"

@@ -1,5 +1,4 @@
 test_that("encode_sf works", {
-
   # 3D point
   point3d <- sf::st_point(
     matrix(c(8.69821, 50.10228, 10), ncol = 3, byrow = TRUE),
