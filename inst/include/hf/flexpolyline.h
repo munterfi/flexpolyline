@@ -1,6 +1,6 @@
 /*
  * Copy from    :https://github.com/heremaps/flexible-polyline/blob/3e1ebc2e2ce39111b0e2e91260b98053ac965f77/cpp/include/hf/flexpolyline.h
- * Modified     :Line 13
+ * Modified     :Line 12, 13, 17 479
  * Date         :2023-07-13, Merlin Unterfinger <info@munterfinger.ch>
  *
  * Copyright (C) 2019 HERE Europe B.V.
@@ -8,6 +8,10 @@
  * SPDX-License-Identifier: MIT
  * License-Filename: LICENSE
  */
+
+#ifndef FLEXPOLYLINE_H  // Mod: Add include guards
+#define FLEXPOLYLINE_H
+
 #include <array>
 #include <cmath>
 #include <cstdint> // Mod: Fix missing include, see issue #58
@@ -471,3 +475,5 @@ inline std::optional<Error> polyline_decode(std::string_view encoded, Polyline &
     return {};
 }
 } // namespace hf::flexpolyline
+
+#endif // FLEXPOLYLINE_H

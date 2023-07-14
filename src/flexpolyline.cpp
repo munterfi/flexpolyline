@@ -1,4 +1,5 @@
-#include "hf/flexpolyline.h"
+#include "decoder.h"
+#include "encoder.h"
 
 #include <Rcpp.h>
 
@@ -9,55 +10,9 @@
 #include <tuple>
 #include <vector>
 
-using namespace Rcpp;
-
-std::string to_string(const hf::flexpolyline::Type3d &type)
-{
-  switch (type)
-  {
-  case hf::flexpolyline::Type3d::LEVEL:
-    return "LEVEL";
-  case hf::flexpolyline::Type3d::ALTITUDE:
-    return "ALTITUDE";
-  case hf::flexpolyline::Type3d::ELEVATION:
-    return "ELEVATION";
-  case hf::flexpolyline::Type3d::RESERVED1:
-    return "RESERVED1";
-  case hf::flexpolyline::Type3d::RESERVED2:
-    return "RESERVED2";
-  case hf::flexpolyline::Type3d::CUSTOM1:
-    return "CUSTOM1";
-  case hf::flexpolyline::Type3d::CUSTOM2:
-    return "CUSTOM2";
-  default:
-    throw std::invalid_argument("Invalid enum value: " + std::to_string(static_cast<int>(type)));
-  }
-}
-
-void parse_polyline(const hf::flexpolyline::Polyline2d &polyline, NumericMatrix &matrix)
-{
-  const std::vector<std::tuple<double, double>> &coordinates = polyline.coordinates;
-  matrix = NumericMatrix(coordinates.size(), 2);
-  for (size_t i = 0; i < coordinates.size(); ++i)
-  {
-    matrix(i, 0) = std::get<0>(coordinates[i]);
-    matrix(i, 1) = std::get<1>(coordinates[i]);
-  }
-  colnames(matrix) = CharacterVector::create("LNG", "LAT");
-}
-
-void parse_polyline(const hf::flexpolyline::Polyline3d &polyline, NumericMatrix &matrix)
-{
-  const std::vector<std::tuple<double, double, double>> &coordinates = polyline.coordinates;
-  matrix = NumericMatrix(coordinates.size(), 3);
-  for (size_t i = 0; i < coordinates.size(); ++i)
-  {
-    matrix(i, 0) = std::get<0>(coordinates[i]);
-    matrix(i, 1) = std::get<1>(coordinates[i]);
-    matrix(i, 2) = std::get<2>(coordinates[i]);
-  }
-  colnames(matrix) = CharacterVector::create("LNG", "LAT", to_string(polyline.type3d));
-}
+using Rcpp::CharacterVector;
+using Rcpp::NumericMatrix;
+using Rcpp::String;
 
 //' Decode a flexible polyline encoded string
 //'
@@ -82,42 +37,9 @@ void parse_polyline(const hf::flexpolyline::Polyline3d &polyline, NumericMatrix 
 // [[Rcpp::export]]
 NumericMatrix decode(SEXP encoded)
 {
-  std::string encoded_str = Rcpp::as<std::string>(encoded);
-  hf::flexpolyline::Polyline polyline;
-  if (auto error = hf::flexpolyline::polyline_decode(encoded_str, polyline))
-  {
-    throw std::invalid_argument("Failed to decode: " + std::to_string(static_cast<uint32_t>(*error)));
-  }
-  NumericMatrix matrix;
-  if (std::holds_alternative<hf::flexpolyline::Polyline2d>(polyline))
-  {
-    parse_polyline(std::get<hf::flexpolyline::Polyline2d>(polyline), matrix);
-  }
-  else
-  {
-    parse_polyline(std::get<hf::flexpolyline::Polyline3d>(polyline), matrix);
-  }
+  Decoder decoder;
+  NumericMatrix matrix = decoder.decode_polyline(encoded);
   return matrix;
-}
-
-void matrix2d_to_vector(const Rcpp::NumericMatrix &matrix, std::vector<std::tuple<double, double>> &result)
-{
-  size_t n = matrix.nrow();
-  result.reserve(n);
-  for (size_t i = 0; i < n; i++)
-  {
-    result.emplace_back(matrix(i, 0), matrix(i, 1));
-  }
-}
-
-void matrix3d_to_vector(const Rcpp::NumericMatrix &matrix, std::vector<std::tuple<double, double, double>> &result)
-{
-  size_t n = matrix.nrow();
-  result.reserve(n);
-  for (size_t i = 0; i < n; i++)
-  {
-    result.emplace_back(matrix(i, 0), matrix(i, 1), matrix(i, 2));
-  }
 }
 
 //' Encode a line in the flexible polyline encoding format
@@ -164,30 +86,9 @@ void matrix3d_to_vector(const Rcpp::NumericMatrix &matrix, std::vector<std::tupl
 String encode(NumericMatrix line, int precision = 5, int third_dim = 3,
               int third_dim_precision = 5)
 {
-  hf::flexpolyline::Polyline polyline;
-  std::string encoded;
-  if (line.rows() == 3)
-  {
-    std::vector<std::tuple<double, double, double>> coordinates;
-    matrix3d_to_vector(line, coordinates);
-    polyline = hf::flexpolyline::Polyline3d{
-        std::move(coordinates),
-        *hf::flexpolyline::Precision::from_u32(precision),
-        *hf::flexpolyline::Precision::from_u32(third_dim_precision),
-        static_cast<hf::flexpolyline::Type3d>(third_dim)};
-  }
-  else
-  {
-    std::vector<std::tuple<double, double>> coordinates;
-    matrix2d_to_vector(line, coordinates);
-    polyline = hf::flexpolyline::Polyline2d{
-        std::move(coordinates), *hf::flexpolyline::Precision::from_u32(precision)};
-  }
-  if (auto error = polyline_encode(polyline, encoded))
-  {
-    throw std::invalid_argument("Failed to encode: " + std::to_string(static_cast<uint32_t>(*error)));
-  }
-  return encoded;
+  Encoder encoder(precision, third_dim_precision, third_dim);
+  std::string encoded = encoder.encode_polyline(line);
+  return String(encoded);
 }
 
 //' Get third dimension of a flexible polyline encoded string
