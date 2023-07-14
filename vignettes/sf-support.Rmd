@@ -120,4 +120,4 @@ Otherwise it is set to `sf::NA_crs_`.
 
 * [CRAN: Simple Features for R](https://CRAN.R-project.org/package=sf)
 * [Wikipedia: Simple Features](https://en.wikipedia.org/wiki/Simple_Features)
-* [OGC: Simple Feature Access](https://www.ogc.org/standards/sfa)
+* [OGC: Simple Feature Access](https://www.ogc.org/standard/sfa)

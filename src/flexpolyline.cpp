@@ -4,9 +4,60 @@
 
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
+#include <string>
 #include <tuple>
 #include <vector>
+
 using namespace Rcpp;
+
+std::string to_string(const hf::flexpolyline::Type3d &type)
+{
+  switch (type)
+  {
+  case hf::flexpolyline::Type3d::LEVEL:
+    return "LEVEL";
+  case hf::flexpolyline::Type3d::ALTITUDE:
+    return "ALTITUDE";
+  case hf::flexpolyline::Type3d::ELEVATION:
+    return "ELEVATION";
+  case hf::flexpolyline::Type3d::RESERVED1:
+    return "RESERVED1";
+  case hf::flexpolyline::Type3d::RESERVED2:
+    return "RESERVED2";
+  case hf::flexpolyline::Type3d::CUSTOM1:
+    return "CUSTOM1";
+  case hf::flexpolyline::Type3d::CUSTOM2:
+    return "CUSTOM2";
+  default:
+    throw std::invalid_argument("Invalid enum value: " + std::to_string(static_cast<int>(type)));
+  }
+}
+
+void parse_polyline(const hf::flexpolyline::Polyline2d &polyline, NumericMatrix &matrix)
+{
+  const std::vector<std::tuple<double, double>> &coordinates = polyline.coordinates;
+  matrix = NumericMatrix(coordinates.size(), 2);
+  for (size_t i = 0; i < coordinates.size(); ++i)
+  {
+    matrix(i, 0) = std::get<0>(coordinates[i]);
+    matrix(i, 1) = std::get<1>(coordinates[i]);
+  }
+  colnames(matrix) = CharacterVector::create("LNG", "LAT");
+}
+
+void parse_polyline(const hf::flexpolyline::Polyline3d &polyline, NumericMatrix &matrix)
+{
+  const std::vector<std::tuple<double, double, double>> &coordinates = polyline.coordinates;
+  matrix = NumericMatrix(coordinates.size(), 3);
+  for (size_t i = 0; i < coordinates.size(); ++i)
+  {
+    matrix(i, 0) = std::get<0>(coordinates[i]);
+    matrix(i, 1) = std::get<1>(coordinates[i]);
+    matrix(i, 2) = std::get<2>(coordinates[i]);
+  }
+  colnames(matrix) = CharacterVector::create("LNG", "LAT", to_string(polyline.type3d));
+}
 
 //' Decode a flexible polyline encoded string
 //'
@@ -29,53 +80,44 @@ using namespace Rcpp;
 //' # 3d line
 //' decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 // [[Rcpp::export]]
-NumericMatrix decode(SEXP encoded) {
-    // Convert from R SEXP to std::string
-    std::string encoded_str = Rcpp::as<std::string>(encoded);
+NumericMatrix decode(SEXP encoded)
+{
+  std::string encoded_str = Rcpp::as<std::string>(encoded);
+  hf::flexpolyline::Polyline polyline;
+  if (auto error = hf::flexpolyline::polyline_decode(encoded_str, polyline))
+  {
+    throw std::invalid_argument("Failed to decode: " + std::to_string(static_cast<uint32_t>(*error)));
+  }
+  NumericMatrix matrix;
+  if (std::holds_alternative<hf::flexpolyline::Polyline2d>(polyline))
+  {
+    parse_polyline(std::get<hf::flexpolyline::Polyline2d>(polyline), matrix);
+  }
+  else
+  {
+    parse_polyline(std::get<hf::flexpolyline::Polyline3d>(polyline), matrix);
+  }
+  return matrix;
+}
 
-    // Initialize decoder
-    std::vector<std::tuple<double, double, double>> polyline;
-    auto res = hf::polyline_decode(
-        encoded_str, [&polyline](double lat, double lng, double z) {
-            polyline.push_back(std::make_tuple(lat, lng, z));
-        });
+void matrix2d_to_vector(const Rcpp::NumericMatrix &matrix, std::vector<std::tuple<double, double>> &result)
+{
+  size_t n = matrix.nrow();
+  result.reserve(n);
+  for (size_t i = 0; i < n; i++)
+  {
+    result.emplace_back(matrix(i, 0), matrix(i, 1));
+  }
+}
 
-    // Check valid encoding
-    if (!res) {
-        throw std::invalid_argument("Invalid encoding");
-    }
-
-    // Extract third dimension type
-    const char* dim_name[] = {
-        "ABSENT",    "LEVEL",     "ALTITUDE",
-        "ELEVATION", "RESERVED1", "RESERVED2",  // Should not be used...
-        "CUSTOM1",   "CUSTOM2"};
-    hf::ThirdDim thrd = hf::get_third_dimension(encoded_str);
-    int index = static_cast<std::underlying_type<hf::ThirdDim>::type>(thrd);
-
-    // Get line coordinates
-    size_t n = polyline.size();
-    NumericMatrix coords(n, 2 + !!index);
-
-    if (!!index) {
-        // 3d case (index > 0)
-        for (size_t i = 0; i < n; ++i) {
-            coords(i, 0) = std::get<1>(polyline[i]);
-            coords(i, 1) = std::get<0>(polyline[i]);
-            coords(i, 2) = std::get<2>(polyline[i]);
-        }
-        colnames(coords) = CharacterVector({"LNG", "LAT", dim_name[index]});
-
-    } else {
-        // 2d case, third dimension ABSENT (index == 0)
-        for (size_t i = 0; i < n; ++i) {
-            coords(i, 0) = std::get<1>(polyline[i]);
-            coords(i, 1) = std::get<0>(polyline[i]);
-        }
-        colnames(coords) = CharacterVector({"LNG", "LAT"});
-    }
-
-    return coords;
+void matrix3d_to_vector(const Rcpp::NumericMatrix &matrix, std::vector<std::tuple<double, double, double>> &result)
+{
+  size_t n = matrix.nrow();
+  result.reserve(n);
+  for (size_t i = 0; i < n; i++)
+  {
+    result.emplace_back(matrix(i, 0), matrix(i, 1), matrix(i, 2));
+  }
 }
 
 //' Encode a line in the flexible polyline encoding format
@@ -120,36 +162,32 @@ NumericMatrix decode(SEXP encoded) {
 //' encode(line3d)
 // [[Rcpp::export]]
 String encode(NumericMatrix line, int precision = 5, int third_dim = 3,
-              int third_dim_precision = 5) {
-    String encoded;
-    size_t n = line.rows();
-
-    if (line.cols() == 2) {
-        // 2d case: Set third dimension to ABSENT and third dimension precision
-        // to 0
-        std::vector<std::pair<double, double>> input;
-        for (size_t i = 0; i < n; ++i) {
-            input.push_back(std::make_pair(line(i, 1), line(i, 0)));
-        }
-        encoded =
-            hf::polyline_encode(input, precision, hf::ThirdDim::ABSENT, 0);
-
-    } else if (line.cols() == 3) {
-        // 3d case: Use third dimension with third dimension precision
-        std::vector<std::tuple<double, double, double>> input;
-        for (size_t i = 0; i < n; ++i) {
-            input.push_back(
-                std::make_tuple(line(i, 1), line(i, 0), line(i, 2)));
-        }
-        encoded = hf::polyline_encode(input, precision,
-                                      static_cast<hf::ThirdDim>(third_dim),
-                                      third_dim_precision);
-
-    } else {
-        throw std::invalid_argument("Invalid input dimensions");
-    }
-
-    return encoded;
+              int third_dim_precision = 5)
+{
+  hf::flexpolyline::Polyline polyline;
+  std::string encoded;
+  if (line.rows() == 3)
+  {
+    std::vector<std::tuple<double, double, double>> coordinates;
+    matrix3d_to_vector(line, coordinates);
+    polyline = hf::flexpolyline::Polyline3d{
+        std::move(coordinates),
+        *hf::flexpolyline::Precision::from_u32(precision),
+        *hf::flexpolyline::Precision::from_u32(third_dim_precision),
+        static_cast<hf::flexpolyline::Type3d>(third_dim)};
+  }
+  else
+  {
+    std::vector<std::tuple<double, double>> coordinates;
+    matrix2d_to_vector(line, coordinates);
+    polyline = hf::flexpolyline::Polyline2d{
+        std::move(coordinates), *hf::flexpolyline::Precision::from_u32(precision)};
+  }
+  if (auto error = polyline_encode(polyline, encoded))
+  {
+    throw std::invalid_argument("Failed to encode: " + std::to_string(static_cast<uint32_t>(*error)));
+  }
+  return encoded;
 }
 
 //' Get third dimension of a flexible polyline encoded string
@@ -172,20 +210,9 @@ String encode(NumericMatrix line, int precision = 5, int third_dim = 3,
 //' # 3d line
 //' get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 // [[Rcpp::export]]
-std::string get_third_dimension(SEXP encoded) {
-    const char* dim_name[] = {
-        "ABSENT",    "LEVEL",     "ALTITUDE",
-        "ELEVATION", "RESERVED1", "RESERVED2",  // Should not be used...
-        "CUSTOM1",   "CUSTOM2"};
-
-    // Convert from R SEXP to std::string
-    std::string encoded_str = Rcpp::as<std::string>(encoded);
-
-    // Extract third dimension type
-    hf::ThirdDim thrd = hf::get_third_dimension(encoded_str);
-    int index = static_cast<std::underlying_type<hf::ThirdDim>::type>(thrd);
-
-    return dim_name[index];
+std::string get_third_dimension(SEXP encoded)
+{
+  return "test";
 }
 
 //' Set third dimension of a flexible polyline encoded string
@@ -220,34 +247,7 @@ std::string get_third_dimension(SEXP encoded) {
 // [[Rcpp::export]]
 std::string set_third_dimension(SEXP encoded, SEXP third_dim_name,
                                 int precision = 5,
-                                int third_dim_precision = 5) {
-    int third_dim_ind = -1;
-    const char* dim_name[] = {
-        "ABSENT",    "LEVEL",     "ALTITUDE",
-        "ELEVATION", "RESERVED1", "RESERVED2",  // Should not be used...
-        "CUSTOM1",   "CUSTOM2"};
-
-    // Convert from R SEXP to std::string
-    std::string third_dim_str = Rcpp::as<std::string>(third_dim_name);
-
-    // Decode
-    NumericMatrix decoded = decode(encoded);
-
-    // Match third dimension type
-    for (size_t i = 0; i != (sizeof dim_name / sizeof *dim_name); i++) {
-        if (dim_name[i] == third_dim_str) {
-            third_dim_ind = i;
-        }
-    }
-
-    // Check if dimension is valid.
-    if (third_dim_ind == -1) {
-        throw std::invalid_argument("Invalid input name of third dimension");
-    }
-
-    // Encode with new third dimension
-    String encoded_new =
-        encode(decoded, precision, third_dim_ind, third_dim_precision);
-
-    return encoded_new;
+                                int third_dim_precision = 5)
+{
+  return "test";
 }
