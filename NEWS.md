@@ -1,6 +1,8 @@
 # flexpolyline 0.3.0.9000
 
 - Upgrade to current version of the flexpolyline [C++ implementation] (https://github.com/heremaps/flexible-polyline/blob/3e1ebc2e2ce39111b0e2e91260b98053ac965f77/cpp/include/hf/flexpolyline.h).
+- Remove function set (`set_third_dimension()`) the third dimension type of a flexible polyline encoded string, as it can be done using `decode()` and `encode()`.
+- Improve error messages.
 
 # flexpolyline 0.3.0
 

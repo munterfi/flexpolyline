@@ -8,11 +8,13 @@
 using hf::flexpolyline::Polyline;
 using hf::flexpolyline::Type3d;
 using Rcpp::NumericMatrix;
+using Rcpp::String;
 
 class Decoder
 {
 public:
-  NumericMatrix decode_polyline(const SEXP &encoded);
+  NumericMatrix decode(const SEXP &encoded);
+  String get_third_dimension(const SEXP &encoded);
 
 private:
   static std::string type3d_to_string(const Type3d &type);

@@ -2,9 +2,8 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   # Skip tests on CRAN due to platform specific rounding at high precision
   skip_on_cran()
 
-  # Get and set third dimension
+  # Get third dimension
   expect_equal(get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU"), "ALTITUDE")
-  expect_equal(get_third_dimension(set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "ELEVATION")), "ELEVATION")
 
   # Read and preprocess test data
   parse_test_examples <- function(input) {
@@ -128,10 +127,9 @@ test_that("Cpp binding to 'flexpolyline.h' en- and decodes correctly", {
   )
 
   # Input checks
-  expect_error(encode(matrix(1, 2, 4)), "Invalid input dimensions", class = "std::invalid_argument")
-  expect_error(encode(matrix(1, 2, 3), precision = -1), "precision out of range", class = "std::out_of_range")
-  expect_error(encode(matrix(1, 2, 3), third_dim = -1), "third_dim out of range", class = "std::out_of_range")
-  expect_error(encode(matrix(1, 2, 3), third_dim_precision = -1), "third_dim_precision out of range", class = "std::out_of_range")
-  expect_error(decode("123"), "Invalid encoding", class = "std::invalid_argument")
-  expect_error(set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "NOT A DIM"), "Invalid input name of third dimension", class = "std::invalid_argument")
+  expect_error(encode(matrix(1, 2, 4)), "Invalid input dimensions \\(2 x 4\\)", class = "std::invalid_argument")
+  expect_error(encode(matrix(1, 2, 3), precision = -1), "Precision -1 out of range \\[0, 15\\]", class = "std::out_of_range")
+  expect_error(encode(matrix(1, 2, 3), third_dim = -1), "Third dimension -1 out of range \\[0, 7\\]", class = "std::out_of_range")
+  expect_error(encode(matrix(1, 2, 3), third_dim_precision = -1), "Precision -1 out of range \\[0, 15\\]", class = "std::out_of_range")
+  expect_error(decode("123"), "Encoding is corrupt", class = "std::invalid_argument")
 })

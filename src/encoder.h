@@ -7,12 +7,13 @@
 
 using hf::flexpolyline::Polyline;
 using Rcpp::NumericMatrix;
+using Rcpp::String;
 
 class Encoder
 {
 public:
   Encoder(int precision, int third_dim_precision, int third_dim);
-  std::string encode_polyline(const NumericMatrix &matrix);
+  String encode(const NumericMatrix &matrix);
 
 private:
   void matrix_to_polyline(const NumericMatrix &matrix, Polyline &polyline);

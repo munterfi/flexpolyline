@@ -2,23 +2,42 @@
 
 #include <stdexcept>
 
+#include "error.h"
+
 using hf::flexpolyline::Polyline;
 using hf::flexpolyline::Polyline2d;
 using hf::flexpolyline::Polyline3d;
 using hf::flexpolyline::polyline_decode;
 using Rcpp::CharacterVector;
+using Rcpp::String;
 
-NumericMatrix Decoder::decode_polyline(const SEXP &encoded)
+NumericMatrix Decoder::decode(const SEXP &encoded)
 {
   std::string encoded_str = Rcpp::as<std::string>(encoded);
   Polyline polyline;
   if (auto error = polyline_decode(encoded_str, polyline))
   {
-    throw std::invalid_argument("Failed to decode: " + std::to_string(static_cast<uint32_t>(*error)));
+    throw std::invalid_argument(ErrorUtils::error_to_string(*error));
   }
   NumericMatrix matrix;
   polyline_to_matrix(polyline, matrix);
   return matrix;
+}
+
+String Decoder::get_third_dimension(const SEXP &encoded)
+{
+  std::string encoded_str = Rcpp::as<std::string>(encoded);
+  Polyline polyline;
+  if (auto error = polyline_decode(encoded_str, polyline))
+  {
+    throw std::invalid_argument(ErrorUtils::error_to_string(*error));
+  }
+  if (std::holds_alternative<Polyline2d>(polyline))
+  {
+    return String("ABSENT");
+  }
+  const Polyline3d &polyline3d = std::get<Polyline3d>(polyline);
+  return String(type3d_to_string(polyline3d.type3d));
 }
 
 std::string Decoder::type3d_to_string(const hf::flexpolyline::Type3d &type)
@@ -40,7 +59,7 @@ std::string Decoder::type3d_to_string(const hf::flexpolyline::Type3d &type)
   case hf::flexpolyline::Type3d::CUSTOM2:
     return "CUSTOM2";
   default:
-    throw std::invalid_argument("Invalid enum value: " + std::to_string(static_cast<int>(type)));
+    throw std::invalid_argument("Invalid Type3d value: " + std::to_string(static_cast<int>(type)));
   }
 }
 
@@ -53,8 +72,8 @@ void Decoder::polyline_to_matrix(const Polyline &polyline, NumericMatrix &matrix
     matrix = NumericMatrix(coordinates.size(), 2);
     for (size_t i = 0; i < coordinates.size(); ++i)
     {
-      matrix(i, 0) = std::get<0>(coordinates[i]);
-      matrix(i, 1) = std::get<1>(coordinates[i]);
+      matrix(i, 0) = std::get<1>(coordinates[i]);
+      matrix(i, 1) = std::get<0>(coordinates[i]);
     }
     colnames(matrix) = CharacterVector::create("LNG", "LAT");
   }
@@ -65,8 +84,8 @@ void Decoder::polyline_to_matrix(const Polyline &polyline, NumericMatrix &matrix
     matrix = NumericMatrix(coordinates.size(), 3);
     for (size_t i = 0; i < coordinates.size(); ++i)
     {
-      matrix(i, 0) = std::get<0>(coordinates[i]);
-      matrix(i, 1) = std::get<1>(coordinates[i]);
+      matrix(i, 0) = std::get<1>(coordinates[i]);
+      matrix(i, 1) = std::get<0>(coordinates[i]);
       matrix(i, 2) = std::get<2>(coordinates[i]);
     }
     colnames(matrix) = CharacterVector::create("LNG", "LAT", type3d_to_string(polyline3d.type3d));

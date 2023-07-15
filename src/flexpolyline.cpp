@@ -38,8 +38,7 @@ using Rcpp::String;
 NumericMatrix decode(SEXP encoded)
 {
   Decoder decoder;
-  NumericMatrix matrix = decoder.decode_polyline(encoded);
-  return matrix;
+  return decoder.decode(encoded);
 }
 
 //' Encode a line in the flexible polyline encoding format
@@ -87,8 +86,7 @@ String encode(NumericMatrix line, int precision = 5, int third_dim = 3,
               int third_dim_precision = 5)
 {
   Encoder encoder(precision, third_dim_precision, third_dim);
-  std::string encoded = encoder.encode_polyline(line);
-  return String(encoded);
+  return encoder.encode(line);
 }
 
 //' Get third dimension of a flexible polyline encoded string
@@ -111,44 +109,7 @@ String encode(NumericMatrix line, int precision = 5, int third_dim = 3,
 //' # 3d line
 //' get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 // [[Rcpp::export]]
-std::string get_third_dimension(SEXP encoded)
-{
-  return "test";
-}
-
-//' Set third dimension of a flexible polyline encoded string
-//'
-//' This function decodes the flexible polyline encoded line, changes the third
-//' dimension and encodes the line again.
-//'
-//' @note
-//' The precision is not read from the header of the encoded line. Therefore it
-//' must be provided as a parameter for re-encoding.
-//'
-//' @param encoded character, encoded flexible polyline string.
-//' @param third_dim_name character, name of the third dimension to set (ABSENT,
-//' LEVEL, ALTITUDE, ELEVATION, CUSTOM1, CUSTOM2).
-//' @param precision integer, precision to use in encoding (between 0 and 15,
-//' \code{default=5}).
-//' @param third_dim_precision integer, precision to use in encoding for the
-//' third dimension (between 1 and 15, \code{default=5}).
-//'
-//' @return
-//' The line with the new third dimension as string in the flexible polyline
-//' encoding format.
-//'
-//' @export
-//'
-//' @examples
-//' # 2d line (nothing happens...)
-//' set_third_dimension("BFoz5xJ67i1B1B7PzIhaxL7Y", "ELEVATION")
-//'
-//' # 3d line
-//' set_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU", "ELEVATION")
-// [[Rcpp::export]]
-std::string set_third_dimension(SEXP encoded, SEXP third_dim_name,
-                                int precision = 5,
-                                int third_dim_precision = 5)
-{
-  return "test";
+String get_third_dimension(SEXP encoded) {
+  Decoder decoder;
+  return decoder.get_third_dimension(encoded);
 }
