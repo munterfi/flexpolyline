@@ -4,7 +4,8 @@
 - Introduce encoder and decoder classes in C++ to separate responsibilities and improve error messages.
 - Remove function set (`set_third_dimension()`) the third dimension type of a flexible polyline encoded string, as it can be done using `decode()` and `encode()`.
 - Split tests into encoding and decoding and add test helpers.
-- Upgraded testthat edition by calling `usethis::use_testthat(3)`.
+- Upgraded **testthat** edition by calling `usethis::use_testthat(3)`.
+- Replaced github actions with current versions from **r-lib/actions**.
 
 # flexpolyline 0.3.0
 

@@ -3,8 +3,9 @@
 #include <Rcpp.h>
 
 #include <stdexcept>
+#include <string>
 
-std::string ErrorUtils::error_to_string(const Error& error) {
+std::string ErrorUtils::error_to_string(const Error &error) {
     switch (error) {
         case Error::UNSUPPORTED_VERSION:
             return "Data is encoded with unsupported version";
@@ -14,8 +15,8 @@ std::string ErrorUtils::error_to_string(const Error& error) {
             return "Encoding is corrupt";
         default:
             throw std::invalid_argument(
-                "Invalid error code: " +
-                std::to_string(static_cast<int>(error)));
+                    "Invalid error code: " +
+                    std::to_string(static_cast<int>(error)));
     }
 }
 

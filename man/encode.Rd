@@ -25,7 +25,7 @@ The line as string in the flexible polyline encoding format.
 \description{
 This function calls \code{hf::polyline_encode} of the C++ implementation of
 the flexible polyline encoding by HERE. Depending on the dimensions of the
-input coordinates, a two or three dimensional line is encoded.
+input coordinates, a two or three-dimensional line is encoded.
 }
 \examples{
 # 2D

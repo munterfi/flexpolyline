@@ -3,13 +3,6 @@
 
 #include <Rcpp.h>
 
-#include <iostream>
-#include <sstream>
-#include <stdexcept>
-#include <string>
-#include <tuple>
-#include <vector>
-
 using Rcpp::CharacterVector;
 using Rcpp::NumericMatrix;
 using Rcpp::String;
@@ -19,7 +12,7 @@ using Rcpp::String;
 //' This function calls \code{hf::polyline_decode} and
 //' \code{hf::get_third_dimension} of the C++ implementation of the flexible
 //' polyline encoding by HERE. Depending on the dimensions of the encoded line,
-//' a two or three dimensional line is decoded.
+//' a two or three-dimensional line is decoded.
 //'
 //' @param encoded character, encoded flexible polyline string.
 //'
@@ -35,17 +28,16 @@ using Rcpp::String;
 //' # 3d line
 //' decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 // [[Rcpp::export]]
-NumericMatrix decode(SEXP encoded)
-{
-  Decoder decoder;
-  return decoder.decode(encoded);
+NumericMatrix decode(SEXP encoded) {
+    Decoder decoder;
+    return decoder.decode(encoded);
 }
 
 //' Encode a line in the flexible polyline encoding format
 //'
 //' This function calls \code{hf::polyline_encode} of the C++ implementation of
 //' the flexible polyline encoding by HERE. Depending on the dimensions of the
-//' input coordinates, a two or three dimensional line is encoded.
+//' input coordinates, a two or three-dimensional line is encoded.
 //'
 //' @param line matrix, coordinates of the line in 2d or 3d (column order: LNG,
 //' LAT, DIM3).
@@ -83,10 +75,9 @@ NumericMatrix decode(SEXP encoded)
 //' encode(line3d)
 // [[Rcpp::export]]
 String encode(NumericMatrix line, int precision = 5, int third_dim = 3,
-              int third_dim_precision = 5)
-{
-  Encoder encoder(precision, third_dim_precision, third_dim);
-  return encoder.encode(line);
+              int third_dim_precision = 5) {
+    Encoder encoder(precision, third_dim_precision, third_dim);
+    return encoder.encode(line);
 }
 
 //' Get third dimension of a flexible polyline encoded string
@@ -110,6 +101,6 @@ String encode(NumericMatrix line, int precision = 5, int third_dim = 3,
 //' get_third_dimension("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 // [[Rcpp::export]]
 String get_third_dimension(SEXP encoded) {
-  Decoder decoder;
-  return decoder.get_third_dimension(encoded);
+    Decoder decoder;
+    return decoder.get_third_dimension(encoded);
 }

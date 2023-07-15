@@ -6,7 +6,7 @@
 #' This function calls \code{hf::polyline_decode} and
 #' \code{hf::get_third_dimension} of the C++ implementation of the flexible
 #' polyline encoding by HERE. Depending on the dimensions of the encoded line,
-#' a two or three dimensional line is decoded.
+#' a two or three-dimensional line is decoded.
 #'
 #' @param encoded character, encoded flexible polyline string.
 #'
@@ -29,7 +29,7 @@ decode <- function(encoded) {
 #'
 #' This function calls \code{hf::polyline_encode} of the C++ implementation of
 #' the flexible polyline encoding by HERE. Depending on the dimensions of the
-#' input coordinates, a two or three dimensional line is encoded.
+#' input coordinates, a two or three-dimensional line is encoded.
 #'
 #' @param line matrix, coordinates of the line in 2d or 3d (column order: LNG,
 #' LAT, DIM3).
