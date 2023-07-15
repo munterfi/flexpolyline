@@ -25,8 +25,8 @@ The flexible polyline encoding is a variant of the [Encoded Polyline Algorithm F
 **Note:**
 
 - The order of the coordinates (lng, lat) does not correspond to the original
-  C++ implementation (lat, lng). This enables direct conversion to `sf` objects,
-  without reordering the columns.
+  C++ implementation (lat, lng). This enables direct conversion to **sf**
+  objects, without reordering the columns.
 - The encoding is lossy, this means the encoding process could reduce the
   precision of your data.
 
