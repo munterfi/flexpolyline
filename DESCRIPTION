@@ -28,7 +28,7 @@ Imports:
     Rcpp,
     sf (>= 0.9-3)
 Suggests: 
-    testthat (>= 2.3.2),
+    testthat (>= 3.0.0),
     stringr (>= 1.4.0),
     knitr (>= 1.28),
     rmarkdown (>= 2.1),
@@ -36,3 +36,4 @@ Suggests:
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
+Config/testthat/edition: 3
