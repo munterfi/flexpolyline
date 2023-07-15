@@ -118,7 +118,7 @@
 <p>The <strong>flexpolyline</strong> R package provides a binding to the <a href="https://github.com/heremaps/flexible-polyline/tree/master/cpp" class="external-link">C++ implementation</a> of the flexible polyline encoding by <a href="https://github.com/heremaps/flexible-polyline" class="external-link">HERE</a>. The flexible polyline encoding is a lossy compressed representation of a list of coordinate pairs or coordinate triples. The encoding is achieved by: (1) Reducing the decimal digits of each value; (2) encoding only the offset from the previous point; (3) using variable length for each coordinate delta; and (4) using 64 URL-safe characters to display the result. The flexible polyline encoding is a variant of the <a href="https://developers.google.com/maps/documentation/utilities/polylinealgorithm" class="external-link">Encoded Polyline Algorithm Format</a> by Google.</p>
 <p><strong>Note:</strong></p>
 <ul>
-<li>The order of the coordinates (lng, lat) does not correspond to the original C++ implementation (lat, lng). This enables direct conversion to <code>sf</code> objects, without reordering the columns.</li>
+<li>The order of the coordinates (lng, lat) does not correspond to the original C++ implementation (lat, lng). This enables direct conversion to <strong>sf</strong> objects, without reordering the columns.</li>
 <li>The encoding is lossy, this means the encoding process could reduce the precision of your data.</li>
 </ul>
 <div class="section level2">
