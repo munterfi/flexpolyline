@@ -1,5 +1,7 @@
 #include "error.h"
 
+#include <Rcpp.h>
+
 #include <stdexcept>
 
 std::string ErrorUtils::error_to_string(const Error& error) {
