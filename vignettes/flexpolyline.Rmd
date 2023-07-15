@@ -58,10 +58,12 @@ and return values as their counterparts (`hf::encode_polyline` and `hf::decode_p
 library(flexpolyline)
 
 (line <- matrix(
-  c(8.69821, 50.10228, 10,
+  c(
+    8.69821, 50.10228, 10,
     8.69567, 50.10201, 20,
     8.69150, 50.10063, 30,
-    8.68752, 50.09878, 40),
+    8.68752, 50.09878, 40
+  ),
   ncol = 3, byrow = TRUE
 ))
 

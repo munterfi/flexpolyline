@@ -1,55 +1,64 @@
+# flexpolyline 0.3.0.9000
+
+- Upgrade to current version of the flexpolyline [C++ implementation] (https://github.com/heremaps/flexible-polyline/blob/3e1ebc2e2ce39111b0e2e91260b98053ac965f77/cpp/include/hf/flexpolyline.h).
+- Introduce encoder and decoder classes in C++ to separate responsibilities and improve error messages.
+- Remove function set (`set_third_dimension()`) the third dimension type of a flexible polyline encoded string, as it can be done using `decode()` and `encode()`.
+- Split tests into encoding and decoding and add test helpers.
+- Upgraded **testthat** edition by calling `usethis::use_testthat(3)`.
+- Replaced github actions with current versions from **r-lib/actions**.
+
 # flexpolyline 0.3.0
 
-* Update C++11 to current CRAN default of C++17.
+- Update C++11 to current CRAN default of C++17.
 
 # flexpolyline 0.2.7
 
-* Fix missing missing inclusion of `<cstdint>`, closes [#58](https://github.com/munterfi/flexpolyline/issues/58).
-* Resubmit to CRAN due to since the package was archived on 2022-12-27 as email to the maintainer was temporarily not deliverable.
-* Updated r-lib/actions in github action `R-CMD-check.yaml` and `pkgdown.yaml`.
+- Fix missing missing inclusion of `<cstdint>`, closes [#58](https://github.com/munterfi/flexpolyline/issues/58).
+- Resubmit to CRAN due to since the package was archived on 2022-12-27 as email to the maintainer was temporarily not deliverable.
+- Updated r-lib/actions in github action `R-CMD-check.yaml` and `pkgdown.yaml`.
 
 # flexpolyline 0.2.6
 
-* Switch to HTML5 for documentation pages, closes [#56](https://github.com/munterfi/flexpolyline/issues/56).
+- Switch to HTML5 for documentation pages, closes [#56](https://github.com/munterfi/flexpolyline/issues/56).
 
 # flexpolyline 0.2.5
 
-* Changed workflow from git flow to trunc-based development. Removed develop branch. New features are merged directly into `master` and releases are tagged after CRAN has accepted the package submission, which triggers the documentation build.
+- Changed workflow from git flow to trunc-based development. Removed develop branch. New features are merged directly into `master` and releases are tagged after CRAN has accepted the package submission, which triggers the documentation build.
 
 # flexpolyline 0.2.4
 
-* Adjust URLs to GitHub account due to renaming munterfinger to @munterfi.
+- Adjust URLs to GitHub account due to renaming munterfinger to @munterfi.
 
 # flexpolyline 0.2.3
 
-* Skip encoding and decoding validation tests on CRAN due to minor deviations in the results due to rounding (half up vs. half even) on different platforms (e.g. Apple M1) at high precision values (closes [#49](https://github.com/munterfi/flexpolyline/issues/49))
+- Skip encoding and decoding validation tests on CRAN due to minor deviations in the results due to rounding (half up vs. half even) on different platforms (e.g. Apple M1) at high precision values (closes [#49](https://github.com/munterfi/flexpolyline/issues/49))
 
 # flexpolyline 0.2.2
 
-* Fix wrong integer shift resulting in lost bits for precision values greater than 7 (see [heremaps/flexible-polyline#36](https://github.com/heremaps/flexible-polyline/issues/36), closes [#44](https://github.com/munterfi/flexpolyline/issues/44)).
-* Fix CRAN note for a specified lazy data statement without data directory (closes [#43](https://github.com/munterfi/flexpolyline/issues/43)).
-* Use **styler** package and use `tyler::tidyverse_style()`to format the package.
-* Solve **lintr** issues, except from line length issues (limit of 80 characters).
+- Fix wrong integer shift resulting in lost bits for precision values greater than 7 (see [heremaps/flexible-polyline#36](https://github.com/heremaps/flexible-polyline/issues/36), closes [#44](https://github.com/munterfi/flexpolyline/issues/44)).
+- Fix CRAN note for a specified lazy data statement without data directory (closes [#43](https://github.com/munterfi/flexpolyline/issues/43)).
+- Use **styler** package and use `tyler::tidyverse_style()`to format the package.
+- Solve **lintr** issues, except from line length issues (limit of 80 characters).
 
 # flexpolyline 0.2.1
 
-* Skip input tests of C++ binding on CRAN, closes #35.
-* Added contribution guidelines, code of conduct and issue templates.
+- Skip input tests of C++ binding on CRAN, closes #35.
+- Added contribution guidelines, code of conduct and issue templates.
 
 # flexpolyline 0.2.0
 
-* Fix clang range-loop-analysis warning on macOS in `flexpolyline.h` (Apple clang version 12.0.0).
-* Support for geometry types `"POLYGON"` and `"POINT"` in `encode_sf()` and `decode_sf()`, closes #31.
-* Added functions to get (`get_third_dimension()`) and set (`set_third_dimension()`) the third dimension type of a flexible polyline encoded string.
-* Sign in to CodeFactor.io and add badge to continuously track code quality.
-* Use exception classes when throwing an exception in C++.
-* Improve coverage of tests.
+- Fix clang range-loop-analysis warning on macOS in `flexpolyline.h` (Apple clang version 12.0.0).
+- Support for geometry types `"POLYGON"` and `"POINT"` in `encode_sf()` and `decode_sf()`, closes #31.
+- Added functions to get (`get_third_dimension()`) and set (`set_third_dimension()`) the third dimension type of a flexible polyline encoded string.
+- Sign in to CodeFactor.io and add badge to continuously track code quality.
+- Use exception classes when throwing an exception in C++.
+- Improve coverage of tests.
 
 # flexpolyline 0.1.1
 
-* Add ORCID to author field in `DESCRIPTION`.
-* Limit the encoding check in the C++ binding test to 7 digits.
-* Use explicit type casts before left shifting and reassigning (`x <<= y`) to avoid UBSAN runtime error *'left shift of negative value'* in `flexpolyline.h`.
+- Add ORCID to author field in `DESCRIPTION`.
+- Limit the encoding check in the C++ binding test to 7 digits.
+- Use explicit type casts before left shifting and reassigning (`x <<= y`) to avoid UBSAN runtime error _'left shift of negative value'_ in `flexpolyline.h`.
 
 # flexpolyline 0.1.0
 
@@ -68,5 +77,5 @@ The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm F
 
 **License:**
 
-* The **flexpolyline** R package is licensed under GNU GPL v3.0.
-* The C++ implementation by HERE Europe B.V. is licensed under MIT.
+- The **flexpolyline** R package is licensed under GNU GPL v3.0.
+- The C++ implementation by HERE Europe B.V. is licensed under MIT.

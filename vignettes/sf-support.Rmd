@@ -48,11 +48,13 @@ library(flexpolyline)
 library(sf)
 
 coords <- matrix(
-    c(8.69821, 50.10228, 10.11111,
-      8.69567, 50.10201, 20.22222,
-      8.69150, 50.10063, 30.33333,
-      8.68752, 50.09878, 40.44444),
-    ncol = 3, byrow = TRUE
+  c(
+    8.69821, 50.10228, 10.11111,
+    8.69567, 50.10201, 20.22222,
+    8.69150, 50.10063, 30.33333,
+    8.68752, 50.09878, 40.44444
+  ),
+  ncol = 3, byrow = TRUE
 )
 
 (sfg_z <- st_linestring(coords, dim = "XYZ"))
@@ -118,4 +120,4 @@ Otherwise it is set to `sf::NA_crs_`.
 
 * [CRAN: Simple Features for R](https://CRAN.R-project.org/package=sf)
 * [Wikipedia: Simple Features](https://en.wikipedia.org/wiki/Simple_Features)
-* [OGC: Simple Feature Access](https://www.ogc.org/standards/sfa)
+* [OGC: Simple Feature Access](https://www.ogc.org/standard/sfa)

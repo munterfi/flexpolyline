@@ -30,10 +30,12 @@ dimension is automatically set to `"ABSENT"`:
 library(flexpolyline)
 
 line2d <- matrix(
-  c(8.69821, 50.10228,
+  c(
+    8.69821, 50.10228,
     8.69567, 50.10201,
     8.69150, 50.10063,
-    8.68752, 50.09878),
+    8.68752, 50.09878
+  ),
   ncol = 2, byrow = TRUE
 )
 
@@ -58,10 +60,12 @@ By default the precision of the third dimension `third_dim_precision` is set to
 the same value as the precision value for the longitude and latitude dimensions.
 ```{r encode3d}
 line3d <- matrix(
-  c(8.69821, 50.10228, 10.11111,
+  c(
+    8.69821, 50.10228, 10.11111,
     8.69567, 50.10201, 20.22222,
     8.69150, 50.10063, 30.33333,
-    8.68752, 50.09878, 40.44444),
+    8.68752, 50.09878, 40.44444
+  ),
   ncol = 3, byrow = TRUE
 )
 
