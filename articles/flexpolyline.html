@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0.9000</span>
       </span>
     </div>
 
@@ -147,7 +147,7 @@ with:</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"flexpolyline"</span><span class="op">)</span></span></code></pre></div>
 <p>Install the development version from <a href="https://github.com/munterfi/flexpolyline" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"munterfi/flexpolyline"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"munterfi/flexpolyline"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="c-binding">C++ binding<a class="anchor" aria-label="anchor" href="#c-binding"></a>
@@ -162,10 +162,12 @@ arguments and return values as their counterparts
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://munterfi.github.io/flexpolyline/" class="external-link">flexpolyline</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="op">(</span><span class="va">line</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="fl">8.69821</span>, <span class="fl">50.10228</span>, <span class="fl">10</span>,</span>
 <span>    <span class="fl">8.69567</span>, <span class="fl">50.10201</span>, <span class="fl">20</span>,</span>
 <span>    <span class="fl">8.69150</span>, <span class="fl">50.10063</span>, <span class="fl">30</span>,</span>
-<span>    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40</span><span class="op">)</span>,</span>
+<span>    <span class="fl">8.68752</span>, <span class="fl">50.09878</span>, <span class="fl">40</span></span>
+<span>  <span class="op">)</span>,</span>
 <span>  ncol <span class="op">=</span> <span class="fl">3</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;         [,1]     [,2] [,3]</span></span>
@@ -241,7 +243,7 @@ package</li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>

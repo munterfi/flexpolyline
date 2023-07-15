@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpolyline</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.0.9000</span>
       </span>
     </div>
 
@@ -76,6 +76,15 @@
     </div>
 
     <div class="section level2">
+<h2 class="page-header" data-toc-text="0.3.0.9000" id="flexpolyline-0309000">flexpolyline 0.3.0.9000<a class="anchor" aria-label="anchor" href="#flexpolyline-0309000"></a></h2>
+<ul><li>Upgrade to current version of the flexpolyline [C++ implementation] (<a href="https://github.com/heremaps/flexible-polyline/blob/3e1ebc2e2ce39111b0e2e91260b98053ac965f77/cpp/include/hf/flexpolyline.h" class="external-link uri">https://github.com/heremaps/flexible-polyline/blob/3e1ebc2e2ce39111b0e2e91260b98053ac965f77/cpp/include/hf/flexpolyline.h</a>).</li>
+<li>Introduce encoder and decoder classes in C++ to separate responsibilities and improve error messages.</li>
+<li>Remove function set (<code>set_third_dimension()</code>) the third dimension type of a flexible polyline encoded string, as it can be done using <code><a href="../reference/decode.html">decode()</a></code> and <code><a href="../reference/encode.html">encode()</a></code>.</li>
+<li>Split tests into encoding and decoding and add test helpers.</li>
+<li>Upgraded <strong>testthat</strong> edition by calling <code>usethis::use_testthat(3)</code>.</li>
+<li>Replaced github actions with current versions from <strong>r-lib/actions</strong>.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="flexpolyline-030">flexpolyline 0.3.0<small>2023-02-12</small><a class="anchor" aria-label="anchor" href="#flexpolyline-030"></a></h2>
 <ul><li>Update C++11 to current CRAN default of C++17.</li>
 </ul></div>
@@ -117,7 +126,7 @@
 <h2 class="page-header" data-toc-text="0.2.0" id="flexpolyline-020">flexpolyline 0.2.0<small>2020-12-17</small><a class="anchor" aria-label="anchor" href="#flexpolyline-020"></a></h2>
 <ul><li>Fix clang range-loop-analysis warning on macOS in <code>flexpolyline.h</code> (Apple clang version 12.0.0).</li>
 <li>Support for geometry types <code>"POLYGON"</code> and <code>"POINT"</code> in <code><a href="../reference/encode_sf.html">encode_sf()</a></code> and <code><a href="../reference/decode_sf.html">decode_sf()</a></code>, closes <a href="https://github.com/munterfi/flexpolyline/issues/31" class="external-link">#31</a>.</li>
-<li>Added functions to get (<code><a href="../reference/get_third_dimension.html">get_third_dimension()</a></code>) and set (<code><a href="../reference/set_third_dimension.html">set_third_dimension()</a></code>) the third dimension type of a flexible polyline encoded string.</li>
+<li>Added functions to get (<code><a href="../reference/get_third_dimension.html">get_third_dimension()</a></code>) and set (<code>set_third_dimension()</code>) the third dimension type of a flexible polyline encoded string.</li>
 <li>Sign in to CodeFactor.io and add badge to continuously track code quality.</li>
 <li>Use exception classes when throwing an exception in C++.</li>
 <li>Improve coverage of tests.</li>
@@ -154,7 +163,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
