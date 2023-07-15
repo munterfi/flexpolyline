@@ -5,7 +5,7 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/flexpolyline)](https://CRAN.R-project.org/package=flexpolyline)
 [![CRAN checks](https://badges.cranchecks.info/worst/flexpolyline.svg)](https://cran.r-project.org/web/checks/check_results_flexpolyline.html)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/last-month/flexpolyline?color=brightgreen)](https://CRAN.R-project.org/package=flexpolyline)
-[![R build status](https://github.com/munterfi/flexpolyline/workflows/R-CMD-check/badge.svg)](https://github.com/munterfi/flexpolyline/actions)
+[![R-CMD-check](https://github.com/munterfi/flexpolyline/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/munterfi/flexpolyline/actions/workflows/check-standard.yaml)
 [![Codecov test coverage](https://codecov.io/gh/munterfi/flexpolyline/branch/master/graph/badge.svg)](https://app.codecov.io/gh/munterfi/flexpolyline?branch=master)
 [![CodeFactor](https://www.codefactor.io/repository/github/munterfi/flexpolyline/badge)](https://www.codefactor.io/repository/github/munterfi/flexpolyline)
 
