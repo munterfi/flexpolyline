@@ -15,13 +15,13 @@ knitr::opts_chunk$set(
 ```
 
 A common way to deal with spatial data in R is the
-[sf](https://CRAN.R-project.org/package=sf) package, which is
+**[sf](https://CRAN.R-project.org/package=sf)** package, which is
 built on the concept of simple features. According to the the sf package
 [vignette](https://r-spatial.github.io/sf/articles/sf1.html), simple features are
-*"...a formal standard (ISO 19125-1:2004) that describes how objects in the real
+_"...a formal standard (ISO 19125-1:2004) that describes how objects in the real
 world can be represented in computers, with emphasis on the spatial geometry of
 these objects. It also describes how such objects can be stored in and retrieved
-from databases, and which geometrical operations should be defined for them."*
+from databases, and which geometrical operations should be defined for them."_
 
 The most common geometry types of simple features are: POINT, LINESTRING, POLYGON,
 MULTIPOINT, MULTILINESTRING, MULTIPOLYGON. All geometry types are based on POINTs.
@@ -32,17 +32,20 @@ There are four possible dimension combinations of geometries in the sf package.
 In the `flexpolyine` package the first three dimension combinations are
 supported and represented as follows:
 
-* XY: Represented as line with LNG and LAT dimensions.
-* XYZ: Represented as line with LNG, LAT and LEVEL/ALTITUDE/ELEVATION as third dimension.
-* XYM: Represented as line with LNG, LAT and CUSTOM1/CUSTOM2 as third dimension.
-* XYZM: Not supported.
+- XY: Represented as line with LNG and LAT dimensions.
+- XYZ: Represented as line with LNG, LAT and LEVEL/ALTITUDE/ELEVATION as third dimension.
+- XYM: Represented as line with LNG, LAT and CUSTOM1/CUSTOM2 as third dimension.
+- XYZM: Not supported.
 
 ## Encoding and decoding
+
 ### Simple feature geometry (sfg)
+
 If no value for `third_dim` is provided in `encode_sf()`, the dimensions of the
 sf geometry are considered. In case of `"XYZ"` the third dimension is set to
 `"ELEVATION"` and thereby recognized again as `"XYZ"` by `decode_sf()` during
 decoding:
+
 ```{r sfg_z}
 library(flexpolyline)
 library(sf)
@@ -66,6 +69,7 @@ decode_sf(sfg_enc_z)
 
 In case of `"XYM"` the third dimension is set to `"CUSTOM1"` and again set to
 `"XYM"` in decoding:
+
 ```{r sfg_m}
 (sfg_m <- st_linestring(coords, dim = "XYM"))
 
@@ -75,10 +79,12 @@ decode_sf(sfg_enc_m)
 ```
 
 ### Simple feature geometry list-column (sfc)
+
 The geometry column in simple feature data sets is called simple feature geometry
 list-column. The sfc object has a Coordinate Reference System (CRS) assigned.
 In the case of longitude and latitude data this is most often WGS84 (EPSG: 4326).
 Objects of type `sfc` are supported as input in encoding:
+
 ```{r sfc}
 (sfc <- st_as_sfc(
   lapply(seq(1, 5), function(x) {
@@ -93,11 +99,13 @@ decode_sf(sfc_enc, crs = 4326)
 ```
 
 ### Simple feature (sf)
+
 A simple feature is a geometry that is connected with further characteristics
 (other than it's coordinates), which in practice means a `data.frame`
 (also `data.table` or `tibble`) with an `sfc` column. The **flexpolyline** package
 only takes care of the coordinates of the LINESTRINGs in the sf object, other
 columns and the CRS information are not encoded and stored in the string:
+
 ```{r sf}
 (sf <- st_as_sf(
   data.frame(
@@ -118,6 +126,6 @@ Otherwise it is set to `sf::NA_crs_`.
 
 ## References
 
-* [CRAN: Simple Features for R](https://CRAN.R-project.org/package=sf)
-* [Wikipedia: Simple Features](https://en.wikipedia.org/wiki/Simple_Features)
-* [OGC: Simple Feature Access](https://www.ogc.org/standard/sfa)
+- [CRAN: Simple Features for R](https://CRAN.R-project.org/package=sf)
+- [Wikipedia: Simple Features](https://en.wikipedia.org/wiki/Simple_Features)
+- [OGC: Simple Feature Access](https://www.ogc.org/standard/sfa/)
