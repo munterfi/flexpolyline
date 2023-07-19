@@ -26,69 +26,69 @@ The encoding is achieved by:
 (2) encoding only the offset from the previous point;
 (3) using variable length for each coordinate delta; and
 (4) using 64 URL-safe characters to display the result.
-The felxible polyline encoding is a variant of the [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) by Google.
+The flexible polyline encoding is a variant of the [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm) by Google.
 
 **Note:**
 
-* Decoding gives reliable results up to a precision of 7 digits.
-The tests are also limited to this range.
-* The order of the coordinates (lng, lat) does not correspond to the original C++ implementation (lat, lng).
-This enables simple conversion to `sf` objects, without reordering the columns.
-* The encoding is lossy, this means the encoding process could reduce the precision of your data.
+- The order of the coordinates (lng, lat) does not correspond to the original
+  C++ implementation (lat, lng). This enables direct conversion to **sf**
+  objects, without reordering the columns.
+- The encoding is lossy, this means the encoding process could reduce the
+  precision of your data.
 
 ## Installation
-You can install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org/package=flexpolyline) with:
 
-```{r, eval=FALSE}
+Install the released version of **flexpolyline** from [CRAN](https://CRAN.R-project.org/package=flexpolyline):
+
+```r
 install.packages("flexpolyline")
 ```
 
-Install the development version from [GitHub](https://github.com/munterfi/flexpolyline) with:
+To install the development version from [GitHub](https://github.com/munterfi/flexpolyline):
 
-```{r, eval=FALSE}
+```r
 remotes::install_github("munterfi/flexpolyline")
 ```
 
 ## C++ binding
-Encoding and decoding in R is straight forward by using `encode()` and `decode()`.
-These functions are binding to the flexpolyline C++ implementation and have similar arguments
-and return values as their counterparts (`hf::encode_polyline` and `hf::decode_polyline`):
 
-```{r cpp_encode_decode}
-library(flexpolyline)
+Encoding and decoding in R is straight forward by using `encode()` and
+`decode()`. These functions are binding to the flexpolyline C++ implementation
+and reflect the arguments and return values of their counterparts
+(`hf::flexpolyline::polyline_encode` and `hf::flexpolyline::polyline_decode`):
 
-(line <- matrix(
-  c(
-    8.69821, 50.10228, 10,
+```r
+line <- matrix(
+  c(8.69821, 50.10228, 10,
     8.69567, 50.10201, 20,
     8.69150, 50.10063, 30,
-    8.68752, 50.09878, 40
-  ),
+    8.68752, 50.09878, 40),
   ncol = 3, byrow = TRUE
-))
+)
 
-(encoded <- encode(line))
+encode(line)
 
-(decoded <- decode(encoded))
+decode("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ```
 
 ## Simple feature support
-A common way to deal with spatial data in R is the
-[sf](https://CRAN.R-project.org/package=sf) package, which is
-built on the concept of simple features. The functions `encode_sf()` and
-`decode_sf()` provide an interface that support the encoding of sf objects:
 
-```{r sf_encode_decode}
-(sfg <- sf::st_linestring(line, dim = "XYZ"))
+The **flexpolyline** package integrates with the popular
+[sf](https://CRAN.R-project.org/package=sf) package for working with spatial
+data in R, which is built on the concept of simple features. The package
+provides additional functions for encoding and decoding sf objects directly:
 
-(encoded <- encode_sf(sfg))
+```r
+sfg <- sf::st_linestring(line, dim = "XYZ")
 
-(decoded <- decode_sf(encoded))
+encode_sf(sfg)
+
+decode_sf("BlBoz5xJ67i1BU1B7PUzIhaUxL7YU")
 ```
 
 ## References
 
-* [Flexible Polyline Encoding by HERE](https://github.com/heremaps/flexible-polyline)
-* [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
-* [Simple Features for R](https://CRAN.R-project.org/package=sf)
-* Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package
+- [Flexible Polyline Encoding by HERE](https://github.com/heremaps/flexible-polyline)
+- [Encoded Polyline Algorithm Format](https://developers.google.com/maps/documentation/utilities/polylinealgorithm)
+- [Simple Features for R](https://CRAN.R-project.org/package=sf)
+- Inspired by the [googlePolylines](https://github.com/SymbolixAU/googlePolylines) package
